@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -17,8 +18,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('user_type', ['student', 'staff']); // To differentiate between students and staff
+            $table->string('user_id')->unique();
             $table->rememberToken();
             $table->timestamps();
+            // Add foreign keys conditionally based on user type
+            // This ensures 'user_id' can reference either 'student_id' or 'staff_id'
+            $table->foreign('user_id')->references('user_id')->on('user_profile')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
