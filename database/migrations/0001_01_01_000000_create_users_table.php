@@ -13,13 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->id(); 
+            $table->string('username')->unique(); // Collects like 21B6027 or fname.lname
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable(); // To be used
             $table->string('password');
             $table->enum('user_type', ['student', 'staff']); // To differentiate between students and staff
-            $table->string('user_id')->unique();
             $table->rememberToken();
             $table->timestamps();
             // Add foreign keys conditionally based on user type
