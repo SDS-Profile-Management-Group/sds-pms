@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('username')->unique(); // This is the primary key for the student profile
             $table->foreign('username')->references('username')
             ->on('user_profile')->onDelete('cascade'); // Foreign key reference to user_profile
+
             $table->string('student_intake_batch');
             $table->string('student_type');
             // $table->timestamps();
@@ -45,8 +46,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_profile');
         DB::statement('DROP TABLE IF EXISTS "user_profile" CASCADE');
+        // Schema::dropIfExists('user_profile');
         Schema::dropIfExists('student_profile');
         // Schema::dropIfExists('staff_profile');
     }
