@@ -48,7 +48,6 @@
             <input type="text" name="username" placeholder="name">
             <input type="text" name="email" placeholder="email">
             <input type="password" name="password" placeholder="password">
-            <input type="text" name="user_id" placeholder="21B6027">
             <label for="userType">Choose User Type:</label>
             <select id="userType" name="user_type">
                 <option value="student">Student</option>

@@ -20,7 +20,7 @@ class UserController extends Controller
 
         $user = User::create($incomingFields);
         Profile::create([
-            'username' => $incomingFields['username'],
+            "username" => $incomingFields['username']
         ]);
         auth()->login($user);
 
@@ -38,7 +38,7 @@ class UserController extends Controller
             "login-password" => "required"
         ]);
 
-        if (auth()->attempt(['name' => $incomingFields['login-name'],'password'=> $incomingFields['login-password']])) {
+        if (auth()->attempt(['username' => $incomingFields['login-name'],'password'=> $incomingFields['login-password']])) {
             $request ->session()->regenerate();
         }
 

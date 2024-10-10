@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('contact_number')->nullable();
             $table->string('alt_email')->nullable();
             // ! TODO: Ensure that timestamp functionality exists within the model class
-            // $table->timestamps();
+            $table->timestamps();
         });
         
         Schema::create('student_profile', function (Blueprint $table) {
@@ -46,6 +46,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('user_profile');
+        DB::statement('DROP TABLE IF EXISTS "user_profile" CASCADE');
         Schema::dropIfExists('student_profile');
         // Schema::dropIfExists('staff_profile');
     }
