@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable(); // To be used
             $table->string('password');
             $table->enum('user_type', ['student', 'staff']); // To differentiate between students and staff
             $table->string('user_id')->unique();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
             // Add foreign keys conditionally based on user type
             // This ensures 'user_id' can reference either 'student_id' or 'staff_id'
-            $table->foreign('user_id')->references('user_id')->on('user_profile')->onDelete('cascade');
+            // $table->foreign('user_id')->references('user_id')->on('user_profile')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -13,7 +13,8 @@ class UserController extends Controller
             "name" => ["required","min: 3","max: 10", Rule::unique('users', 'name')],
             "email"=> ["required","email", Rule::unique('users', 'email')],
             "password"=> ["required","min:8"],
-            "user_id"=> ["required", Rule::unique('user_profile','user_id')],
+            // "user_id"=> ["required", Rule::unique('user_profile','user_id')],
+            "user_id"=> ["required"],
             "user_type"=>["required"],
         ]);
 

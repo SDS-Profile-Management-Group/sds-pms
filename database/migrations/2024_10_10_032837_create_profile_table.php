@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {   
         Schema::create('user_profile', function(Blueprint $table){
-            $table->string('user_id')->unique()->primary(); // Primary Key, connects to user_id at users table
+            $table->string('username')->unique()->primary(); // Primary Key, connects to user_id at users table
             $table->string('full_name');
             $table->string('contact_number')->nullable(); 
             $table->string('alt_email')->nullable();
