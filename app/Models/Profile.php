@@ -11,6 +11,8 @@ class Profile extends Model
 
     protected $table = 'user_profile';
     protected $primaryKey = 'username';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'username',

@@ -8,7 +8,19 @@
 <body>
     @auth
 
-    <p>Congrats, you are logged in!</p>
+    @if (Auth::user()->userProfile)
+        <p>Congrats, you are logged in! Welcome, {{ Auth::user()->userProfile->full_name }}!</p>
+    @else
+        <p>Congrats, you are logged in! Welcome, {{ Auth::user()->username }}!</p>
+    @endif
+
+    <form action="/enter-name" method="POST">
+        @csrf
+        <p>Enter your name: </p>
+        <input type="text" name="full_name" id="full_name">
+        <button>Enter name</button>
+    </form>
+
     <form action="/logout" method="POST">
         @csrf
         <button>Log out</button>
