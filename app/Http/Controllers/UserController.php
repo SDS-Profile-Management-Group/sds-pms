@@ -24,7 +24,7 @@ class UserController extends Controller
         ]);
         auth()->login($user);
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function logout(){
@@ -42,17 +42,17 @@ class UserController extends Controller
             $request ->session()->regenerate();
         }
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function enterName(Request $request){
-        // Validate the incoming full name
         $incomingFields = $request->validate([
             "full_name" => "required|regex:/^[a-zA-Z\s]+$/", // Allows letters and spaces
         ]);
 
+        // ? Ensure we're updating the profile with the right username
         $profile = Profile::firstOrNew([
-            'username' => auth()->user()->username,  // Ensure we're updating the profile with the right username
+            'username' => auth()->user()->username,  
         ]);
     
         // Update the full name if the profile exists or create a new one
@@ -60,7 +60,7 @@ class UserController extends Controller
         $profile->save(); // Save the profile
     
         // Redirect with success message
-        return redirect('/');
+        return redirect('/home');
     }
 
 }

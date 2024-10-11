@@ -6,7 +6,7 @@
     <title>Profile Management System - Login</title>
 </head>
 <body>
-    <header>Header Page</header>
+    <header>Header</header>
 
     <div style="border: 3px solid black">
         <h2>Register</h2>
@@ -34,9 +34,11 @@
 
             <input type="text" name="login-name" placeholder="name">
             <input type="password" name="login-password" placeholder="password">
-            
+
             <button>Log In</button>
         </form>
     </div>
+    
+    <footer>Footer</footer>
 </body>
 </html>
