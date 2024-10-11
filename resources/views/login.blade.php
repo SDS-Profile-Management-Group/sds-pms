@@ -8,7 +8,7 @@
 <body>
     <header>Header</header>
 
-    <div style="border: 3px solid black">
+    <div class="auth-box" style="border: 3px solid black">
         <h2>Register</h2>
         <form action="/register" method="POST">
             @csrf
@@ -27,7 +27,7 @@
         </form>
     </div>
 
-    <div style="border: 3px solid black">
+    <div class="auth-box" style="border: 3px solid black">
         <h2>Login</h2>
         <form action="/login" method="POST">
             @csrf
@@ -38,7 +38,7 @@
             <button>Log In</button>
         </form>
     </div>
-    
+
     <footer>Footer</footer>
 </body>
 </html>
