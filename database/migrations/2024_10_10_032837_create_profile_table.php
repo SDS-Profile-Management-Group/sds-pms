@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('full_name')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('alt_email')->nullable();
-            // ! TODO: Ensure that timestamp functionality exists within the model class
             $table->timestamps();
         });
         
@@ -30,7 +29,7 @@ return new class extends Migration
 
             $table->string('student_intake_batch');
             $table->string('student_type');
-            // $table->timestamps();
+            $table->timestamps();
         });
 
         // Schema::create('staff_profile', function(Blueprint $table){

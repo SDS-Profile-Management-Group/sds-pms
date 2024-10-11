@@ -21,9 +21,6 @@ return new class extends Migration
             $table->enum('user_type', ['student', 'staff']); // To differentiate between students and staff
             $table->rememberToken();
             $table->timestamps();
-            // Add foreign keys conditionally based on user type
-            // This ensures 'user_id' can reference either 'student_id' or 'staff_id'
-            // $table->foreign('user_id')->references('user_id')->on('user_profile')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
