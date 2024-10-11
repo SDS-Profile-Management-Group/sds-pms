@@ -9,9 +9,9 @@
     @auth
 
     @if (Auth::user()->userProfile)
-        <p>Congrats, you are logged in! Welcome, {{ Auth::user()->userProfile->full_name }}!</p>
+        <p>Welcome, {{ Auth::user()->userProfile->full_name }}!</p>
     @else
-        <p>Congrats, you are logged in! Welcome, {{ Auth::user()->username }}!</p>
+        <p>Welcome, {{ Auth::user()->username }}!</p>
     @endif
 
     <form action="/enter-name" method="POST">
