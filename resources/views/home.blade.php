@@ -11,6 +11,8 @@
     @if (Auth::user()->userProfile)
         <p>Welcome, {{ Auth::user()->userProfile->full_name }}!</p>
     @else
+        {{-- TODO: Establish username as input! --}}
+        {{-- <p>Welcome, {{ Auth::user()->userProfile->username }}!</p> --}}
         <p>Welcome, {{ Auth::user()->username }}!</p>
     @endif
 
