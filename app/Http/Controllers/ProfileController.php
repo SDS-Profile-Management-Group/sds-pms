@@ -19,9 +19,8 @@ class ProfileController extends Controller
     
         // Update the full name if the profile exists or create a new one
         $profile->full_name = $incomingFields['full_name'];
-        $profile->save(); // Save the profile
+        $profile->save();
     
-        // Redirect with success message
         return redirect('/home');
     }
 }
