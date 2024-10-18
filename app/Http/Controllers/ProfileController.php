@@ -14,7 +14,7 @@ class ProfileController extends Controller
 
         // ? Ensure we're updating the profile with the right username
         $profile = Profile::firstOrNew([
-            'username' => auth()->user()->username,  
+            'username' => auth()->user()->asg_username,  
         ]);
     
         // Update the full name if the profile exists or create a new one

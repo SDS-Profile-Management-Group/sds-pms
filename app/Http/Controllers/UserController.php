@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function register(Request $request){
         $incomingFields = $request->validate([
-            "username" => ["required", Rule::unique('users', 'username')],
+            "asg_username" => ["required", Rule::unique('users', 'asg_username')],
             "email"=> ["required","email", Rule::unique('users', 'email')],
             "password"=> ["required","min:8"],
             "user_type"=>["required"],
@@ -20,7 +20,7 @@ class UserController extends Controller
 
         $user = User::create($incomingFields);
         Profile::create([
-            "username" => $incomingFields['username']
+            'username' =>$user->asg_username,
         ]);
         auth()->login($user);
 
@@ -38,7 +38,7 @@ class UserController extends Controller
             "login-password" => "required"
         ]);
 
-        if (auth()->attempt(['username' => $incomingFields['login-name'],'password'=> $incomingFields['login-password']])) {
+        if (auth()->attempt(['asg_username' => $incomingFields['login-name'],'password'=> $incomingFields['login-password']])) {
             $request ->session()->regenerate();
         }
 

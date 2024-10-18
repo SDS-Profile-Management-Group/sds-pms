@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id(); 
-            $table->string('username')->unique(); // Collects like 21B6027 or fname.lname
+            $table->string('asg_username')->unique(); // Collects like 21B6027 or fname.lname
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable(); // To be used
             $table->string('password');

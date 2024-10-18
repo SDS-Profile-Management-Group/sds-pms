@@ -9,12 +9,14 @@
     @auth
 
     @if (Auth::user()->userProfile)
-        <p>Welcome, {{ Auth::user()->userProfile->full_name }}!</p>
-    @else
-        {{-- TODO: Establish username as input! --}}
-        {{-- <p>Welcome, {{ Auth::user()->userProfile->username }}!</p> --}}
-        <p>Welcome, {{ Auth::user()->username }}!</p>
+        @if (Auth::user()->userProfile->full_name)
+            <p>Welcome, {{ Auth::user()->userProfile->full_name }}!</p>
+        @else
+            <p>Welcome, {{ Auth::user()->asg_username }}!</p>
+        @endif
     @endif
+
+    <p class="name">Name: {{Auth::user()->userProfile->full_name}}</p>
 
     <form action="/enter-name" method="POST">
         @csrf

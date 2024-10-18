@@ -17,16 +17,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-     public function userProfile()
-    {
-        return $this->hasOne(Profile::class, 'username', 'username');
+     public function userProfile() {
+        return $this->hasOne(Profile::class, 'username', 'asg_username');
     }
     protected $fillable = [
-        'username',
+        'asg_username',
         'email',
         'password',
         'user_type',
-        'user_id',
+        // 'user_id',
     ];
 
     /**

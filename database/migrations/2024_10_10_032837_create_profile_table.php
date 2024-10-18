@@ -13,7 +13,7 @@ return new class extends Migration
     {   
         Schema::create('user_profile', function(Blueprint $table){
             $table->string('username')->primary(); // Set 'username' as the primary key
-            $table->foreign('username')->references('username')
+            $table->foreign('username')->references('asg_username')
             ->on('users')->onDelete('cascade'); // Foreign key to 'users' table
 
             $table->string('full_name')->nullable();
@@ -23,18 +23,14 @@ return new class extends Migration
         });
         
         Schema::create('student_profile', function (Blueprint $table) {
-            $table->string('username')->unique(); // This is the primary key for the student profile
-            $table->foreign('username')->references('username')
-            ->on('user_profile')->onDelete('cascade'); // Foreign key reference to user_profile
-
+            $table->string('student_username')->unique()->primary(); // This is the primary key for the student profile
             $table->string('student_intake_batch');
             $table->string('student_type');
             $table->timestamps();
         });
 
         // Schema::create('staff_profile', function(Blueprint $table){
-        //     $table->string('staff_id')->unique()->primary(); // Primary Key, connects to user_id at users table
-        //     $table->string('staff_full_name');
+        //     $table->string('staff_username')->unique()->primary();
         //     $table->string('staff_qualification');
         //     $table->string('staff_type');
         // });
