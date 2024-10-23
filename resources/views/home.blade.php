@@ -18,13 +18,18 @@
     <div class="short-bio">
         
         <p id="full-name">Name: {{Auth::user()->userProfile->full_name}}</p>
+        <p id="age">Age: </p>
+        <p id="cont-no">Contact Number: </p>
+        <p id="alt-email">Alternative Email Address: </p>
         
     </div>
 
     <form action="/enter-name" method="POST">
         @csrf
-        <p>Enter your name: </p>
-        <input type="text" name="full_name" id="full_name">
+        <p>Enter your name: <input type="text" name="full_name" id="full_name"></p>
+        <p>Enter your date of birth: <input type="text" name="dob" id="dob"></p>
+        <p>Enter your contact number: <input type="number" name="contact_no" id="contact_no"></p>
+        <p>Enter your alternate email: <input type="text" name="alt_email" id="alt_email"></p>
         <button>Enter name</button>
     </form>
 

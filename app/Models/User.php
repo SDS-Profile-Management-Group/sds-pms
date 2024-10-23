@@ -17,6 +17,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
+    //  Establish relationship: asg_username.fk <-> username.pk 
      public function userProfile() {
         return $this->hasOne(Profile::class, 'username', 'asg_username');
     }
