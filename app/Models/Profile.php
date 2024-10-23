@@ -19,6 +19,7 @@ class Profile extends Model
         'full_name',
         'contact_number',
         'dob',
+        'role',
         'alt_email',
     ];
 }

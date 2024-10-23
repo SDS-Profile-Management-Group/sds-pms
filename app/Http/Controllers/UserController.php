@@ -21,6 +21,7 @@ class UserController extends Controller
         $user = User::create($incomingFields);
         Profile::create([
             'username' =>$user->asg_username,
+            'role' =>$user->user_type,
         ]);
         auth()->login($user);
 

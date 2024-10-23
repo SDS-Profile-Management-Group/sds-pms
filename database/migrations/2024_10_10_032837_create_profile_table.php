@@ -60,7 +60,7 @@ return new class extends Migration
     {
         DB::statement('DROP TABLE IF EXISTS "user_profile" CASCADE');
         // Schema::dropIfExists('user_profile');
-        Schema::dropIfExists('student_profile');
-        // Schema::dropIfExists('staff_profile');
+        Schema::dropIfExists('student_info');
+        Schema::dropIfExists('staff_info');
     }
 };
