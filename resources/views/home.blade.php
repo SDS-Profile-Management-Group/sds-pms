@@ -15,8 +15,11 @@
             <p>Welcome, {{ Auth::user()->asg_username }}!</p>
         @endif
     @endif
-
-    <p class="name">Name: {{Auth::user()->userProfile->full_name}}</p>
+    <div class="short-bio">
+        
+        <p id="full-name">Name: {{Auth::user()->userProfile->full_name}}</p>
+        
+    </div>
 
     <form action="/enter-name" method="POST">
         @csrf

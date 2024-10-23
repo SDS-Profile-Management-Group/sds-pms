@@ -18,6 +18,7 @@ class Profile extends Model
         'username',
         'full_name',
         'contact_number',
+        'dob',
         'alt_email',
     ];
 }
