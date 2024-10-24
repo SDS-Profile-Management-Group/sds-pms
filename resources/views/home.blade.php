@@ -24,13 +24,13 @@
         
     </div>
 
-    <form action="/enter-name" method="POST">
+    <form action="/enter-details" method="POST">
         @csrf
         <p>Enter your name: <input type="text" name="full_name" id="full_name"></p>
-        <p>Enter your date of birth: <input type="text" name="dob" id="dob"></p>
-        <p>Enter your contact number: <input type="number" name="contact_no" id="contact_no"></p>
+        <p>Enter your date of birth: <input type="date" name="dob" id="dob"></p>
+        <p>Enter your contact number: <input type="tel" name="contact_number" id="contact_number"></p>
         <p>Enter your alternate email: <input type="text" name="alt_email" id="alt_email"></p>
-        <button>Enter name</button>
+        <button>Enter</button>
     </form>
 
     <form action="/logout" method="POST">

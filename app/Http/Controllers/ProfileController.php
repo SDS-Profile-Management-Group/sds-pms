@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+// TODO: Enter StudentInfo Model class to insert information into student information table
 
 class ProfileController extends Controller
 {
-    public function enterName(Request $request){
+    public function enterDetails(Request $request){
         $incomingFields = $request->validate([
-            "full_name" => "required|regex:/^[a-zA-Z\s]+$/", // Allows letters and spaces
+            "full_name" => ["required","regex:/^[a-zA-Z\s]+$/"],
+            "dob" => ["required"],
+            "contact_number" => ["required"],
+            // TODO: Enter details for alternative email
         ]);
 
         // ? Ensure we're updating the profile with the right username
@@ -17,8 +21,10 @@ class ProfileController extends Controller
             'username' => auth()->user()->asg_username,  
         ]);
     
-        // Update the full name if the profile exists or create a new one
+        // Update details if the info exists or create a new one
         $profile->full_name = $incomingFields['full_name'];
+        $profile->dob = $incomingFields['dob'];
+        $profile->contact_number = $incomingFields['contact_number'];
         $profile->save();
     
         return redirect('/home');
