@@ -12,7 +12,33 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('modules', function (Blueprint $table) {
-            $table->id();
+            $table->string('module_id')->primary();
+
+            $table->string('module_name');
+            // $table->tinyInteger('mc');
+            $table->timestamps();
+        });
+
+        Schema::create('modules_taken', function (Blueprint $table) {
+            $table->string('module_id');
+            $table->string('student_id');
+
+            $table->string('status')->nullable();
+            $table->string('semester')->nullable();
+            $table->timestamps();
+
+            
+            $table->primary(['module_id', 'student_id']);
+            $table->unique(['module_id','student_id']);
+
+            $table->foreign('student_id')->references('student_username')
+                ->on('student_info')->onDelete('cascade');
+        });
+
+        Schema::create('modules_taught', function (Blueprint $table) {
+            $table->string('module_id')->primary();
+            $table->string('staff_id');
+            
             $table->timestamps();
         });
     }
@@ -23,5 +49,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('modules');
+        Schema::dropIfExists('modules_taken');
+        Schema::dropIfExists('modules_taught');
     }
 };

@@ -20,4 +20,8 @@ class StudentInfo extends Model
         'student_type',
     ];
 
+    public function modules(){
+        return $this->hasMany(ModulesTaken::class, 'student_id', 'student_username');
+    }
+
 }
