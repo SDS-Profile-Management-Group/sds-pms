@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('module_name');
             // $table->tinyInteger('mc');
-            $table->timestamps();
+            $table->timestamps(); //? Not sure if needed as there is a seeder
         });
 
         Schema::create('modules_taken', function (Blueprint $table) {
