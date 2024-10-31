@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Homepage - {{ Auth::user()->asg_username }}</title>
 
     <style>
@@ -41,71 +43,22 @@
 
     <div class="modules">
         <div id="degree-core">
-            <h3>Degree Core Modules</h3>
-            <table id="degree-core-table">
+            <table>
                 <thead>
                     <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
+                        <th>Module Code</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('degree-core-table')">Add Module</button>
-        </div>
-    
-        <div id="major-core">
-            <h3>Major Core Modules</h3>
-            <table id="major-core-table">
-                <thead>
                     <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
+                        <td><input type="text" name="module_code[]" placeholder="Module Code"></td>
+                        <td><button type="button" onclick="removeRow(this)">Remove</button></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
                 </tbody>
             </table>
-            <button onclick="addRow('major-core-table')">Add Module</button>
-        </div>
-    
-        <div id="major-option">
-            <h3>Major Option Modules</h3>
-            <table id="major-option-table">
-                <thead>
-                    <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('major-option-table')">Add Module</button>
-        </div>
-    
-        <div id="breadth-modules">
-            <h3>Breadth Modules</h3>
-            <table id="breadth-modules-table">
-                <thead>
-                    <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('breadth-modules-table')">Add Module</button>
+            <button type="button" onclick="addRow('degree-core')">Add Row</button>
+            <button id="save-modules">Save Modules</button>
         </div>
     </div>
 
@@ -120,14 +73,14 @@
 
     @endauth
 
-    <script>
+    {{-- <script>
         function addRow(tableId) {
             const tableBody = document.querySelector(`#${tableId} tbody`);
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td><input type="text" placeholder="Module Name"></td>
-                <td><input type="number" placeholder="Credits"></td>
-                <td><button onclick="removeRow(this)">Remove</button></td>
+                <td><input type="text" name="module_name[]" placeholder="Module Name"></td>
+                <td><input type="number" name="credits[]" placeholder="Credits"></td>
+                <td><button type="button" onclick="removeRow(this)">Remove</button></td>
             `;
             tableBody.appendChild(newRow);
         }
@@ -136,6 +89,42 @@
             const row = button.parentElement.parentElement;
             row.remove();
         }
+    
+        document.getElementById('save-modules').addEventListener('click', function() {
+            const moduleNames = Array.from(document.querySelectorAll('input[name="module_name[]"]')).map(input => input.value);
+            const credits = Array.from(document.querySelectorAll('input[name="credits[]"]')).map(input => input.value);
+    
+            const data = {
+                student_id: '{{ Auth::user()->student_username }}', // Replace with actual user ID
+                modules_taken: moduleNames.map((module, index) => ({
+                    module_name: module,
+                    credits: credits[index]
+                })),
+            };
+    
+            fetch('/save-modules', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Modules saved successfully!');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script> --}}
+    <script>
+        const studentId = '{{ Auth::user()->student_username }}';
     </script>
+
+    <script src="{{ asset('js/modules.js') }}"></script>
 </body>
 </html>

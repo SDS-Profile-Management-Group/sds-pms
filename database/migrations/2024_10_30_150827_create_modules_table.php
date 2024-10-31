@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('modules', function (Blueprint $table) {
+            // * This is for information only, as in there will be no entering or edits and so on
             $table->string('module_id')->primary();
 
             $table->string('module_name');
