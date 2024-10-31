@@ -12,7 +12,10 @@ Route::get('/home', function(){
     return view('home');
 });
 
+
+
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class,'logout']);
 Route::post('/login', [UserController::class,'login']);
 Route::post('/enter-details',[ProfileController::class, 'enterDetails']);
+Route::get('/edit-details',[ProfileController::class, 'editDetails'])->name('edit-details');
