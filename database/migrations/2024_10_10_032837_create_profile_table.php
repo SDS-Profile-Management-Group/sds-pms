@@ -28,8 +28,8 @@ return new class extends Migration
         Schema::create('student_info', function (Blueprint $table) {
             $table->string('student_username')->primary();
             
-            $table->string('student_intake_batch');
-            $table->string('student_type');
+            $table->string('student_intake_batch')->nullable();
+            $table->string('student_type')->nullable();
             $table->timestamps();
             
             $table->foreign('student_username')->references('username')
