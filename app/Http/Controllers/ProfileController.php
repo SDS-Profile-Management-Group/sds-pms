@@ -29,4 +29,8 @@ class ProfileController extends Controller
     
         return redirect('/home');
     }
+
+    public function editDetails() {
+        return view('edit');
+    }
 }

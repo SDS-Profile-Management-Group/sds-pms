@@ -47,10 +47,6 @@ return new class extends Migration
             ->on('user_profile')->onDelete('cascade'); 
         });
     
-        // Schema::create('staff_profile', function(Blueprint $table){
-        //     $table->string('staff_username')->unique()->primary();
-            
-        // });
     }
 
     /**
