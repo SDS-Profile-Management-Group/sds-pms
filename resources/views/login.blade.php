@@ -14,7 +14,7 @@
             @csrf
 
             <input type="text" name="asg_username" placeholder="Username">
-            <input type="text" name="email" placeholder="UBD Assigned Email">
+            {{-- <input type="text" name="email" placeholder="UBD Assigned Email"> --}}
             <input type="password" name="password" placeholder="Password">
             <label for="userType">Choose User Type:</label>
 

@@ -12,7 +12,7 @@ class ModuleController extends Controller
         
     }
 
-    public function redirectMCT() {
+    public function redirectMCT(){
         return view('moduleTracker');
     }
 

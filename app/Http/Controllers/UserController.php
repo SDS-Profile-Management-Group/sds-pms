@@ -9,24 +9,38 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function register(Request $request){
-        $incomingFields = $request->validate([
-            "asg_username" => ["required", Rule::unique('users', 'asg_username')],
-            "email"=> ["required","email", Rule::unique('users', 'email')],
-            "password"=> ["required","min:8"],
-            "user_type"=>["required"],
-        ]);
-        $incomingFields['password'] = bcrypt($incomingFields['password']);
+    public function register(Request $request)
+{
+    // Merge the email field by appending "@ubd.edu.bn" to the asg_username
+    $request->merge([
+        'email' => $request->input('asg_username') . '@ubd.edu.bn'
+    ]);
 
-        $user = User::create($incomingFields);
-        Profile::create([
-            'username' =>$user->asg_username,
-            'role' =>$user->user_type,
-        ]);
-        auth()->login($user);
+    // Validate the incoming fields
+    $incomingFields = $request->validate([
+        "asg_username" => ["required", Rule::unique('users', 'asg_username')],
+        "email" => ["required", "email", Rule::unique('users', 'email')],
+        "password" => ["required", "min:8"],
+        "user_type" => ["required"],
+    ]);
 
-        return redirect('/home');
-    }
+    // Encrypt the password
+    $incomingFields['password'] = bcrypt($incomingFields['password']);
+
+    // Create the user record
+    $user = User::create($incomingFields);
+
+    // Create the profile record
+    Profile::create([
+        'username' => $user->asg_username,
+        'role' => $user->user_type,
+    ]);
+
+    // Log in the user
+    auth()->login($user);
+
+    return redirect('/home');
+}
 
     public function logout(){
         auth()->logout();

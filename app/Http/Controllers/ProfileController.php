@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+
 // TODO: Enter StudentInfo Model class to insert information into student information table
 
 class ProfileController extends Controller
@@ -14,6 +15,7 @@ class ProfileController extends Controller
             "dob" => ["required"],
             "contact_number" => ["required"],
             // TODO: Enter details for alternative email
+            "alt_email"=>["required"],
         ]);
 
         // ? Ensure we're updating the profile with the right username
@@ -25,6 +27,7 @@ class ProfileController extends Controller
         $profile->full_name = $incomingFields['full_name'];
         $profile->dob = $incomingFields['dob'];
         $profile->contact_number = $incomingFields['contact_number'];
+        $profile->alt_email = $incomingFields['alt_email'];
         $profile->save();
     
         return redirect('/home');
