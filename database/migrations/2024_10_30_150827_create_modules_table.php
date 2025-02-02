@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('module_id');
             $table->string('student_id');
 
+            $table->enum('module_type',['DC','MC', 'MO', 'Breadth']);
+
             $table->string('status')->nullable();
             $table->string('semester')->nullable();
             $table->timestamps();

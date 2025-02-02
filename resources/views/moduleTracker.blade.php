@@ -7,7 +7,33 @@
     <title>Module Tracker - {{ Auth::user()->asg_username }}</title>
 </head>
 <body>
+    {{-- TODO: Add module bar here --}}
     <h2>Module Tracker Table</h2>
+
+    <!-- Form for Adding a Module -->
+    <form action="{{ route('add-module') }}" method="POST">
+        @csrf
+        <label for="module_id">Module ID:</label>
+        <input type="text" name="module_id" required><br>
+
+        <label for="module_type">Module Type:</label>
+        <select name="module_type" required>
+            <option value="DC">DC</option>
+            <option value="MC">MC</option>
+            <option value="MO">MO</option>
+            <option value="Breadth">Breadth</option>
+        </select><br>
+
+        <label for="status">Status:</label>
+        <input type="text" name="status"><br>
+
+        <label for="semester">Semester:</label>
+        <input type="text" name="semester"><br>
+
+        <button type="submit">Add Module</button>
+    </form>
+
+    <!-- Module Tracker Table -->
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
