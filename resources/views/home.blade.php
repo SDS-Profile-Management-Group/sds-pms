@@ -39,76 +39,6 @@
         {{-- TODO: Add more details in the future --}}
     </div>
 
-    <div class="modules">
-        <div id="degree-core">
-            <h3>Degree Core Modules</h3>
-            <table id="degree-core-table">
-                <thead>
-                    <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('degree-core-table')">Add Module</button>
-        </div>
-    
-        <div id="major-core">
-            <h3>Major Core Modules</h3>
-            <table id="major-core-table">
-                <thead>
-                    <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('major-core-table')">Add Module</button>
-        </div>
-    
-        <div id="major-option">
-            <h3>Major Option Modules</h3>
-            <table id="major-option-table">
-                <thead>
-                    <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('major-option-table')">Add Module</button>
-        </div>
-    
-        <div id="breadth-modules">
-            <h3>Breadth Modules</h3>
-            <table id="breadth-modules-table">
-                <thead>
-                    <tr>
-                        <th>Module Name</th>
-                        <th>Credits</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here -->
-                </tbody>
-            </table>
-            <button onclick="addRow('breadth-modules-table')">Add Module</button>
-        </div>
-    </div>
-
     <div class="buttons">
         <a href="{{ route('edit-details') }}" class="btn">Edit Details</a>
 
@@ -120,22 +50,5 @@
 
     @endauth
 
-    <script>
-        function addRow(tableId) {
-            const tableBody = document.querySelector(`#${tableId} tbody`);
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td><input type="text" placeholder="Module Name"></td>
-                <td><input type="number" placeholder="Credits"></td>
-                <td><button onclick="removeRow(this)">Remove</button></td>
-            `;
-            tableBody.appendChild(newRow);
-        }
-    
-        function removeRow(button) {
-            const row = button.parentElement.parentElement;
-            row.remove();
-        }
-    </script>
 </body>
 </html>
