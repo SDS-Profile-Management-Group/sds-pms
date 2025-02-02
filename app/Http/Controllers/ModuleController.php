@@ -15,4 +15,9 @@ class ModuleController extends Controller
     public function redirectMCT() {
         return view('moduleTracker');
     }
+
+    public function showModules(){
+        $records = ModulesTaken::where('student_id', Auth::user()->asg_username)->get();
+        return view('module-tracker', compact('records'));
+    }
 }
