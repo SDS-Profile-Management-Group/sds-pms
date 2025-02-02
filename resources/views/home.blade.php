@@ -42,6 +42,8 @@
     <div class="buttons">
         <a href="{{ route('edit-details') }}" class="btn">Edit Details</a>
 
+        <a href="{{ route('module-tracker') }}" class="btn">Module Tracker</a>
+
         <form action="/logout" method="POST">
             @csrf
             <button class="btn">Log out</button>

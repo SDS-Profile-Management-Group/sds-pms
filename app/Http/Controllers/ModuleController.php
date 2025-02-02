@@ -11,4 +11,8 @@ class ModuleController extends Controller
     public function saveModules(Request $request){
         
     }
+
+    public function redirectMCT() {
+        return view('moduleTracker');
+    }
 }
