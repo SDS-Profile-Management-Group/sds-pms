@@ -25,9 +25,11 @@
         </select><br>
 
         <label for="status">Status:</label>
+        {{-- TODO: Change text field into dd list--}}
         <input type="text" name="status"><br>
 
         <label for="semester">Semester:</label>
+        {{-- TODO: Change text field into dd list--}}
         <input type="text" name="semester"><br>
 
         <button type="submit">Add Module</button>
