@@ -51,7 +51,7 @@
                     <td>{{ $record->module_id }}</td>
                     <td>{{ $record->module->module_name }}</td>
                     <td>{{ $record->status }}</td>
-                    <td>{{ $record->semester }}</td>
+                    <td>{{ $record->grade }}</td>
                 </tr>
             @empty
                 <tr>
