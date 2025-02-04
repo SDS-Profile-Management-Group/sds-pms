@@ -9,7 +9,7 @@ class ModulesTaken extends Model
 {
     use HasFactory;
 
-    protected $table = 'modules_taken';
+    protected $table = 'taken_modules';
     public $incrementing = false; // Required because composite keys are used
 
     protected $primaryKey = ['module_id', 'student_id']; // Informational (Laravel won't natively handle composite keys)
