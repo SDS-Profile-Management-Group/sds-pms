@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
 
             $table->string('role');
-            $table->enum('salutations', ['Awang', 'Dayang', 'Mr.', 'Mrs.', 'Doctor', 'Professor'])->nullable();
+            $table->enum('salutations', ['Awang', 'Dayang', 'Mr.', 'Mrs.', 'Doctor', 'Professor'])->nullable(); //? Is this actually needed?
             
             $table->string('alt_email')->nullable();
             $table->timestamps();

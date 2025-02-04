@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Modules;
+
 class ModulesTaken extends Model
 {
     use HasFactory;
@@ -16,14 +18,18 @@ class ModulesTaken extends Model
     
     protected $fillable = [
         'module_id', 
-        'student_id', 
-        'module_type',
+        'student_id',
+
+        'chosen_mod_classification',
+        'grade',
         'status', 
-        'semester'
     ];
 
-    
     public function student(){
         return $this->belongsTo(StudentInfo::class, 'student_id', 'student_username');
+    }
+
+    public function module() {
+        return $this->belongsTo(Modules::class, 'module_id', 'module_id');
     }
 }

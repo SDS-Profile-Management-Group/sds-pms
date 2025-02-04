@@ -16,7 +16,7 @@ class ModuleController extends Controller
     }
 
     public function showModules(){
-        $records = ModulesTaken::where('student_id', Auth::user()->asg_username)->get();
+        $records = ModulesTaken::with('module')->where('student_id', Auth::user()->asg_username)->get();
         return view('moduleTracker', compact('records'));
     }
 
@@ -26,16 +26,17 @@ class ModuleController extends Controller
             'module_id' => 'required|string',
             'module_type' => 'required|in:DC,MC,MO,Breadth',
             'status' => 'nullable|string',
-            'semester' => 'nullable|string',
+            'grade' => 'nullable|string',
         ]);
 
         // Create the module
         ModulesTaken::create([
             'module_id' => $request->input('module_id'),
             'student_id' => Auth::user()->asg_username,  // Assuming logged-in user's username is used
-            'module_type' => $request->input('module_type'),
+            
+            'chosen_mod_classification' => $request->input('module_type'),
+            'grade' => $request->input('grade'),
             'status' => $request->input('status'),
-            'semester' => $request->input('semester'),
         ]);
 
         return redirect()->back()->with('success', 'Module added successfully!');
