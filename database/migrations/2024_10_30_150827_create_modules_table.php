@@ -52,6 +52,7 @@ return new class extends Migration
             $table->string('module_id')->primary();
             $table->string('staff_id');
             
+            $table ->date('teaching_start_date');
             $table->timestamps();
         });
     }
