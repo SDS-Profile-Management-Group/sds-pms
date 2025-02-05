@@ -21,12 +21,15 @@ return new class extends Migration
         });
 
         Schema::create('module_belongs_to', function (Blueprint $table) {
-            $table->string('major_id')->primary();
             $table->string('module_id');
+            $table->string('major_id');
             
             $table->enum('module_type',['DC','MC', 'MO']);
             $table->tinyInteger('mc');
             
+            $table->primary(['major_id', 'module_id']);
+            $table->unique(['major_id','module_id']);
+
             $table->timestamps();
         });
 
