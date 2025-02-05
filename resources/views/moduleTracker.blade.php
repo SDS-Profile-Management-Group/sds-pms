@@ -25,10 +25,12 @@
         </select><br>
 
         <label for="status">Status:</label>
+        {{-- TODO: Change text field into dd list--}}
         <input type="text" name="status"><br>
 
-        <label for="semester">Semester:</label>
-        <input type="text" name="semester"><br>
+        <label for="grade">Grade:</label>
+        {{-- TODO: Change text field into dd list--}}
+        <input type="string" name="grade"><br>
 
         <button type="submit">Add Module</button>
     </form>
@@ -40,16 +42,16 @@
                 <th>Module ID</th>
                 <th>Module Name</th>
                 <th>Status</th>
-                <th>Semester</th>
+                <th>Grade</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($records as $record)
                 <tr>
                     <td>{{ $record->module_id }}</td>
-                    <td>{{ $record->module_name }}</td>
+                    <td>{{ $record->module->module_name }}</td>
                     <td>{{ $record->status }}</td>
-                    <td>{{ $record->semester }}</td>
+                    <td>{{ $record->grade }}</td>
                 </tr>
             @empty
                 <tr>

@@ -143,6 +143,20 @@ class ModulesTableSeeder extends Seeder
             ['module_id' => 'ZZ-1102', 'module_name' => 'Programming Fundamentals'],
             ['module_id' => 'ZZ-1103', 'module_name' => 'Introduction to Digital Transformation'],
             ['module_id' => 'ZZ-1104', 'module_name' => 'Essential Mathematics for Digital Science'],
+
+            // Compulsory Breadth 
+            ['module_id' => 'LE-1503', 'module_name' => 'Communication Skills I: Academic Reading and Writing Skills'],
+            ['module_id' => 'LE-2503', 'module_name' => 'Communication Skills II: Academic Report Writing and Presentation'],
+            ['module_id' => 'PB-1501', 'module_name' => 'Melayu Islam Beraja (MIB)'],
+            ['module_id' => 'MS-1501', 'module_name' => 'Islamic Civilisation and The Modern World'],
+            ['module_id' => 'PB-1502', 'module_name' => 'Introduction to Brunei Darussalam for non-Bruneian students'],
+            
         ]);
+
+        // DB:table('')->insert([
+        // ['module_id' => 'ZZ-1102', 'module_name' => 'Programming Fundamentals'],
+        // ['module_id' => 'ZZ-1103', 'module_name' => 'Introduction to Digital Transformation'],
+        // ['module_id' => 'ZZ-1104', 'module_name' => 'Essential Mathematics for Digital Science'],
+        // ]);
     }
 }

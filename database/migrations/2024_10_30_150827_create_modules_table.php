@@ -12,35 +12,50 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('modules', function (Blueprint $table) {
+            // * Seeding purposes
             $table->string('module_id')->primary();
-
             $table->string('module_name');
-            // $table->tinyInteger('mc');
-            $table->timestamps(); //? Not sure if needed as there is a seeder
+
+            // $table->timestamps(); //? Not sure if needed as there is a seeder
+
         });
 
-        Schema::create('modules_taken', function (Blueprint $table) {
+        Schema::create('module_belongs_to', function (Blueprint $table) {
+            $table->string('module_id');
+            $table->string('major_id');
+            
+            $table->enum('module_type',['DC','MC', 'MO']);
+            $table->tinyInteger('mc');
+            
+            $table->primary(['major_id', 'module_id']);
+            $table->unique(['major_id','module_id']);
+
+            $table->timestamps();
+        });
+
+        Schema::create('taken_modules', function (Blueprint $table) {
             $table->string('module_id');
             $table->string('student_id');
 
-            $table->enum('module_type',['DC','MC', 'MO', 'Breadth']);
+            $table->enum('chosen_mod_classification',['DC','MC', 'MO', 'Breadth']);
 
+            $table->string('grade')->nullable();
             $table->string('status')->nullable();
-            $table->string('semester')->nullable();
             $table->timestamps();
 
             
             $table->primary(['module_id', 'student_id']);
             $table->unique(['module_id','student_id']);
 
-            $table->foreign('student_id')->references('student_username')
-                ->on('student_info')->onDelete('cascade');
+            $table->foreign('module_id')->references('module_id')->on('modules')->onDelete('cascade');
+            $table->foreign('student_id')->references('student_username')->on('student_info')->onDelete('cascade');
         });
 
         Schema::create('modules_taught', function (Blueprint $table) {
             $table->string('module_id')->primary();
             $table->string('staff_id');
             
+            $table ->date('teaching_start_date');
             $table->timestamps();
         });
     }
@@ -50,8 +65,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modules');
-        Schema::dropIfExists('modules_taken');
         Schema::dropIfExists('modules_taught');
+        Schema::dropIfExists('taken_modules');
+        Schema::dropIfExists('module_belongs_to');
+        Schema::dropIfExists('modules');
     }
 };
