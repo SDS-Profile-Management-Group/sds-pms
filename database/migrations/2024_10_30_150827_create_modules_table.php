@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('module_id');
             $table->string('student_id');
 
-            $table->enum('chosen_mod_classification',['DC','MC', 'MO', 'Breadth']);
+            $table->enum('assigned_md_type',['DC','MC', 'MO', 'Breadth']);
 
             $table->string('grade')->nullable();
             $table->string('status')->nullable();

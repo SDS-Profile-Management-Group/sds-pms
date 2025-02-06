@@ -20,7 +20,7 @@ class ModulesTaken extends Model
         'module_id', 
         'student_id',
 
-        'chosen_mod_classification',
+        'assigned_md_type',
         'grade',
         'status', 
     ];
