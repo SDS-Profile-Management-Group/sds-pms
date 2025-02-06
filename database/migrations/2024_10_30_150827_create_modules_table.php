@@ -29,8 +29,6 @@ return new class extends Migration
             
             $table->primary(['major_id', 'module_id']);
             $table->unique(['major_id','module_id']);
-
-            $table->timestamps();
         });
 
         Schema::create('taken_modules', function (Blueprint $table) {
@@ -41,8 +39,6 @@ return new class extends Migration
 
             $table->string('grade')->nullable();
             $table->string('status')->nullable();
-            $table->timestamps();
-
             
             $table->primary(['module_id', 'student_id']);
             $table->unique(['module_id','student_id']);
@@ -55,8 +51,7 @@ return new class extends Migration
             $table->string('module_id')->primary();
             $table->string('staff_id');
             
-            $table ->date('teaching_start_date');
-            $table->timestamps();
+            $table->date('teaching_start_date');
         });
     }
 
