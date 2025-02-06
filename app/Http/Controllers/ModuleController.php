@@ -5,16 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Modules;
+use App\Models\UBD\Modules;
+use App\Models\Student\ModulesTaken;
 use App\Models\Profile;
-use App\Models\ModulesTaken;
 
 class ModuleController extends Controller
 {
-    public function redirectMCT(){
-        return view('moduleTracker');
-    }
-
     public function showModules(){
         $records = ModulesTaken::with('module')->where('student_id', Auth::user()->asg_username)->get();
         return view('moduleTracker', compact('records'));

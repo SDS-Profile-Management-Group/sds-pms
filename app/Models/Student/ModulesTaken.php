@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Student;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Modules;
+use App\Models\UBD\Modules;
 
 class ModulesTaken extends Model
 {
