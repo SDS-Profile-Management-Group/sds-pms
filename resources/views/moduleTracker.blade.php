@@ -26,11 +26,23 @@
 
         <label for="status">Status:</label>
         {{-- TODO: Change text field into dd list--}}
-        <input type="text" name="status"><br>
+        {{-- <input type="text" name="status"><br> --}}
+        <select name="status" required>
+            <option value="Completed">Completed</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Not Started">Not Started</option>
+        </select>
 
         <label for="grade">Grade:</label>
         {{-- TODO: Change text field into dd list--}}
-        <input type="string" name="grade"><br>
+        {{-- <input type="string" name="grade"><br> --}}
+        <select name="grade" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="F">F</option>
+        </select>
 
         <button type="submit">Add Module</button>
     </form>

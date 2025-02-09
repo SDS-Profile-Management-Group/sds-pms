@@ -30,7 +30,7 @@ class ModuleController extends Controller
             'module_id' => $request->input('module_id'),
             'student_id' => Auth::user()->asg_username,  // Assuming logged-in user's username is used
             
-            'chosen_mod_classification' => $request->input('module_type'),
+            'assigned_md_type' => $request->input('module_type'),
             'grade' => $request->input('grade'),
             'status' => $request->input('status'),
         ]);
