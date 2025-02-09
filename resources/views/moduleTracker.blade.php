@@ -72,7 +72,6 @@
         </tbody>
     </table> --}}
 
-    {{-- Table for DC --}}
     <h3>DC Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -99,7 +98,6 @@
         </tbody>
     </table>
 
-    {{-- Table for MC --}}
     <h3>MC Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -126,7 +124,6 @@
         </tbody>
     </table>
 
-    {{-- Table for Breadth --}}
     <h3>Breadth Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -153,7 +150,6 @@
         </tbody>
     </table>
 
-    {{-- Table for MO --}}
     <h3>MO Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -179,5 +175,7 @@
             @endforelse
         </tbody>
     </table>
+
+    
 </body>
 </html>
