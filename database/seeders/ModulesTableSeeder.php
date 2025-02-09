@@ -179,19 +179,19 @@ class ModulesTableSeeder extends Seeder
             ['module_id' => 'ZA-4290', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '8'],
 
             // * Computer Science MC
-            ['module_id' => 'ZC-1201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
             ['module_id' => 'ZC-1202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
             ['module_id' => 'ZC-2201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], 
-            ['module_id' => 'ZC-2202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
             ['module_id' => 'ZC-2203', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
             ['module_id' => 'ZC-2204', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
-            ['module_id' => 'ZC-2205', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
             ['module_id' => 'ZC-3201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
             ['module_id' => 'ZC-3202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
-            ['module_id' => 'ZC-4202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
             ['module_id' => 'ZC-4290', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '8'],
 
 
+            ['module_id' => 'ZC-1201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
+            ['module_id' => 'ZC-2202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
+            ['module_id' => 'ZC-2205', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
+            ['module_id' => 'ZC-4202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
         ]);
     }
 }
