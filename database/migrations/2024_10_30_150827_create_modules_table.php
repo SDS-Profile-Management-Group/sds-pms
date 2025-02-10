@@ -15,9 +15,6 @@ return new class extends Migration
             // * Seeding purposes
             $table->string('module_id')->primary();
             $table->string('module_name');
-
-            // $table->timestamps(); //? Not sure if needed as there is a seeder
-
         });
 
         Schema::create('module_belongs_to', function (Blueprint $table) {
