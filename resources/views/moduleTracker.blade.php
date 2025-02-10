@@ -68,9 +68,8 @@
             <label for="status_dc">Status:</label>
             <select id="status_dc" name="status" required>
                 <option value="" disabled selected>-- Select Status --</option>
-                <option value="Completed">Completed</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Not Started">Not Started</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
             </select>
     
             <label for="grade_dc">Grade:</label>
@@ -127,9 +126,8 @@
             <label for="status_dc">Status:</label>
             <select id="status_dc" name="status" required>
                 <option value="" disabled selected>-- Select Status --</option>
-                <option value="Completed">Completed</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Not Started">Not Started</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
             </select>
     
             <label for="grade_dc">Grade:</label>
@@ -187,9 +185,8 @@
             <label for="status_dc">Status:</label>
             <select id="status_dc" name="status" required>
                 <option value="" disabled selected>-- Select Status --</option>
-                <option value="Completed">Completed</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Not Started">Not Started</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
             </select>
     
             <label for="grade_dc">Grade:</label>
@@ -246,9 +243,8 @@
             <label for="status_dc">Status:</label>
             <select id="status_dc" name="status" required>
                 <option value="" disabled selected>-- Select Status --</option>
-                <option value="Completed">Completed</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Not Started">Not Started</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
             </select>
     
             <label for="grade_dc">Grade:</label>
