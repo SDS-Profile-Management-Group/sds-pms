@@ -29,7 +29,7 @@
 <body>
     <h1>Module Tracker Table</h1>
 
-    <h3>DC Modules</h3>
+    <h3>Degree Core Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
@@ -55,7 +55,7 @@
         </tbody>
     </table>
 
-    <button onclick="toggleForm('dcForm')">Add DC Module</button>
+    <button onclick="toggleForm('dcForm')">Add Degree Core Module</button>
 
     <div id="dcForm" class="form-container" style="display: none;">
         <form action="{{ route('add-module') }}" method="POST" class="inline-form">
@@ -87,7 +87,7 @@
         </form>
     </div>
 
-    <h3>MC Modules</h3>
+    <h3>Major Core Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
@@ -113,7 +113,7 @@
         </tbody>
     </table>
 
-    <button onclick="toggleForm('mcForm')">Add MC Module</button>
+    <button onclick="toggleForm('mcForm')">Add Major Core Module</button>
     
     <div id="mcForm" class="form-container" style="display: none;">
         <form action="{{ route('add-module') }}" method="POST" class="inline-form">
@@ -204,7 +204,7 @@
         </form>
     </div>
 
-    <h3>MO Modules</h3>
+    <h3>Major Option Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
@@ -230,7 +230,7 @@
         </tbody>
     </table>
 
-    <button onclick="toggleForm('moForm')">Add MO Module</button>
+    <button onclick="toggleForm('moForm')">Add Major Option Module</button>
 
     <div id="moForm" class="form-container" style="display: none;">
         <form action="{{ route('add-module') }}" method="POST" class="inline-form">
