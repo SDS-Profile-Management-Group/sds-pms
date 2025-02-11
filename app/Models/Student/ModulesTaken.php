@@ -12,16 +12,15 @@ class ModulesTaken extends Model
     use HasFactory;
 
     protected $table = 'taken_modules';
-    public $incrementing = false; // Required because composite keys are used
+    public $incrementing = false; 
 
-    protected $primaryKey = ['module_id', 'student_id']; // Informational (Laravel won't natively handle composite keys)
+    protected $primaryKey = ['module_id', 'student_id'];
 
     public $timestamps = false;
     
     protected $fillable = [
         'module_id', 
         'student_id',
-
         'assigned_md_type',
         'grade',
         'status', 

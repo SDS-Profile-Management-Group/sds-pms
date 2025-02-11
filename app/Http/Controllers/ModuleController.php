@@ -28,8 +28,8 @@ class ModuleController extends Controller
         // Validate the input
         $request->validate([
             'module_id' => 'required|string',
-            'module_type' => 'required|in:DC,MC,MO,Breadth',
-            'status' => 'nullable|string',
+            'module_type' => 'required|in:DC,MC,MO,"Compulsory Breadth","Other Breadth"',
+            'status' => 'nullable|boolean',
             'grade' => 'nullable|string',
         ]);
 
