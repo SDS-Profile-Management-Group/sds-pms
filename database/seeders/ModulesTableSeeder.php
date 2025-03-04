@@ -153,10 +153,45 @@ class ModulesTableSeeder extends Seeder
             
         ]);
 
-        // DB:table('')->insert([
-        // ['module_id' => 'ZZ-1102', 'module_name' => 'Programming Fundamentals'],
-        // ['module_id' => 'ZZ-1103', 'module_name' => 'Introduction to Digital Transformation'],
-        // ['module_id' => 'ZZ-1104', 'module_name' => 'Essential Mathematics for Digital Science'],
+        // DB::table('module_belongs_to')->insert([
+        //     // Template
+        //     // ['module_id' => '', 'major_id' => '', 'module_type' => '', 'mc' => ''], 
+
+        //     // * Degree Core
+        //     ['module_id' => 'ZZ-1102', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
+        //     ['module_id' => 'ZZ-1103', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
+        //     ['module_id' => 'ZZ-1104', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
+
+        //     // * Compulsory Breadth
+        //     ['module_id' => 'LE-1503', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+        //     ['module_id' => 'LE-2503', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+        //     ['module_id' => 'MS-1501', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+        //     ['module_id' => 'PB-1501', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+        //     ['module_id' => 'PB-1502', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+
+        //     // * AI Robo MC
+        //     ['module_id' => 'ZA-2201', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZA-2202', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZA-2203', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZA-2204', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZA-3201', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZA-3202', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZA-4290', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '8'],
+
+        //     // * Computer Science MC
+        //     ['module_id' => 'ZC-1202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZC-2201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], 
+        //     ['module_id' => 'ZC-2203', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZC-2204', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZC-3201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZC-3202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'],
+        //     ['module_id' => 'ZC-4290', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '8'],
+
+
+        //     ['module_id' => 'ZC-1201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
+        //     ['module_id' => 'ZC-2202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
+        //     ['module_id' => 'ZC-2205', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
+        //     ['module_id' => 'ZC-4202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // In AI
         // ]);
     }
 }

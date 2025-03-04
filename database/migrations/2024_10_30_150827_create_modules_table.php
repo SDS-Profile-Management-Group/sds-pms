@@ -15,9 +15,6 @@ return new class extends Migration
             // * Seeding purposes
             $table->string('module_id')->primary();
             $table->string('module_name');
-
-            // $table->timestamps(); //? Not sure if needed as there is a seeder
-
         });
 
         Schema::create('module_belongs_to', function (Blueprint $table) {
@@ -29,20 +26,16 @@ return new class extends Migration
             
             $table->primary(['major_id', 'module_id']);
             $table->unique(['major_id','module_id']);
-
-            $table->timestamps();
         });
 
         Schema::create('taken_modules', function (Blueprint $table) {
             $table->string('module_id');
             $table->string('student_id');
 
-            $table->enum('chosen_mod_classification',['DC','MC', 'MO', 'Breadth']);
+            $table->enum('assigned_md_type',['DC','MC', 'MO', 'Breadth']);
 
             $table->string('grade')->nullable();
             $table->string('status')->nullable();
-            $table->timestamps();
-
             
             $table->primary(['module_id', 'student_id']);
             $table->unique(['module_id','student_id']);
@@ -55,8 +48,7 @@ return new class extends Migration
             $table->string('module_id')->primary();
             $table->string('staff_id');
             
-            $table ->date('teaching_start_date');
-            $table->timestamps();
+            $table->date('teaching_start_date');
         });
     }
 

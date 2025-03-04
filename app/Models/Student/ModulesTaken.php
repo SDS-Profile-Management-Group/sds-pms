@@ -15,12 +15,14 @@ class ModulesTaken extends Model
     public $incrementing = false; // Required because composite keys are used
 
     protected $primaryKey = ['module_id', 'student_id']; // Informational (Laravel won't natively handle composite keys)
+
+    public $timestamps = false;
     
     protected $fillable = [
         'module_id', 
         'student_id',
 
-        'chosen_mod_classification',
+        'assigned_md_type',
         'grade',
         'status', 
     ];

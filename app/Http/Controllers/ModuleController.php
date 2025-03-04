@@ -14,6 +14,14 @@ class ModuleController extends Controller
     public function showModules(){
         $records = ModulesTaken::with('module')->where('student_id', Auth::user()->asg_username)->get();
         return view('moduleTracker', compact('records'));
+        // // Separate records by module type
+
+        // $dcRecords = $records->where('module_type', 'DC');
+        // $mcRecords = $records->where('module_type', 'MC');
+        // $breadthRecords = $records->where('module_type', 'Breadth');
+        // $moRecords = $records->where('module_type', 'MO');
+
+        // return view('moduleTracker', compact('dcRecords', 'mcRecords', 'breadthRecords', 'moRecords'));
     }
 
     public function addModule(Request $request){
@@ -30,7 +38,7 @@ class ModuleController extends Controller
             'module_id' => $request->input('module_id'),
             'student_id' => Auth::user()->asg_username,  // Assuming logged-in user's username is used
             
-            'chosen_mod_classification' => $request->input('module_type'),
+            'assigned_md_type' => $request->input('module_type'),
             'grade' => $request->input('grade'),
             'status' => $request->input('status'),
         ]);

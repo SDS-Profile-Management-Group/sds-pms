@@ -41,6 +41,9 @@ return new class extends Migration
             
             $table->foreign('student_username')->references('username')
             ->on('user_profile')->onDelete('cascade');
+
+            // $table->foreign('major_id')->references('major_id')
+            // ->on('sds_major')->onDelete('cascade');
         });
 
         Schema::create('staff_info', function (Blueprint $table) {

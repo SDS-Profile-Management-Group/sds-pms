@@ -5,37 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Module Tracker - {{ Auth::user()->asg_username }}</title>
+
+    <style>
+        .form-container {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+    </style>
+    <script>
+        function toggleForm(id) {
+            var el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+            } else {
+                el.style.display = "none";
+            }
+        }
+    </script>
+
 </head>
 <body>
-    {{-- TODO: Add module bar here --}}
-    <h2>Module Tracker Table</h2>
+    <h1>Module Tracker Table</h1>
 
-    <!-- Form for Adding a Module -->
-    <form action="{{ route('add-module') }}" method="POST">
-        @csrf
-        <label for="module_id">Module ID:</label>
-        <input type="text" name="module_id" required><br>
-
-        <label for="module_type">Module Type:</label>
-        <select name="module_type" required>
-            <option value="DC">DC</option>
-            <option value="MC">MC</option>
-            <option value="MO">MO</option>
-            <option value="Breadth">Breadth</option>
-        </select><br>
-
-        <label for="status">Status:</label>
-        {{-- TODO: Change text field into dd list--}}
-        <input type="text" name="status"><br>
-
-        <label for="grade">Grade:</label>
-        {{-- TODO: Change text field into dd list--}}
-        <input type="string" name="grade"><br>
-
-        <button type="submit">Add Module</button>
-    </form>
-
-    <!-- Module Tracker Table -->
+    <h3>Degree Core Modules</h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
@@ -46,7 +40,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($records as $record)
+            @forelse ($records->where('assigned_md_type', 'DC') as $record)
                 <tr>
                     <td>{{ $record->module_id }}</td>
                     <td>{{ $record->module->module_name }}</td>
@@ -55,10 +49,219 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">No modules found.</td>
+                    <td colspan="4">No Degree Core modules found.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+
+    <button onclick="toggleForm('dcForm')">Add Degree Core Module</button>
+
+    <div id="dcForm" class="form-container" style="display: none;">
+        <form action="{{ route('add-module') }}" method="POST" class="inline-form">
+            @csrf
+            <input type="hidden" name="module_type" value="DC">
+    
+            <label for="module_id_dc">Module ID:</label>
+            <input type="text" id="module_id_dc" name="module_id" required>
+    
+            <label for="status_dc">Status:</label>
+            <select id="status_dc" name="status" required>
+                <option value="" disabled selected>-- Select Status --</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
+            </select>
+    
+            <label for="grade_dc">Grade:</label>
+            <select id="grade_dc" name="grade" required>
+                <option value="" disabled selected>-- Select Grade --</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+    
+            <button type="submit">Submit</button>
+            <button type="button" onclick="toggleForm('dcForm')">Cancel</button>
+        </form>
+    </div>
+
+    <h3>Major Core Modules</h3>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Module ID</th>
+                <th>Module Name</th>
+                <th>Status</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($records->where('assigned_md_type', 'MC') as $record)
+                <tr>
+                    <td>{{ $record->module_id }}</td>
+                    <td>{{ $record->module->module_name }}</td>
+                    <td>{{ $record->status }}</td>
+                    <td>{{ $record->grade }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4">No Major Core modules found.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <button onclick="toggleForm('mcForm')">Add Major Core Module</button>
+    
+    <div id="mcForm" class="form-container" style="display: none;">
+        <form action="{{ route('add-module') }}" method="POST" class="inline-form">
+            @csrf
+            <input type="hidden" name="module_type" value="MC">
+    
+            <label for="module_id_dc">Module ID:</label>
+            <input type="text" id="module_id_dc" name="module_id" required>
+    
+            <label for="status_dc">Status:</label>
+            <select id="status_dc" name="status" required>
+                <option value="" disabled selected>-- Select Status --</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
+            </select>
+    
+            <label for="grade_dc">Grade:</label>
+            <select id="grade_dc" name="grade" required>
+                <option value="" disabled selected>-- Select Grade --</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+    
+            <button type="submit">Submit</button>
+            <button type="button" onclick="toggleForm('mcForm')">Cancel</button>
+        </form>
+    </div>
+
+
+    <h3>Breadth Modules</h3>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Module ID</th>
+                <th>Module Name</th>
+                <th>Status</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($records->where('assigned_md_type', 'Breadth') as $record)
+                <tr>
+                    <td>{{ $record->module_id }}</td>
+                    <td>{{ $record->module->module_name }}</td>
+                    <td>{{ $record->status }}</td>
+                    <td>{{ $record->grade }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4">No Breadth modules found.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <button onclick="toggleForm('breadthForm')">Add Breadth Module</button>
+
+    <div id="breadthForm" class="form-container" style="display: none;">
+        <form action="{{ route('add-module') }}" method="POST" class="inline-form">
+            @csrf
+            <input type="hidden" name="module_type" value="Breadth">
+    
+            <label for="module_id_dc">Module ID:</label>
+            <input type="text" id="module_id_dc" name="module_id" required>
+    
+            <label for="status_dc">Status:</label>
+            <select id="status_dc" name="status" required>
+                <option value="" disabled selected>-- Select Status --</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
+            </select>
+    
+            <label for="grade_dc">Grade:</label>
+            <select id="grade_dc" name="grade" required>
+                <option value="" disabled selected>-- Select Grade --</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+    
+            <button type="submit">Submit</button>
+            <button type="button" onclick="toggleForm('breadthForm')">Cancel</button>
+        </form>
+    </div>
+
+    <h3>Major Option Modules</h3>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Module ID</th>
+                <th>Module Name</th>
+                <th>Status</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($records->where('assigned_md_type', 'MO') as $record)
+                <tr>
+                    <td>{{ $record->module_id }}</td>
+                    <td>{{ $record->module->module_name }}</td>
+                    <td>{{ $record->status }}</td>
+                    <td>{{ $record->grade }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4">No Major Options modules found.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <button onclick="toggleForm('moForm')">Add Major Option Module</button>
+
+    <div id="moForm" class="form-container" style="display: none;">
+        <form action="{{ route('add-module') }}" method="POST" class="inline-form">
+            @csrf
+            <input type="hidden" name="module_type" value="MO">
+    
+            <label for="module_id_dc">Module ID:</label>
+            <input type="text" id="module_id_dc" name="module_id" required>
+    
+            <label for="status_dc">Status:</label>
+            <select id="status_dc" name="status" required>
+                <option value="" disabled selected>-- Select Status --</option>
+                <option value="Taken">Taken</option>
+                <option value="Not Taken">Not Taken</option>
+            </select>
+    
+            <label for="grade_dc">Grade:</label>
+            <select id="grade_dc" name="grade" required>
+                <option value="" disabled selected>-- Select Grade --</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+    
+            <button type="submit">Submit</button>
+            <button type="button" onclick="toggleForm('moForm')">Cancel</button>
+        </form>
+    </div>
+
+
 </body>
 </html>
