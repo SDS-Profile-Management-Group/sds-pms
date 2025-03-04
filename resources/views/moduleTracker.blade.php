@@ -24,13 +24,37 @@
             }
         }
     </script>
-
+    <script>
+        function fetchModuleName() {
+            let moduleId = document.getElementById("module_id_dc").value;
+            let moduleNameInput = document.getElementById("module_name_dc");
+        
+            if (moduleId.length > 2) { // Fetch only if at least 3 characters are typed
+                fetch(`/get-module-name/${moduleId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.module_name) {
+                            moduleNameInput.value = data.module_name;
+                            moduleNameInput.readOnly = true; // Lock input if found
+                        } else {
+                            moduleNameInput.value = "";
+                            moduleNameInput.readOnly = false; // Allow manual entry
+                        }
+                    })
+                    .catch(error => console.error("Error fetching module name:", error));
+            } else {
+                moduleNameInput.value = "";
+                moduleNameInput.readOnly = false;
+            }
+        }
+    </script>
+    
 </head>
 <body>
     <h1>Module Tracker Table</h1>
 
     <div id="cpbrd-div">
-        <h3>Breadth Modules</h3>
+        <h3>Compulsary Breadth Modules</h3>
         <table border="1" cellpadding="8" cellspacing="0">
             <thead>
                 <tr>
@@ -41,10 +65,14 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($records->where('assigned_md_type', 'Compulsory Breadth') as $record)
+                @forelse ($records->where('assigned_md_type', 'Compulsory Breadth')->sortBy('module_id') as $record)
                     <tr>
                         <td>{{ $record->module_id }}</td>
-                        <td>{{ $record->module->module_name }}</td>
+                        @if ($record->module)
+                            <td>{{ $record->module->module_name }}</td>
+                        @else
+                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                        @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
                     </tr>
@@ -61,10 +89,13 @@
         <div id="cpbrdForm" class="form-container" style="display: none;">
             <form action="{{ route('add-module') }}" method="POST" class="inline-form">
                 @csrf
-                <input type="hidden" name="module_type" value="Compulsary Breadth">
+                <input type="hidden" name="module_type" value="Compulsory Breadth">
         
                 <label for="module_id_dc">Module ID:</label>
-                <input type="text" id="module_id_dc" name="module_id" required>
+                <input type="text" id="module_id_dc" name="module_id" required oninput="fetchModuleName()">
+        
+                <label for="module_name_dc">Module Name:</label>
+                <input type="text" id="module_name_dc" name="taken_module_name" placeholder="Enter module name if not found">
         
                 <label for="status_dc">Status:</label>
                 <select id="status_dc" name="status" required>
@@ -102,10 +133,14 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($records->where('assigned_md_type', 'DC') as $record)
-                    <tr>
+                @forelse ($records->where('assigned_md_type', 'DC')->sortBy('module_id') as $record)
+                   <tr>
                         <td>{{ $record->module_id }}</td>
-                        <td>{{ $record->module->module_name }}</td>
+                        @if ($record->module)
+                            <td>{{ $record->module->module_name }}</td>
+                        @else
+                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                        @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
                         <td><button>Edit</button> <button>Delete</button></td>
@@ -164,7 +199,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($records->where('assigned_md_type', 'MC') as $record)
+                @forelse ($records->where('assigned_md_type', 'MC')->sortBy('module_id') as $record)
                     <tr>
                         <td>{{ $record->module_id }}</td>
                         <td>{{ $record->module->module_name }}</td>
@@ -224,10 +259,14 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($records->where('assigned_md_type', 'Other Breadth') as $record)
+                @forelse ($records->where('assigned_md_type', 'Other Breadth')->sortBy('module_id') as $record)
                     <tr>
                         <td>{{ $record->module_id }}</td>
-                        <td>{{ $record->module->module_name }}</td>
+                        @if ($record->module)
+                            <td>{{ $record->module->module_name }}</td>
+                        @else
+                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                        @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
                     </tr>
@@ -247,7 +286,10 @@
                 <input type="hidden" name="module_type" value="Other Breadth">
         
                 <label for="module_id_dc">Module ID:</label>
-                <input type="text" id="module_id_dc" name="module_id" required>
+                <input type="text" id="module_id_dc" name="module_id" required oninput="fetchModuleName()">
+        
+                <label for="module_name_dc">Module Name:</label>
+                <input type="text" id="module_name_dc" name="taken_module_name" placeholder="Enter module name if not found">
         
                 <label for="status_dc">Status:</label>
                 <select id="status_dc" name="status" required>
@@ -284,10 +326,14 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($records->where('assigned_md_type', 'MO') as $record)
+                @forelse ($records->where('assigned_md_type', 'MO')->sortBy('module_id') as $record)
                     <tr>
                         <td>{{ $record->module_id }}</td>
-                        <td>{{ $record->module->module_name }}</td>
+                        @if ($record->module)
+                            <td>{{ $record->module->module_name }}</td>
+                        @else
+                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                        @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
                     </tr>

@@ -31,17 +31,22 @@ return new class extends Migration
         Schema::create('taken_modules', function (Blueprint $table) {
             $table->string('module_id');
             $table->string('student_id');
-
-            // $table->enum('assigned_md_type',['DC','MC', 'MO', 'Breadth']);
-            $table->enum('assigned_md_type',['DC','MC', 'MO', 'Compulsory Breadth', 'Other Breadth']);
-
+        
+            $table->string('taken_module_name')->nullable();
+            $table->enum('assigned_md_type', [
+                'DC', 
+                'MC', 
+                'MO', 
+                'Compulsory Breadth', 
+                'Other Breadth'
+            ]);
             $table->string('grade')->nullable();
             $table->boolean('status')->nullable();
             
             $table->primary(['module_id', 'student_id']);
-            $table->unique(['module_id','student_id']);
-
-            $table->foreign('module_id')->references('module_id')->on('modules')->onDelete('cascade');
+            $table->unique(['module_id', 'student_id']);
+        
+            // $table->foreign('module_id')->references('module_id')->on('modules')->onDelete('cascade');
             $table->foreign('student_id')->references('student_username')->on('student_info')->onDelete('cascade');
         });
 
