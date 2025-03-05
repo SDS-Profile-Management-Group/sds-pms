@@ -53,6 +53,28 @@
 <body>
     <h1>Module Tracker Table</h1>
 
+    <div id="level-tally">
+        <h3>Module Level Breakdown</h3>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Module Level</th>
+                    <th>Count</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($filteredLevelCounts as $level => $count)
+                    <tr>
+                        <td>{{ $level }}</td>
+                        <td>{{ $count }}</td>
+                        <td>{{ $remarks[$level] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
     <div id="cpbrd-div">
         <h3>Compulsary Breadth Modules</h3>
         <table border="1" cellpadding="8" cellspacing="0">
