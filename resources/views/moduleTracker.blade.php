@@ -151,7 +151,6 @@
                     <th>Module Name</th>
                     <th>Status</th>
                     <th>Grade</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -165,7 +164,6 @@
                         @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
-                        <td><button>Edit</button> <button>Delete</button></td>
                     </tr>
                 @empty
                     <tr>
@@ -278,6 +276,7 @@
                     <th>Module Name</th>
                     <th>Status</th>
                     <th>Grade</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -291,6 +290,7 @@
                         @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
                     </tr>
                 @empty
                     <tr>
