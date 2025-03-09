@@ -11,26 +11,11 @@ use App\Models\Profile;
 
 class ModuleController extends Controller
 {
-    // public function showModules()
-    // {
-    //     $records = ModulesTaken::with('module')
-    //         ->where('student_id', Auth::user()->asg_username)
-    //         ->get();
-
-    //     return view('moduleTracker', compact('records'));
-    // }
-
     public function showModules()
     {
         $records = ModulesTaken::with('module')
         ->where('student_id', Auth::user()->asg_username)
         ->get();
-
-        // $records = ModulesTaken::with('module')
-        // ->where('student_id', Auth::user()->asg_username)
-        // ->whereNotNull('grade') //? Ensure module is completed
-        // ->where('status', true) //? Only count valid modules
-        // ->get();
 
         $mcBreakdown = $records->filter(function ($record) {
             return $record->status === true && $record->grade !== null;
@@ -39,10 +24,6 @@ class ModuleController extends Controller
         ->map(function ($group) {
             return $group->sum('module.mc');
         });
-
-        // $mcBreakdown = $records->groupBy('assigned_md_type')->map(function ($group) {
-        //     return $group->sum('module.mc');
-        // });
 
         return view('moduleTracker', compact('records', 'mcBreakdown'));
     }
