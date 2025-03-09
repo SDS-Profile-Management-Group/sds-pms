@@ -24,43 +24,28 @@ class ModuleController extends Controller
     {
         $records = ModulesTaken::with('module')
         ->where('student_id', Auth::user()->asg_username)
-        ->whereNotNull('grade') // Ensure module is completed
-        ->where('status', true) // Only count valid modules
         ->get();
 
-        $mcBreakdown = $records->groupBy('assigned_md_type')->map(function ($group) {
+        // $records = ModulesTaken::with('module')
+        // ->where('student_id', Auth::user()->asg_username)
+        // ->whereNotNull('grade') //? Ensure module is completed
+        // ->where('status', true) //? Only count valid modules
+        // ->get();
+
+        $mcBreakdown = $records->filter(function ($record) {
+            return $record->status === true && $record->grade !== null;
+        })
+        ->groupBy('assigned_md_type')
+        ->map(function ($group) {
             return $group->sum('module.mc');
         });
 
+        // $mcBreakdown = $records->groupBy('assigned_md_type')->map(function ($group) {
+        //     return $group->sum('module.mc');
+        // });
+
         return view('moduleTracker', compact('records', 'mcBreakdown'));
     }
-
-    // public function showModules()
-    // {
-    //     $records = ModulesTaken::with('module')
-    //         ->where('student_id', Auth::user()->asg_username)
-    //         ->get();
-
-    //     // Tally levels
-    //     $levelCounts = $records->groupBy(function ($record) {
-    //         preg_match('/-(\d)/', $record->module_id, $matches);
-    //         return isset($matches[1]) ? ($matches[1] * 1000) : 'Unknown';
-    //     })->map->count();
-
-    //     $filteredLevelCounts = $levelCounts->only([1000, 4000]);
-
-    //     // Define remarks
-    //     $remarks = [
-    //         1000 => ($filteredLevelCounts->get(1000, 0) > 10) 
-    //             ? 'You exceed the maximum requirement!' 
-    //             : 'You can take ' . (10 - $filteredLevelCounts->get(1000, 0)) . ' more module(s)',
-    //         4000 => ($filteredLevelCounts->get(4000, 0) < 4) 
-    //             ? 'You need to take '. (4 - $filteredLevelCounts->get(4000, 0)). ' more module(s)!' 
-    //             : 'You have met the minimum requirement',
-    //     ];
-
-    //     return view('moduleTracker', compact('records', 'filteredLevelCounts', 'remarks'));
-    // }
 
     public function addModule(Request $request)
     {

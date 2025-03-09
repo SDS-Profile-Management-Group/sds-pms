@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Models\StudentInfo;
 use App\Models\StaffInfo;
+use App\Models\Student\ModulesTaken;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -43,6 +44,32 @@ class UserController extends Controller
             StudentInfo::create([
                 'student_username' => $user->asg_username, 
                 // Other fields specific to student_info can be added here
+            ]);
+
+            ModulesTaken::insert([
+                [
+                    'module_id' => 'LE-1503',
+                    'student_id' => $user->asg_username,
+                    'assigned_md_type' => 'CB',
+                ],
+
+                [
+                    'module_id' => 'LE-2503',
+                    'student_id' => $user->asg_username,
+                    'assigned_md_type' => 'CB',
+                ],
+
+                [
+                    'module_id' => 'PB-1501',
+                    'student_id' => $user->asg_username,
+                    'assigned_md_type' => 'CB',
+                ],
+
+                [
+                    'module_id' => 'MS-1501',
+                    'student_id' => $user->asg_username,
+                    'assigned_md_type' => 'CB',
+                ],
             ]);
         } else if ($user->user_type === 'staff') {
             // Insert into the 'staff_info' table

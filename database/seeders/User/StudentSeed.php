@@ -40,37 +40,37 @@ class StudentSeed extends Seeder
         ]);
 
         DB::table('taken_modules')->insert([
-            [
-                'module_id' => 'LE-1503',
-                'student_id' => '21B6027',
-                'assigned_md_type' => 'CB',
-                'grade' => 'A',
-                'status' => true
-            ],
+            // [
+            //     'module_id' => 'LE-1503',
+            //     'student_id' => '21B6027',
+            //     'assigned_md_type' => 'CB',
+            //     'grade' => 'A',
+            //     'status' => true
+            // ],
 
-            [
-                'module_id' => 'LE-2503',
-                'student_id' => '21B6027',
-                'assigned_md_type' => 'CB',
-                'grade' => 'A',
-                'status' => true
-            ],
+            // [
+            //     'module_id' => 'LE-2503',
+            //     'student_id' => '21B6027',
+            //     'assigned_md_type' => 'CB',
+            //     'grade' => 'A',
+            //     'status' => true
+            // ],
 
-            [
-                'module_id' => 'PB-1501',
-                'student_id' => '21B6027',
-                'assigned_md_type' => 'CB',
-                'grade' => 'A',
-                'status' => true
-            ],
+            // [
+            //     'module_id' => 'PB-1501',
+            //     'student_id' => '21B6027',
+            //     'assigned_md_type' => 'CB',
+            //     'grade' => 'A',
+            //     'status' => true
+            // ],
 
-            [
-                'module_id' => 'MS-1501',
-                'student_id' => '21B6027',
-                'assigned_md_type' => 'CB',
-                'grade' => 'A',
-                'status' => true
-            ],
+            // [
+            //     'module_id' => 'MS-1501',
+            //     'student_id' => '21B6027',
+            //     'assigned_md_type' => 'CB',
+            //     'grade' => 'A',
+            //     'status' => true
+            // ],
 
             [
                 'module_id' => 'ZZ-1102',
