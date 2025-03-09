@@ -53,7 +53,7 @@ class ModuleController extends Controller
         $request->validate([
             'module_id' => 'required|string',
             // 'taken_module_name' => 'nullable|string',
-            'module_type' => 'required|in:DC,MC,MO,"Compulsory Breadth","Other Breadth"',
+            'module_type' => 'required|in:DC,MC,MO,"CB","Other Breadth"',
             'status' => 'nullable|in:0,1',
             'grade' => 'nullable|string',
         ]);
@@ -71,7 +71,7 @@ class ModuleController extends Controller
             'module_id' => $request->input('module_id'),
             'student_id' => Auth::user()->asg_username,
             'assigned_md_type' => $request->input('module_type'),
-            // 'taken_module_name' => $moduleName, // Store the fetched or user-inputted name
+    
             'grade' => $request->input('grade'),
             'status' => $request->input('status'),
         ]);
@@ -83,8 +83,12 @@ class ModuleController extends Controller
     {
         $module = Modules::where('module_id', $module_id)->first();
 
+        if (!$module) {
+            return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
+        }
+
         return response()->json([
-            'module_name' => $module ? $module->name : null
+            'module_name' => $module->module_name  // Assuming 'module_name' is the correct attribute name
         ]);
     }
 

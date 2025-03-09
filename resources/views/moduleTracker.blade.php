@@ -28,7 +28,7 @@
         function fetchModuleName() {
             let moduleId = document.getElementById("module_id_dc").value;
             let moduleNameInput = document.getElementById("module_name_dc");
-        
+
             if (moduleId.length > 2) { // Fetch only if at least 3 characters are typed
                 fetch(`/get-module-name/${moduleId}`)
                     .then(response => response.json())
@@ -37,11 +37,15 @@
                             moduleNameInput.value = data.module_name;
                             moduleNameInput.readOnly = true; // Lock input if found
                         } else {
-                            moduleNameInput.value = "";
+                            moduleNameInput.value = "N/A";  // Show 'N/A' if no module found
                             moduleNameInput.readOnly = false; // Allow manual entry
                         }
                     })
-                    .catch(error => console.error("Error fetching module name:", error));
+                    .catch(error => {
+                        console.error("Error fetching module name:", error);
+                        moduleNameInput.value = "Error"; // Show error message if fetch fails
+                        moduleNameInput.readOnly = false; // Allow manual entry in case of error
+                    });
             } else {
                 moduleNameInput.value = "";
                 moduleNameInput.readOnly = false;
@@ -87,13 +91,13 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($records->where('assigned_md_type', 'Compulsory Breadth')->sortBy('module_id') as $record)
+                @forelse ($records->where('assigned_md_type', 'CB')->sortBy('module_id') as $record)
                     <tr>
                         <td>{{ $record->module_id }}</td>
                         @if ($record->module)
                             <td>{{ $record->module->module_name }}</td>
                         @else
-                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                            <td>{{'N/A'}}</td>
                         @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
@@ -114,10 +118,7 @@
                 <input type="hidden" name="module_type" value="CB">
         
                 <label for="module_id_dc">Module ID:</label>
-                <input type="text" id="module_id_dc" name="module_id" required oninput="fetchModuleName()">
-        
-                <label for="module_name_dc">Module Name:</label>
-                <input type="text" id="module_name_dc" name="taken_module_name" placeholder="Enter module name if not found">
+                <input type="text" id="module_id_dc" name="module_id">
         
                 <label for="status_dc">Status:</label>
                 <select id="status_dc" name="status" required>
@@ -286,7 +287,6 @@
                         @if ($record->module)
                             <td>{{ $record->module->module_name }}</td>
                         @else
-                            {{-- <td>{{ $record->taken_module_name ?? 'N/A' }}</td> --}}
                             <td>{{'N/A'}}</td>
                         @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
