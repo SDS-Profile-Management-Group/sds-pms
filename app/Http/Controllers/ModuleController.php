@@ -11,39 +11,85 @@ use App\Models\Profile;
 
 class ModuleController extends Controller
 {
-    public function showModules(){
-        $records = ModulesTaken::with('module')->where('student_id', Auth::user()->asg_username)->get();
-        return view('moduleTracker', compact('records'));
-        // // Separate records by module type
+    // public function showModules()
+    // {
+    //     $records = ModulesTaken::with('module')
+    //         ->where('student_id', Auth::user()->asg_username)
+    //         ->get();
 
-        // $dcRecords = $records->where('module_type', 'DC');
-        // $mcRecords = $records->where('module_type', 'MC');
-        // $breadthRecords = $records->where('module_type', 'Breadth');
-        // $moRecords = $records->where('module_type', 'MO');
+    //     return view('moduleTracker', compact('records'));
+    // }
 
-        // return view('moduleTracker', compact('dcRecords', 'mcRecords', 'breadthRecords', 'moRecords'));
+    public function showModules()
+    {
+        $records = ModulesTaken::with('module')
+            ->where('student_id', Auth::user()->asg_username)
+            ->get();
+
+        // Tally levels
+        $levelCounts = $records->groupBy(function ($record) {
+            preg_match('/-(\d)/', $record->module_id, $matches);
+            return isset($matches[1]) ? ($matches[1] * 1000) : 'Unknown';
+        })->map->count();
+
+        $filteredLevelCounts = $levelCounts->only([1000, 4000]);
+
+        // Define remarks
+        $remarks = [
+            1000 => ($filteredLevelCounts->get(1000, 0) > 10) 
+                ? 'You exceed the maximum requirement!' 
+                : 'You can take ' . (10 - $filteredLevelCounts->get(1000, 0)) . ' more module(s)',
+            4000 => ($filteredLevelCounts->get(4000, 0) < 4) 
+                ? 'You need to take '. (4 - $filteredLevelCounts->get(4000, 0)). ' more module(s)!' 
+                : 'You have met the minimum requirement',
+        ];
+
+        return view('moduleTracker', compact('records', 'filteredLevelCounts', 'remarks'));
     }
 
-    public function addModule(Request $request){
+    public function addModule(Request $request)
+    {
         // Validate the input
         $request->validate([
             'module_id' => 'required|string',
-            'module_type' => 'required|in:DC,MC,MO,"Compulsory Breadth","Other Breadth"',
-            'status' => 'nullable|boolean',
+            // 'taken_module_name' => 'nullable|string',
+            'module_type' => 'required|in:DC,MC,MO,"CB","Other Breadth"',
+            'status' => 'nullable|in:0,1',
             'grade' => 'nullable|string',
         ]);
 
-        // Create the module
+        // Check if module name is provided, otherwise fetch from database
+        $moduleName = $request->input('taken_module_name');
+
+        if (!$moduleName) {
+            $module = Modules::where('module_id', $request->input('module_id'))->first();
+            $moduleName = $module ? $module->name : null; // Get name if found, otherwise null
+        }
+
+        // Create the module entry
         ModulesTaken::create([
             'module_id' => $request->input('module_id'),
-            'student_id' => Auth::user()->asg_username,  // Assuming logged-in user's username is used
-            
+            'student_id' => Auth::user()->asg_username,
             'assigned_md_type' => $request->input('module_type'),
+    
             'grade' => $request->input('grade'),
             'status' => $request->input('status'),
         ]);
 
         return redirect()->back()->with('success', 'Module added successfully!');
+    }
+
+    public function getModuleName($module_id)
+    {
+        $module = Modules::where('module_id', $module_id)->first();
+
+        if (!$module) {
+            return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
+        }
+
+        return response()->json([
+            'module_name' => $module->module_name  // Assuming 'module_name' is the correct attribute name
+        ]);
     }
 
 }
