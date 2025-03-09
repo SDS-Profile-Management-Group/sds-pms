@@ -18,16 +18,16 @@ class ModuleCategory extends Seeder
             // ['module_id' => '', 'major_id' => '', 'module_type' => '', 'mc' => ''], 
 
             // * Degree Core
-            ['module_id' => 'ZZ-1102', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
-            ['module_id' => 'ZZ-1103', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
-            ['module_id' => 'ZZ-1104', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
+            // //['module_id' => 'ZZ-1102', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
+            // //['module_id' => 'ZZ-1103', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
+            // // ['module_id' => 'ZZ-1104', 'major_id' => 'ZZ', 'module_type' => 'DC', 'mc' => '4'],
 
             // * Compulsory Breadth
-            ['module_id' => 'LE-1503', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
-            ['module_id' => 'LE-2503', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
-            ['module_id' => 'MS-1501', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
-            ['module_id' => 'PB-1501', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
-            ['module_id' => 'PB-1502', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+            // // ['module_id' => 'LE-1503', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+            // // ['module_id' => 'LE-2503', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+            // // ['module_id' => 'MS-1501', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+            // // ['module_id' => 'PB-1501', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
+            // // ['module_id' => 'PB-1502', 'major_id' => 'XX', 'module_type' => 'CB', 'mc' => '4'],
 
             // * Other entries
             ['module_id' => 'ZC-1201', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // (AI Robo MC, Data Science, Cybersecurity)
@@ -36,7 +36,7 @@ class ModuleCategory extends Seeder
             ['module_id' => 'ZC-2203', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // (Data Science, Cybersecurity)
             ['module_id' => 'ZC-2205', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // (AI Robo MC, Data Science, Cybersecurity, AAI)
             ['module_id' => 'BB-2207', 'major_id' => 'XX', 'module_type' => 'MC', 'mc' => '4'], // (Duplicate: Cybersecurity)
-            ['module_id' => 'ZA-2201', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'], // (Duplicate: AAI)
+            // ['module_id' => 'ZA-2201', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'], // (Duplicate: AAI)
             ['module_id' => 'ZA-3201', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'], // (Duplicate: AAI)
             ['module_id' => 'ZA-3202', 'major_id' => 'ZA', 'module_type' => 'MC', 'mc' => '4'], // (Data Science, AAI)
             ['module_id' => 'ZC-4202', 'major_id' => 'ZC', 'module_type' => 'MC', 'mc' => '4'], // (AI Robo MC, Data Science, Cybersecurity, AAI)

@@ -22,13 +22,6 @@ return new class extends Migration
         Schema::create('module_belongs_to', function (Blueprint $table) {
             $table->string('module_id');
             $table->string('major_id');
-
-            // Boolean column to indicate if the module is required in other majors as MC
-            $table->boolean('is_required_in_other_majors')->default(false);
-            
-            // JSON column to list other majors where the module is required as MC
-            $table->json('other_required_majors')->nullable();
-            
             $table->enum('module_type',[
                 'DC',
                 'MC', 
@@ -36,6 +29,13 @@ return new class extends Migration
                 'CB', 
                 'Other Breadth'
             ]);
+
+            // Boolean column to indicate if the module is required in other majors as MC
+            $table->boolean('is_required_in_other_majors')->default(false);
+            
+            // JSON column to list other majors where the module is required as MC
+            $table->json('other_required_majors');
+            
             
             $table->primary(['major_id', 'module_id']);
             $table->unique(['major_id','module_id']);

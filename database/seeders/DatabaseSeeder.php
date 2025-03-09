@@ -1,8 +1,19 @@
 <?php
 
 namespace Database\Seeders;
-use Database\Seeders\ModulesTableSeeder;
-use Database\Seeders\ModulesCategory;
+use Database\Seeders\Modules\CompulsoryDCModulesSeeder;
+use Database\Seeders\Modules\AIRoboticsModuleSeeder;
+use Database\Seeders\Modules\AppliedAIModuleSeeder;
+use Database\Seeders\Modules\ComputerScienceModuleSeeder;
+use Database\Seeders\Modules\CybersecurityModuleSeeder;
+use Database\Seeders\Modules\DataScienceModuleSeeder;
+use Database\Seeders\Modules\DYMKHeadstartModuleSeeder;
+use Database\Seeders\Modules\NonSDSModuleSeeder;
+
+use Database\Seeders\Category\CommonMajorSeeder;
+use Database\Seeders\Category\AIRoboMajorSeeder;
+
+use Database\Seeders\User\StudentSeed;
 
 
 use App\Models\User;
@@ -23,21 +34,28 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // Module Seeders
         $this->call([
-            \Database\Seeders\Modules\CompulsoryDCModulesSeeder::class,
-            
-            \Database\Seeders\Modules\AIRoboticsModuleSeeder::class,
-            \Database\Seeders\Modules\AppliedAIModuleSeeder::class,
-            \Database\Seeders\Modules\ComputerScienceModuleSeeder::class,
-            \Database\Seeders\Modules\CybersecurityModuleSeeder::class,
-            \Database\Seeders\Modules\DataScienceModuleSeeder::class,
-            
-            \Database\Seeders\Modules\DYMKHeadstartModuleSeeder::class,
-            \Database\Seeders\Modules\NonSDSModuleSeeder::class,
+            CompulsoryDCModulesSeeder::class,
+            AIRoboticsModuleSeeder::class,
+            AppliedAIModuleSeeder::class,
+            ComputerScienceModuleSeeder::class,
+            CybersecurityModuleSeeder::class,
+            DataScienceModuleSeeder::class,
+            DYMKHeadstartModuleSeeder::class,
+            NonSDSModuleSeeder::class,
         ]);
-        $this->call(ModuleCategory::class);
-
-        $this->call(\Database\Seeders\User\StudentSeed::class);
+        
+        // Category Seeders
+        $this->call([
+            AIRoboMajorSeeder::class,
+            CommonMajorSeeder::class,
+        ]);
+        
+        // User Seeders
+        $this->call([
+            StudentSeed::class,
+        ]);
         
     }
 }
