@@ -28,7 +28,7 @@ return new class extends Migration
                 'DC',
                 'MC', 
                 'MO', 
-                'CM', 
+                'CB', 
                 'Other Breadth'
             ]);
             $table->tinyInteger('mc');
@@ -40,13 +40,12 @@ return new class extends Migration
         Schema::create('taken_modules', function (Blueprint $table) {
             $table->string('module_id');
             $table->string('student_id');
-        
-            $table->string('taken_module_name')->nullable();
+
             $table->enum('assigned_md_type', [
                 'DC', 
                 'MC', 
                 'MO', 
-                'Compulsory Breadth', 
+                'CB', 
                 'Other Breadth'
             ]);
             $table->string('grade')->nullable();

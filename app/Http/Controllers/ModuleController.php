@@ -52,7 +52,7 @@ class ModuleController extends Controller
         // Validate the input
         $request->validate([
             'module_id' => 'required|string',
-            'taken_module_name' => 'nullable|string',
+            // 'taken_module_name' => 'nullable|string',
             'module_type' => 'required|in:DC,MC,MO,"Compulsory Breadth","Other Breadth"',
             'status' => 'nullable|in:0,1',
             'grade' => 'nullable|string',
@@ -71,7 +71,7 @@ class ModuleController extends Controller
             'module_id' => $request->input('module_id'),
             'student_id' => Auth::user()->asg_username,
             'assigned_md_type' => $request->input('module_type'),
-            'taken_module_name' => $moduleName, // Store the fetched or user-inputted name
+            // 'taken_module_name' => $moduleName, // Store the fetched or user-inputted name
             'grade' => $request->input('grade'),
             'status' => $request->input('status'),
         ]);

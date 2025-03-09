@@ -20,7 +20,6 @@ class ModulesTaken extends Model
     
     protected $fillable = [
         'module_id', 
-        'taken_module_name',
         'student_id',
         'assigned_md_type',
         'grade',

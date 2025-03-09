@@ -111,7 +111,7 @@
         <div id="cpbrdForm" class="form-container" style="display: none;">
             <form action="{{ route('add-module') }}" method="POST" class="inline-form">
                 @csrf
-                <input type="hidden" name="module_type" value="Compulsory Breadth">
+                <input type="hidden" name="module_type" value="CB">
         
                 <label for="module_id_dc">Module ID:</label>
                 <input type="text" id="module_id_dc" name="module_id" required oninput="fetchModuleName()">
@@ -286,7 +286,8 @@
                         @if ($record->module)
                             <td>{{ $record->module->module_name }}</td>
                         @else
-                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                            {{-- <td>{{ $record->taken_module_name ?? 'N/A' }}</td> --}}
+                            <td>{{'N/A'}}</td>
                         @endif
                         <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                         <td>{{ $record->grade }}</td>
