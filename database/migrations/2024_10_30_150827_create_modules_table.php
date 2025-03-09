@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('modules', function (Blueprint $table) {
-            // * Seeding purposes
             $table->string('module_id')->primary();
             $table->string('module_name');
 
@@ -23,6 +22,12 @@ return new class extends Migration
         Schema::create('module_belongs_to', function (Blueprint $table) {
             $table->string('module_id');
             $table->string('major_id');
+
+            // Boolean column to indicate if the module is required in other majors as MC
+            $table->boolean('is_required_in_other_majors')->default(false);
+            
+            // JSON column to list other majors where the module is required as MC
+            $table->json('other_required_majors')->nullable();
             
             $table->enum('module_type',[
                 'DC',
@@ -31,7 +36,6 @@ return new class extends Migration
                 'CB', 
                 'Other Breadth'
             ]);
-            $table->tinyInteger('mc');
             
             $table->primary(['major_id', 'module_id']);
             $table->unique(['major_id','module_id']);
