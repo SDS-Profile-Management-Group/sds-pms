@@ -67,12 +67,18 @@
     
 </head>
 <body>
+    <a href="{{ url('/home') }}">
+        <button>Go Home</button>
+    </a>
+
     <h1>Module Tracker Table</h1>
 
     <div class="infomation">
         <h3>Graduation Requirements</h3>
-        <p>Students are required to accumalate a <b>minimum of 152 Modular Credit (MCs)</b>from a combination of degree core, major core, major option and breadth modules 
-            as specified in below subsections and in the Programme Structure of the major that the student has chosen to specialize in.</p>
+        <p>Students are required to accumalate a <b>minimum of 152 Modular Credit (MCs)</b> from a combination of degree core, major core, major option and breadth modules 
+            as specified in below subsections and in the Programme Structure of the major that the student has chosen to specialize in.
+        </p>
+        <p>A student must pass with a <b>maximum of 40 Modular Credits (MCs) from Level 1000 modules</b> and a <b>minimum of 24 Modular Credits (MCs) from Level 4000 modules</b> from their major subject.</p>
         <table border="1" cellpadding="8" cellspacing="0">
             <thead>
                 <tr>
@@ -147,6 +153,7 @@
         </table>
     </div>
 
+    {{-- TODO: Make a tally for Level 1000 and Level 4000 --}}
     {{-- <div id="mc-tally">
         <h3>Module Credit Breakdown</h3>
         <table border="1" cellpadding="8" cellspacing="0">

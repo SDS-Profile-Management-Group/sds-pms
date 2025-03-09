@@ -73,4 +73,8 @@ class ModuleController extends Controller
         ]);
     }
 
+    // public function goHome(){
+    //     return redirect('/home');
+    // }
+
 }
