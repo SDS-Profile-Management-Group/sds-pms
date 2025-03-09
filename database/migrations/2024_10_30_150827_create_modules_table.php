@@ -21,7 +21,13 @@ return new class extends Migration
             $table->string('module_id');
             $table->string('major_id');
             
-            $table->enum('module_type',['DC','MC', 'MO']);
+            $table->enum('module_type',[
+                'DC',
+                'MC', 
+                'MO', 
+                'CM', 
+                'Other Breadth'
+            ]);
             $table->tinyInteger('mc');
             
             $table->primary(['major_id', 'module_id']);

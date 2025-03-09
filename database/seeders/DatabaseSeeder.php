@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 use Database\Seeders\ModulesTableSeeder;
+use Database\Seeders\ModulesCategory;
 
 
 use App\Models\User;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(ModulesTableSeeder::class);
+        $this->call(ModuleCategory::class);
     }
 }
