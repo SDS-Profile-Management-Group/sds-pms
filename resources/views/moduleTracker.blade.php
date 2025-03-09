@@ -112,22 +112,22 @@
             <tr>
                 <th scope="row">Degree Core</th>
                 <td>12</td>
-                <td>(value from database)</td>
+                <td>{{ $mcBreakdown['DC'] ?? 0 }} <!-- Degree Core --></td>
             </tr>
             <tr>
                 <th scope="row">Major Core</th>
                 <td>48</td>
-                <td></td>
+                <td>{{ $mcBreakdown['MC'] ?? 0 }}</td> <!-- Major Core -->
             </tr>
             <tr>
                 <th scope="row">Major Option</th>
                 <td>36</td>
-                <td></td>
+                <td>{{ $mcBreakdown['MO'] ?? 0 }}</td> <!-- Major Option -->
             </tr>
             <tr>
                 <th scope="row">Compulsory Breadth</th>
                 <td>16</td>
-                <td></td>
+                <td>{{ $mcBreakdown['CB'] ?? 0 }}</td> <!-- Compulsory Breadth -->
             </tr>
             <tr>
                 <th scope="row">Discovery Year Programme</th>
@@ -137,12 +137,12 @@
             <tr>
                 <th scope="row">Remaining Breadth or Option Modules</th>
                 <td>8</td>
-                <td></td>
+                <td>{{ $mcBreakdown['Other Breadth'] ?? 0 }}</td> <!-- Remaining Breadth or Option Modules -->
             </tr>
             <tr>
                 <th scope="row">Total</th>
                 <td>152</td>
-                <td></td>
+                <td>{{ $mcBreakdown->sum() ?? 0 }}</td> <!-- Total -->
             </tr>
         </table>
     </div>
