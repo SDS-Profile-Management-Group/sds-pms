@@ -15,6 +15,9 @@ return new class extends Migration
             // * Seeding purposes
             $table->string('module_id')->primary();
             $table->string('module_name');
+
+            $table->tinyInteger('mc'); // Value: 2, 4, 8
+            $table->integer('level'); // Value: 1000, 2000, 3000, 4000
         });
 
         Schema::create('module_belongs_to', function (Blueprint $table) {
