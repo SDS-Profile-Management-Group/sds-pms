@@ -23,7 +23,19 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(ModulesTableSeeder::class);
         $this->call(ModuleCategory::class);
+        $this->call([
+            \Database\Seeders\Modules\CompulsoryDCModulesSeeder::class,
+
+            \Database\Seeders\Modules\AIRoboticsModuleSeeder::class,
+            \Database\Seeders\Modules\AppliedAIModuleSeeder::class,
+            \Database\Seeders\Modules\ComputerScienceModuleSeeder::class,
+            \Database\Seeders\Modules\CybersecurityModuleSeeder::class,
+            \Database\Seeders\Modules\DataScienceModuleSeeder::class,
+
+            \Database\Seeders\Modules\DYMKHeadstartModuleSeeder::class,
+            \Database\Seeders\Modules\NonSDSModuleSeeder::class,
+        ]);
+
     }
 }
