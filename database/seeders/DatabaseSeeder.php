@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\Modules\NonSDSModuleSeeder::class,
         ]);
         $this->call(ModuleCategory::class);
+
+        $this->call(\Database\Seeders\User\StudentSeed::class);
         
     }
 }
