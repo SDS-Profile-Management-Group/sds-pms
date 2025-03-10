@@ -22,7 +22,7 @@
             border: 1px solid black;
             padding: 8px;
         }
-        #mc-tally td {
+        #mc-tally #mc-collection td {
             text-align: right;
         }
     </style>
@@ -109,72 +109,80 @@
 
     <div id="mc-tally">
         <h3>Module Credit Breakdown</h3>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <tr>
-                <th></th>
-                <th>Required Value</th>
-                <th>Accumalated</th>
-            </tr>
-            <tr>
-                <th scope="row">Degree Core</th>
-                <td>12</td>
-                <td>{{ $mcBreakdown['DC'] ?? 0 }} <!-- Degree Core --></td>
-            </tr>
-            <tr>
-                <th scope="row">Major Core</th>
-                <td>48</td>
-                <td>{{ $mcBreakdown['MC'] ?? 0 }}</td> <!-- Major Core -->
-            </tr>
-            <tr>
-                <th scope="row">Major Option</th>
-                <td>36</td>
-                <td>{{ $mcBreakdown['MO'] ?? 0 }}</td> <!-- Major Option -->
-            </tr>
-            <tr>
-                <th scope="row">Compulsory Breadth</th>
-                <td>16</td>
-                <td>{{ $mcBreakdown['CB'] ?? 0 }}</td> <!-- Compulsory Breadth -->
-            </tr>
-            <tr>
-                <th scope="row">Discovery Year Programme</th>
-                <td>32</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">Remaining Breadth or Option Modules</th>
-                <td>8</td>
-                <td>{{ $mcBreakdown['Other Breadth'] ?? 0 }}</td> <!-- Remaining Breadth or Option Modules -->
-            </tr>
-            <tr>
-                <th scope="row">Total</th>
-                <td>152</td>
-                <td>{{ $mcBreakdown->sum() ?? 0 }}</td> <!-- Total -->
-            </tr>
-        </table>
+        <div id="mc-collection">
+            <h4>Overall MC Obtained</h4>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <tr>
+                    <th></th>
+                    <th>Required Value</th>
+                    <th>Accumalated</th>
+                </tr>
+                <tr>
+                    <th scope="row">Degree Core</th>
+                    <td>12</td>
+                    <td>{{ $mcBreakdown['DC'] ?? 0 }} <!-- Degree Core --></td>
+                </tr>
+                <tr>
+                    <th scope="row">Major Core</th>
+                    <td>48</td>
+                    <td>{{ $mcBreakdown['MC'] ?? 0 }}</td> <!-- Major Core -->
+                </tr>
+                <tr>
+                    <th scope="row">Major Option</th>
+                    <td>36</td>
+                    <td>{{ $mcBreakdown['MO'] ?? 0 }}</td> <!-- Major Option -->
+                </tr>
+                <tr>
+                    <th scope="row">Compulsory Breadth</th>
+                    <td>16</td>
+                    <td>{{ $mcBreakdown['CB'] ?? 0 }}</td> <!-- Compulsory Breadth -->
+                </tr>
+                <tr>
+                    <th scope="row">Discovery Year Programme</th>
+                    <td>32</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Remaining Breadth or Option Modules</th>
+                    <td>8</td>
+                    <td>{{ $mcBreakdown['Other Breadth'] ?? 0 }}</td> <!-- Remaining Breadth or Option Modules -->
+                </tr>
+                <tr>
+                    <th scope="row">Total</th>
+                    <td>152</td>
+                    <td>{{ $mcBreakdown->sum() ?? 0 }}</td> <!-- Total -->
+                </tr>
+            </table>
+        </div>
+
+        {{-- TODO: Make a tally for Level 1000 and Level 4000 --}}
+        <div id="lvl-tally">
+            <h4>Level 1000 and 4000 Tally</h4>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Module Level</th>
+                        <th>Requirement</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Level 1000</td>
+                        <td>lorem</td>
+                        <td>(remakrs)</td>
+                    </tr>
+                    <tr>
+                        <td>Level 4000</td>
+                        <td>lorem</td>
+                        <td>(remakrs)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
-    {{-- TODO: Make a tally for Level 1000 and Level 4000 --}}
-    {{-- <div id="mc-tally">
-        <h3>Module Credit Breakdown</h3>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Module Level</th>
-                    <th>Count</th>
-                    <th>Remarks</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($filteredLevelCounts as $level => $count)
-                    <tr>
-                        <td>{{ $level }}</td>
-                        <td>{{ $count }}</td>
-                        <td>{{ $remarks[$level] }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div> --}}
 
     <div id="cpbrd-div">
         <span>
