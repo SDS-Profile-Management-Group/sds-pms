@@ -13,6 +13,18 @@
             border: 1px solid #ddd;
             background: #f9f9f9;
         }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        #mc-tally td {
+            text-align: right;
+        }
     </style>
     <script>
         function toggleForm(id) {
@@ -55,10 +67,95 @@
     
 </head>
 <body>
+    <a href="{{ url('/home') }}">
+        <button>Go Home</button>
+    </a>
+
     <h1>Module Tracker Table</h1>
 
-    <div id="level-tally">
-        <h3>Module Level Breakdown</h3>
+    <div class="infomation">
+        <h3>Graduation Requirements</h3>
+        <p>Students are required to accumalate a <b>minimum of 152 Modular Credit (MCs)</b> from a combination of degree core, major core, major option and breadth modules 
+            as specified in below subsections and in the Programme Structure of the major that the student has chosen to specialize in.
+        </p>
+        <p>A student must pass with a <b>maximum of 40 Modular Credits (MCs) from Level 1000 modules</b> and a <b>minimum of 24 Modular Credits (MCs) from Level 4000 modules</b> from their major subject.</p>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Requirements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Degree Core (12 MCs)</td>
+                    <td>A student <b>must pass all 12 Modular Credits (MCs)</b> of degree core modules as prescribed in the programme structure of the major that the student has chosen to specialize in.</td>
+                </tr>
+                <tr>
+                    <td>Major Core (48 MCs)</td>
+                    <td>A student <b>must pass at least 48 Modular Credits (MCs)</b> of major core modules in the major area of study.</td>
+                </tr>
+                <tr>
+                    <td>Major Option (36 MCs)</td>
+                    <td>A student <b>must pass all 36 Modular Credits (MCs)</b> of major option modules in the major area of study.</td>
+                </tr>
+                <tr>
+                    <td>TBC</td>
+                    <td>TBC</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="mc-tally">
+        <h3>Module Credit Breakdown</h3>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th></th>
+                <th>Required Value</th>
+                <th>Accumalated</th>
+            </tr>
+            <tr>
+                <th scope="row">Degree Core</th>
+                <td>12</td>
+                <td>{{ $mcBreakdown['DC'] ?? 0 }} <!-- Degree Core --></td>
+            </tr>
+            <tr>
+                <th scope="row">Major Core</th>
+                <td>48</td>
+                <td>{{ $mcBreakdown['MC'] ?? 0 }}</td> <!-- Major Core -->
+            </tr>
+            <tr>
+                <th scope="row">Major Option</th>
+                <td>36</td>
+                <td>{{ $mcBreakdown['MO'] ?? 0 }}</td> <!-- Major Option -->
+            </tr>
+            <tr>
+                <th scope="row">Compulsory Breadth</th>
+                <td>16</td>
+                <td>{{ $mcBreakdown['CB'] ?? 0 }}</td> <!-- Compulsory Breadth -->
+            </tr>
+            <tr>
+                <th scope="row">Discovery Year Programme</th>
+                <td>32</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Remaining Breadth or Option Modules</th>
+                <td>8</td>
+                <td>{{ $mcBreakdown['Other Breadth'] ?? 0 }}</td> <!-- Remaining Breadth or Option Modules -->
+            </tr>
+            <tr>
+                <th scope="row">Total</th>
+                <td>152</td>
+                <td>{{ $mcBreakdown->sum() ?? 0 }}</td> <!-- Total -->
+            </tr>
+        </table>
+    </div>
+
+    {{-- TODO: Make a tally for Level 1000 and Level 4000 --}}
+    {{-- <div id="mc-tally">
+        <h3>Module Credit Breakdown</h3>
         <table border="1" cellpadding="8" cellspacing="0">
             <thead>
                 <tr>
@@ -77,10 +174,14 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> --}}
 
     <div id="cpbrd-div">
-        <h3>Compulsary Breadth Modules</h3>
+        <span>
+            <h3>Compulsary Breadth Modules</h3>
+            <p> MCs</p>
+        </span>
+        
         <table border="1" cellpadding="8" cellspacing="0">
             <thead>
                 <tr>
