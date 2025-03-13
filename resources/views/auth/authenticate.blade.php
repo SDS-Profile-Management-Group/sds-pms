@@ -49,6 +49,9 @@
             </div>
 
             <div class="mb-4 student-questions hidden">
+                <label class="block text-gray-700">Full Name</label>
+                <input type="text" name="full_name" class="w-full p-2 border rounded-lg" required>
+
                 <label class="block text-gray-700">Local or International Student?</label>
                 <select name="student_nationality" class="w-full p-2 border rounded-lg">
                     <option value="" class="text-gray-500 italic" disabled selected >Select if you're a Local or International Student</option>

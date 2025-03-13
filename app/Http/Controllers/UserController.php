@@ -24,6 +24,8 @@ class UserController extends Controller
             "email" => ["required", "email", Rule::unique('users', 'email')],
             "password" => ["required", "min:8"],
             "user_type" => ["required"],
+
+            "full_name" => ["required","regex:/^[a-zA-Z\s]+$/"],
             "student_nationality" => ["required"],
             "major_id" => ["required"],
         ]);
@@ -39,6 +41,7 @@ class UserController extends Controller
         // Create the profile record
         Profile::create([
             'username' => $user->asg_username,
+            'full_name' => $incomingFields['full_name'],
             'role' => $user->user_type,
         ]);
 
