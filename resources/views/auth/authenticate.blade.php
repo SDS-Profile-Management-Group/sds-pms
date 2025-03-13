@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('scripts')
+    <script src="{{ asset('js/auth/authenticate.js') }}"></script>
+@endsection
 @section('content')
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
     <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
@@ -9,62 +11,39 @@
             <button id="registerTab" class="tab-btn text-gray-500 font-semibold pb-2 w-1/2">Register</button>
         </div>
 
-        <!-- Login Form -->
-        <form id="loginForm" action="{{ route('login') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label class="block text-gray-700">Email</label>
-                <input type="email" name="email" class="w-full p-2 border rounded-lg" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Password</label>
-                <input type="password" name="password" class="w-full p-2 border rounded-lg" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg">Login</button>
-        </form>
-
         <!-- Register Form (Hidden by Default) -->
         <form id="registerForm" action="{{ route('register') }}" method="POST" class="hidden">
             @csrf
             <div class="mb-4">
-                <label class="block text-gray-700">Full Name</label>
-                <input type="text" name="name" class="w-full p-2 border rounded-lg" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Email</label>
-                <input type="email" name="email" class="w-full p-2 border rounded-lg" required>
+                <label class="block text-gray-700">Username</label>
+                <input type="text" name="asg_username" class="w-full p-2 border rounded-lg" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Password</label>
                 <input type="password" name="password" class="w-full p-2 border rounded-lg" required>
             </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Choose User Type</label>
+                <select name="user_type" class="w-full p-2 border rounded-lg">
+                    <option value="student">Student</option>
+                    <option value="staff">Staff</option>
+                </select>
+            </div>
             <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg">Register</button>
         </form>
+
+        <!-- Login Form -->
+        <form id="loginForm" action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="mb-4">
+                <label class="block text-gray-700">Username</label>
+                <input type="text" name="login-name" class="w-full p-2 border rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Password</label>
+                <input type="password" name="login-password" class="w-full p-2 border rounded-lg" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg">Log In</button>
+        </form>
     </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const loginTab = document.getElementById("loginTab");
-    const registerTab = document.getElementById("registerTab");
-    const loginForm = document.getElementById("loginForm");
-    const registerForm = document.getElementById("registerForm");
-
-    loginTab.addEventListener("click", () => {
-        loginForm.classList.remove("hidden");
-        registerForm.classList.add("hidden");
-        loginTab.classList.add("text-blue-500", "border-blue-500");
-        registerTab.classList.remove("text-blue-500", "border-blue-500");
-        registerTab.classList.add("text-gray-500");
-    });
-
-    registerTab.addEventListener("click", () => {
-        registerForm.classList.remove("hidden");
-        loginForm.classList.add("hidden");
-        registerTab.classList.add("text-blue-500", "border-blue-500");
-        loginTab.classList.remove("text-blue-500", "border-blue-500");
-        loginTab.classList.add("text-gray-500");
-    });
-});
-</script>
 @endsection

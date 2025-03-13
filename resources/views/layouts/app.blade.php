@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title') - {{ config('app.name', 'SDS PMS') }} </title>
+    @yield('scripts')
     <script src="https://cdn.tailwindcss.com"></script> <!-- Include TailwindCSS -->
 </head>
 <body class="bg-gray-100">

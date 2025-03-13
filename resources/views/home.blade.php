@@ -1,23 +1,17 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Homepage - {{ Auth::user()->asg_username }}</title>
+@extends('layouts.app')
+<style>
+    .btn {
+        display: inline-block; /* Makes it behave like a button */
+        padding: 10px 20px;   /* Add padding */
+        background-color: gray; /* Button background color */
+        color: white;          /* Text color */
+        text-decoration: none;  /* Remove underline */
+        border-radius: 5px;    /* Rounded corners */
+    }
+</style>
 
-    <style>
-        .btn {
-            display: inline-block; /* Makes it behave like a button */
-            padding: 10px 20px;   /* Add padding */
-            background-color: gray; /* Button background color */
-            color: white;          /* Text color */
-            text-decoration: none;  /* Remove underline */
-            border-radius: 5px;    /* Rounded corners */
-        }
-    </style>
-    
-</head>
-<body>
+@section('title', 'Homepage - ' . Auth::user()->asg_username)
+@section('content')
     @auth
 
     <div class="welcome-sect">
@@ -51,6 +45,4 @@
     </div>
 
     @endauth
-
-</body>
-</html>
+@endsection
