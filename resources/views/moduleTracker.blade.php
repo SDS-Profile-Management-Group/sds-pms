@@ -22,7 +22,7 @@
             border: 1px solid black;
             padding: 8px;
         }
-        #mc-tally td {
+        #mc-tally #mc-collection td {
             text-align: right;
         }
     </style>
@@ -109,72 +109,79 @@
 
     <div id="mc-tally">
         <h3>Module Credit Breakdown</h3>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <tr>
-                <th></th>
-                <th>Required Value</th>
-                <th>Accumalated</th>
-            </tr>
-            <tr>
-                <th scope="row">Degree Core</th>
-                <td>12</td>
-                <td>{{ $mcBreakdown['DC'] ?? 0 }} <!-- Degree Core --></td>
-            </tr>
-            <tr>
-                <th scope="row">Major Core</th>
-                <td>48</td>
-                <td>{{ $mcBreakdown['MC'] ?? 0 }}</td> <!-- Major Core -->
-            </tr>
-            <tr>
-                <th scope="row">Major Option</th>
-                <td>36</td>
-                <td>{{ $mcBreakdown['MO'] ?? 0 }}</td> <!-- Major Option -->
-            </tr>
-            <tr>
-                <th scope="row">Compulsory Breadth</th>
-                <td>16</td>
-                <td>{{ $mcBreakdown['CB'] ?? 0 }}</td> <!-- Compulsory Breadth -->
-            </tr>
-            <tr>
-                <th scope="row">Discovery Year Programme</th>
-                <td>32</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">Remaining Breadth or Option Modules</th>
-                <td>8</td>
-                <td>{{ $mcBreakdown['Other Breadth'] ?? 0 }}</td> <!-- Remaining Breadth or Option Modules -->
-            </tr>
-            <tr>
-                <th scope="row">Total</th>
-                <td>152</td>
-                <td>{{ $mcBreakdown->sum() ?? 0 }}</td> <!-- Total -->
-            </tr>
-        </table>
-    </div>
-
-    {{-- TODO: Make a tally for Level 1000 and Level 4000 --}}
-    {{-- <div id="mc-tally">
-        <h3>Module Credit Breakdown</h3>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
+        <div id="mc-collection">
+            <h4>Overall MC Obtained</h4>
+            <table border="1" cellpadding="8" cellspacing="0">
                 <tr>
-                    <th>Module Level</th>
-                    <th>Count</th>
-                    <th>Remarks</th>
+                    <th></th>
+                    <th>Required Value</th>
+                    <th>Accumalated</th>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($filteredLevelCounts as $level => $count)
+                <tr>
+                    <th scope="row">Degree Core</th>
+                    <td>12</td>
+                    <td>{{ $mcBreakdown['DC'] ?? 0 }} <!-- Degree Core --></td>
+                </tr>
+                <tr>
+                    <th scope="row">Major Core</th>
+                    <td>48</td>
+                    <td>{{ $mcBreakdown['MC'] ?? 0 }}</td> <!-- Major Core -->
+                </tr>
+                <tr>
+                    <th scope="row">Major Option</th>
+                    <td>36</td>
+                    <td>{{ $mcBreakdown['MO'] ?? 0 }}</td> <!-- Major Option -->
+                </tr>
+                <tr>
+                    <th scope="row">Compulsory Breadth</th>
+                    <td>16</td>
+                    <td>{{ $mcBreakdown['CB'] ?? 0 }}</td> <!-- Compulsory Breadth -->
+                </tr>
+                <tr>
+                    <th scope="row">Discovery Year Programme</th>
+                    <td>32</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Remaining Breadth or Option Modules</th>
+                    <td>8</td>
+                    <td>{{ $mcBreakdown['Other Breadth'] ?? 0 }}</td> <!-- Remaining Breadth or Option Modules -->
+                </tr>
+                <tr>
+                    <th scope="row">Total</th>
+                    <td>152</td>
+                    <td>{{ $mcBreakdown->sum() ?? 0 }}</td> <!-- Total -->
+                </tr>
+            </table>
+        </div>
+
+        {{-- TODO: Make a tally for Level 1000 and Level 4000 --}}
+        <div id="lvl-tally">
+            <h4>Level 1000 and 4000 Tally</h4>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
                     <tr>
-                        <td>{{ $level }}</td>
-                        <td>{{ $count }}</td>
-                        <td>{{ $remarks[$level] }}</td>
+                        <th>Module Level</th>
+                        <th>Requirement</th>
+                        <th></th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div> --}}
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Level 1000</td>
+                        <td>lorem</td>
+                        <td>(remakrs)</td>
+                    </tr>
+                    <tr>
+                        <td>Level 4000</td>
+                        <td>lorem</td>
+                        <td>(remakrs)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 
     <div id="cpbrd-div">
         <span>
@@ -369,6 +376,70 @@
         </div>
     </div>
 
+    <div id="mo-div">
+        <h3>Major Option Modules</h3>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Module ID</th>
+                    <th>Module Name</th>
+                    <th>Status</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($records->where('assigned_md_type', 'MO')->sortBy('module_id') as $record)
+                    <tr>
+                        <td>{{ $record->module_id }}</td>
+                        @if ($record->module)
+                            <td>{{ $record->module->module_name }}</td>
+                        @else
+                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
+                        @endif
+                        <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
+                        <td>{{ $record->grade }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">No Major Options modules found.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <button onclick="toggleForm('moForm')">Add Major Option Module</button>
+
+        <div id="moForm" class="form-container" style="display: none;">
+            <form action="{{ route('add-module') }}" method="POST" class="inline-form">
+                @csrf
+                <input type="hidden" name="module_type" value="MO">
+        
+                <label for="module_id_dc">Module ID:</label>
+                <input type="text" id="module_id_dc" name="module_id" required>
+        
+                <label for="status_dc">Status:</label>
+                <select id="status_dc" name="status" required>
+                    <option value="" disabled selected>-- Select Status --</option>
+                    <option value="1">Taken</option>
+                    <option value="0 Taken">Not Taken</option>
+                </select>
+        
+                <label for="grade_dc">Grade:</label>
+                <select id="grade_dc" name="grade" required>
+                    <option value="" disabled selected>-- Select Grade --</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+        
+                <button type="submit">Submit</button>
+                <button type="button" onclick="toggleForm('moForm')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
     <div id="brd-div">
         <h3>Breadth Modules</h3>
         <table border="1" cellpadding="8" cellspacing="0">
@@ -438,69 +509,10 @@
         </div>
     </div>
 
-    <div id="mo-div">
-        <h3>Major Option Modules</h3>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Module ID</th>
-                    <th>Module Name</th>
-                    <th>Status</th>
-                    <th>Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($records->where('assigned_md_type', 'MO')->sortBy('module_id') as $record)
-                    <tr>
-                        <td>{{ $record->module_id }}</td>
-                        @if ($record->module)
-                            <td>{{ $record->module->module_name }}</td>
-                        @else
-                            <td>{{ $record->taken_module_name ?? 'N/A' }}</td>
-                        @endif
-                        <td>{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
-                        <td>{{ $record->grade }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4">No Major Options modules found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-
-        <button onclick="toggleForm('moForm')">Add Major Option Module</button>
-
-        <div id="moForm" class="form-container" style="display: none;">
-            <form action="{{ route('add-module') }}" method="POST" class="inline-form">
-                @csrf
-                <input type="hidden" name="module_type" value="MO">
+    <div id="dy-div">
         
-                <label for="module_id_dc">Module ID:</label>
-                <input type="text" id="module_id_dc" name="module_id" required>
-        
-                <label for="status_dc">Status:</label>
-                <select id="status_dc" name="status" required>
-                    <option value="" disabled selected>-- Select Status --</option>
-                    <option value="1">Taken</option>
-                    <option value="0 Taken">Not Taken</option>
-                </select>
-        
-                <label for="grade_dc">Grade:</label>
-                <select id="grade_dc" name="grade" required>
-                    <option value="" disabled selected>-- Select Grade --</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="F">F</option>
-                </select>
-        
-                <button type="submit">Submit</button>
-                <button type="button" onclick="toggleForm('moForm')">Cancel</button>
-            </form>
-        </div>
     </div>
+    
 
 
 </body>
