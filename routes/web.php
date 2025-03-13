@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ModuleController;
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth/authenticate');
 });
 
 Route::get('/home', function(){
@@ -15,9 +15,9 @@ Route::get('/home', function(){
 
 
 
-Route::post('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::post('/logout', [UserController::class,'logout']);
-Route::post('/login', [UserController::class,'login']);
+Route::post('/login', [UserController::class,'login'])->name('login');
 
 Route::post('/enter-details',[ProfileController::class, 'enterDetails']);
 Route::get('/edit-details',[ProfileController::class, 'editDetails'])->name('edit-details');
