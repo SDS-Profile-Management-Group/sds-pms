@@ -24,13 +24,17 @@ class UserController extends Controller
             "email" => ["required", "email", Rule::unique('users', 'email')],
             "password" => ["required", "min:8"],
             "user_type" => ["required"],
+            "student_nationality" => ["required"],
+            "major_id" => ["required"],
         ]);
 
         // Encrypt the password
         $incomingFields['password'] = bcrypt($incomingFields['password']);
 
         // Create the user record
-        $user = User::create($incomingFields);
+        $user = User::create(
+            collect($incomingFields)->only(['asg_username', 'email', 'password', 'user_type'])->toArray()
+        );
 
         // Create the profile record
         Profile::create([
@@ -38,11 +42,13 @@ class UserController extends Controller
             'role' => $user->user_type,
         ]);
 
-        // Insert into the appropriate table based on the user type
+        
         if ($user->user_type === 'student') {
             // Insert into the 'student_info' table
             StudentInfo::create([
-                'student_username' => $user->asg_username, 
+                'student_username' => $user->asg_username,
+                'student_nationality' => $incomingFields['student_nationality'],
+                'major_id' => $incomingFields['major_id'],
                 // Other fields specific to student_info can be added here
             ]);
 

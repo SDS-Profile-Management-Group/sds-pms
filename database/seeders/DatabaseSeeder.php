@@ -53,9 +53,9 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // User Seeders
-        $this->call([
-            StudentSeed::class,
-        ]);
+        // $this->call([
+        //     StudentSeed::class,
+        // ]);
         
     }
 }

@@ -14,7 +14,6 @@ class ProfileController extends Controller
             "full_name" => ["required","regex:/^[a-zA-Z\s]+$/"],
             "dob" => ["required"],
             "contact_number" => ["required"],
-            // TODO: Enter details for alternative email
             "alt_email"=>["required"],
         ]);
 

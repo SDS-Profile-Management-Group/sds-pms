@@ -17,7 +17,9 @@ class StudentInfo extends Model
     protected $fillable = [
         'student_username',
         'student_intake_batch',
-        'student_type',
+        'student_nationality',
+        'cgpa',
+        'major_id',
     ];
 
     public function modules(){
