@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script> <!-- Include TailwindCSS -->
 </head>
 <body class="bg-gray-100">
+    {{-- @yield('navbar') --}}
     <!-- Navbar -->
     <nav class="bg-white shadow-md p-4">
         <div class="container mx-auto flex justify-between">

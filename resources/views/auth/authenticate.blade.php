@@ -11,6 +11,20 @@
             <button id="registerTab" class="tab-btn text-gray-500 font-semibold pb-2 w-1/2">Register</button>
         </div>
 
+        <!-- Login Form -->
+        <form id="loginForm" action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="mb-4">
+                <label class="block text-gray-700">Username</label>
+                <input type="text" name="login-name" class="w-full p-2 border rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Password</label>
+                <input type="password" name="login-password" class="w-full p-2 border rounded-lg" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg">Log In</button>
+        </form>
+
         <!-- Register Form (Hidden by Default) -->
         <form id="registerForm" action="{{ route('register') }}" method="POST" class="hidden">
             @csrf
@@ -25,6 +39,7 @@
             <div class="mb-4">
                 <label class="block text-gray-700">Choose User Type</label>
                 <select name="user_type" class="w-full p-2 border rounded-lg">
+                    <option value="" disabled selected>Select User Type</option>
                     <option value="student">Student</option>
                     <option value="staff">Staff</option>
                 </select>
@@ -32,18 +47,5 @@
             <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg">Register</button>
         </form>
 
-        <!-- Login Form -->
-        <form id="loginForm" action="{{ route('login') }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label class="block text-gray-700">Username</label>
-                <input type="text" name="login-name" class="w-full p-2 border rounded-lg" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Password</label>
-                <input type="password" name="login-password" class="w-full p-2 border rounded-lg" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg">Log In</button>
-        </form>
     </div>
 @endsection
