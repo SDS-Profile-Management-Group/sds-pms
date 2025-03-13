@@ -16,7 +16,7 @@ Route::get('/home', function(){
 
 
 Route::post('/register', [UserController::class, 'register'])->name('register');
-Route::post('/logout', [UserController::class,'logout']);
+Route::post('/logout', [UserController::class,'logout'])->name('logout');
 Route::post('/login', [UserController::class,'login'])->name('login');
 
 Route::post('/enter-details',[ProfileController::class, 'enterDetails']);
