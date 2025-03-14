@@ -5,12 +5,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
 
+    function updateTitle(title) {
+        document.title = title + " | SDS PMS";
+    }
+
     loginTab.addEventListener("click", () => {
         loginForm.classList.remove("hidden");
         registerForm.classList.add("hidden");
         loginTab.classList.add("text-blue-500", "border-blue-500");
         registerTab.classList.remove("text-blue-500", "border-blue-500");
         registerTab.classList.add("text-gray-500");
+
+        updateTitle("Login");
     });
 
     registerTab.addEventListener("click", () => {
@@ -19,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
         registerTab.classList.add("text-blue-500", "border-blue-500");
         loginTab.classList.remove("text-blue-500", "border-blue-500");
         loginTab.classList.add("text-gray-500");
+
+        updateTitle("Register");
     });
 
     // User Type Toggle (Student/Staff)
@@ -26,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const studentQuestions = document.querySelector('.student-questions');
     const staffQuestions = document.querySelector('.staff-questions');
 
-    // Function to toggle the question sections
     function toggleQuestions() {
         const userType = userTypeSelect.value;
         if (userType === 'student') {
@@ -41,9 +48,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Listen for changes to the user type dropdown
     userTypeSelect.addEventListener('change', toggleQuestions);
+    toggleQuestions(); // Set initial state
 
-    // Call toggleQuestions on page load to set the initial state
-    toggleQuestions();
+    // Set initial title based on visible form
+    if (!loginForm.classList.contains("hidden")) {
+        updateTitle("Login");
+    } else {
+        updateTitle("Register");
+    }
 });

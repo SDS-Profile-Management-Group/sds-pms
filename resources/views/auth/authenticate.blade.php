@@ -4,6 +4,8 @@
     <script src="{{ asset('js/auth/authenticate.js') }}"></script>
 @endsection
 
+@section('title', 'Login | Register ')
+
 @section('navbar')
     <nav class="bg-white shadow-md p-4">
         <div class="container mx-auto flex justify-between">
