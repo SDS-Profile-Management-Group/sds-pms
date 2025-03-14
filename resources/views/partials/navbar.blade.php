@@ -21,6 +21,7 @@
             @endif
 
             <p class="text-green-500">Contact</p>
+            <a href="https://owa.ubd.edu.bn/owa">UBD Mail</a>
 
             @auth
                 <form action="{{ route('logout') }}" method="POST" class="inline">
