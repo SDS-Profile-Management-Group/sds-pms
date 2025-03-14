@@ -3,27 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{-- <title> @yield('title') | {{ config('app.name', 'SDS PMS') }} </title> --}}
     <title> @yield('title') | SDS PMS </title>
-    @yield('scripts')
+    
     <script src="https://cdn.tailwindcss.com"></script> <!-- Include TailwindCSS -->
+    
+    @yield('scripts') <!-- Scripts will be added here -->
 </head>
 <body class="bg-gray-100">
-    @yield('navbar')
-    <!-- Navbar -->
-    {{-- <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between">
-            <a href="{{ url('/') }}" class="text-lg font-bold text-blue-600">SDS PMS</a>
-            <div>
-                <a href="{{ route('login') }}" class="text-blue-500 mr-4">Login</a>
-                <a href="{{ route('register') }}" class="text-green-500">Register</a>
-            </div>
-        </div>
-    </nav> --}}
+
+    @include('partials.navbar', ['type' => View::yieldContent('navbar_type')]) 
 
     <!-- Main Content -->
     <div class="container mx-auto mt-6">
-        @yield('content')
+        @yield('content') <!-- Dynamic content will go here -->
     </div>
 
     <!-- Footer -->

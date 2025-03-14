@@ -6,18 +6,6 @@
 
 @section('title', 'Login | Register ')
 
-@section('navbar')
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between">
-            <a href="{{ url('/') }}" class="text-lg font-bold text-blue-600">SDS PMS</a>
-            <div>
-                {{-- TODO: Change the login & register to bring to home --}}
-                <a href="{{ route('login') }}" class="text-blue-500 mr-4">Login</a>
-                <a href="{{ route('register') }}" class="text-green-500">Register</a>
-            </div>
-        </div>
-    </nav>
-@endsection
 
 @section('content')
 <div class="flex justify-center items-center min-h-screen bg-gray-100">

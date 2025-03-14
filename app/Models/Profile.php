@@ -22,4 +22,14 @@ class Profile extends Model
         'role',
         'alt_email',
     ];
+
+    public function isStudent()
+    {
+        return $this->role === 'student';
+    }
+
+    public function isStaff()
+    {
+        return $this->role === 'staff';
+    }
 }

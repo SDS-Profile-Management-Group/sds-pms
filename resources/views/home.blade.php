@@ -1,65 +1,66 @@
-@extends('layouts.app')
-<style>
-    .btn {
-        display: inline-block; /* Makes it behave like a button */
-        padding: 10px 20px;   /* Add padding */
-        background-color: gray; /* Button background color */
-        color: white;          /* Text color */
-        text-decoration: none;  /* Remove underline */
-        border-radius: 5px;    /* Rounded corners */
-    }
-</style>
+@extends('layouts.homeview')
 
 @section('title', 'Homepage - ' . Auth::user()->asg_username)
 
-@section('navbar')
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between">
-            <a href="{{ url('/') }}" class="text-lg font-bold text-blue-600">SDS PMS</a>
-            <div>
-                <!-- Logging Out -->
-                <form action="{{ route('logout') }}" method="POST" class="inline">
-                    @csrf
-                    <button type="submit" 
-                    class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
-                        Logout
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
+@section('page-title')
+    @if (Auth::user()->userProfile && Auth::user()->userProfile->full_name)
+        Welcome, <span class="headerID italic">{{ Auth::user()->userProfile->full_name }}</span>!
+    @else
+        Welcome, <span class="headerID italic">{{ Auth::user()->asg_username }}</span>!
+    @endif
 @endsection
 
-@section('content')
-    @auth
+@section('profile-content')
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Biography</h3>
+    <p class="text-gray-700"><span class="font-semibold">Name:</span> <span class="text-gray-900">{{ Auth::user()->userProfile->full_name }}</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Age:</span> <span class="text-gray-900">{{ \Carbon\Carbon::parse(Auth::user()->userProfile->dob)->age }}</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Contact Number:</span> <span class="text-gray-900">{{ Auth::user()->userProfile->contact_number }}</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Alternative Email Address:</span> <span class="text-gray-900">{{ Auth::user()->userProfile->alt_email }}</span></p>
+@endsection
 
-    <div class="welcome-sect">
-        @if (Auth::user()->userProfile)
-            @if (Auth::user()->userProfile->full_name)
-                <h1 class="text-3xl">Welcome, <span class="headerID italic">{{ Auth::user()->userProfile->full_name }}</span>!</h1>
+@section('student-info')
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Student Information</h3>
+    <p class="text-gray-700"><span class="font-semibold">Faculty:</span> <span class="text-gray-900">School of Digital Science</span></p>
+    <p class="text-gray-700">
+        <span class="font-semibold">Major:</span> 
+        <span class="text-gray-900">
+            @if (Auth::user()->studentInfo)
+                @switch(Auth::user()->studentInfo->major_id)
+                    @case('ZA')
+                        Artificial Intelligence & Robotics
+                        @break
+                    @case('ZC')
+                        Computer Science
+                        @break
+                    @case('ZD')
+                        Data Science
+                        @break
+                    @case('ZI')
+                        Applied Artifical Intelligence
+                        @break
+                    @case('ZS')
+                        Cybersecurity & Forensics
+                        @break
+                    @default
+                        No Major Assigned
+                @endswitch
             @else
-                <h1 class="text-3xl">Welcome, <span class="headerID italic">{{ Auth::user()->asg_username }}</span>!</h1>
+                No Major Assigned
             @endif
-        @endif
-    </div>
+        </span>
+    </p>
+    <p class="text-gray-700"><span class="font-semibold">Year of Study:</span> <span class="text-gray-900">TBI</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Current CGPA:</span> <span class="text-gray-900">{{Auth::user()->studentInfo->cgpa}}</span></p>
+@endsection
 
-    <div class="short-bio bg-white shadow-lg rounded-lg p-6 max-w-md ml-4">
-        <h3 class="text-xl font-bold text-gray-800 mb-4">Biography</h3>
-        <p class="text-gray-700"><span class="font-semibold">Name:</span> <span class="info text-gray-900">{{ Auth::user()->userProfile->full_name }}</span></p>
-        <p class="text-gray-700"><span class="font-semibold">Age:</span> <span class="info text-gray-900">{{ \Carbon\Carbon::parse(Auth::user()->userProfile->dob)->age }}</span></p>
-        <p class="text-gray-700"><span class="font-semibold">Contact Number:</span> <span class="info text-gray-900">{{ Auth::user()->userProfile->contact_number }}</span></p>
-        <p class="text-gray-700"><span class="font-semibold">Alternative Email Address:</span> <span class="info text-gray-900">{{ Auth::user()->userProfile->alt_email }}</span></p>
-        {{-- TODO: Add more details in the future --}}
-        <a href="{{ route('edit-details') }}" 
-        class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
-            Edit Details
-        </a>
-    </div>
-    
+@section('extra-buttons')
+    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+        Module Tracker
+    </a>
+@endsection
 
-    <div class="buttons">
-        <a href="{{ route('module-tracker') }}" class="btn">Module Tracker</a>
+@section('dashboard')
+    <div>
+        <h1>This is a dashboard</h1>
     </div>
-
-    @endauth
 @endsection

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.title = title + " | SDS PMS";
     }
 
+    // Show Login Form and Hide Register Form
     loginTab.addEventListener("click", () => {
         loginForm.classList.remove("hidden");
         registerForm.classList.add("hidden");
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         updateTitle("Login");
     });
 
+    // Show Register Form and Hide Login Form
     registerTab.addEventListener("click", () => {
         registerForm.classList.remove("hidden");
         loginForm.classList.add("hidden");
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Event listener for user type selection
     userTypeSelect.addEventListener('change', toggleQuestions);
     toggleQuestions(); // Set initial state
 
