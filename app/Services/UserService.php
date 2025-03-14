@@ -19,6 +19,8 @@ class UserService
             'major_id' => $incomingFields['major_id'],
         ]);
 
+        // TODO: Make case to put in MC according to Major
+
         // Insert into the 'ModulesTaken' table
         ModulesTaken::insert([
             ['module_id' => 'LE-1503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
