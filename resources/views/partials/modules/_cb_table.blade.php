@@ -30,7 +30,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="py-2 px-4 border">No Compulsory Breadth modules found.</td>
+                    <td colspan="4" class="py-2 px-4 border text-center">No Compulsory Breadth modules found.</td>
                 </tr>
             @endforelse
         </tbody>
