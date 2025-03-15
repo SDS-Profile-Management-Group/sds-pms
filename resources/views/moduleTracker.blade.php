@@ -103,11 +103,11 @@
         </div>
     </div>
 
-    <!-- Degree Core Modules -->
-    @include('partials.modules._dc_table', ['records' => $records])
-
     <!-- Compulsory Breadth Modules -->
     @include('partials.modules._cb_table', ['records' => $records])
+
+    <!-- Degree Core Modules -->
+    @include('partials.modules._dc_table', ['records' => $records])
 
     <!-- Major Core Modules -->
     @include('partials.modules._mc_table', ['records' => $records])
@@ -117,4 +117,8 @@
 
     <!-- Other Breadth Modules -->
     @include('partials.modules._ob_table', ['records' => $records])
+
+    <!-- Discovery Year -->
+    @include('partials.modules._dy_table', ['records' => $records])
+
 @endsection
