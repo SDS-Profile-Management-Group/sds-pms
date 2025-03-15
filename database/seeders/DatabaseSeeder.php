@@ -10,8 +10,9 @@ use Database\Seeders\Modules\DataScienceModuleSeeder;
 use Database\Seeders\Modules\DYMKHeadstartModuleSeeder;
 use Database\Seeders\Modules\NonSDSModuleSeeder;
 
-use Database\Seeders\Category\CommonMajorSeeder;
-use Database\Seeders\Category\AIRoboMajorSeeder;
+use Database\Seeders\Category\MajorCoreSeeder;
+use Database\Seeders\Category\MajorOptionSeeder;
+use Database\Seeders\Category\RequiredModulesSeeder;
 
 use Database\Seeders\User\StudentSeed;
 
@@ -35,22 +36,22 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Module Seeders
-        $this->call([
-            CompulsoryDCModulesSeeder::class,
-            AIRoboticsModuleSeeder::class,
-            AppliedAIModuleSeeder::class,
-            ComputerScienceModuleSeeder::class,
-            CybersecurityModuleSeeder::class,
-            DataScienceModuleSeeder::class,
-            DYMKHeadstartModuleSeeder::class,
-            NonSDSModuleSeeder::class,
-        ]);
+        // $this->call([
+        //     CompulsoryDCModulesSeeder::class,
+        //     AIRoboticsModuleSeeder::class,
+        //     AppliedAIModuleSeeder::class,
+        //     ComputerScienceModuleSeeder::class,
+        //     CybersecurityModuleSeeder::class,
+        //     DataScienceModuleSeeder::class,
+        //     DYMKHeadstartModuleSeeder::class,
+        //     NonSDSModuleSeeder::class,
+        // ]);
         
         // Category Seeders
-        // $this->call([
-        //     AIRoboMajorSeeder::class,
-        //     CommonMajorSeeder::class,
-        // ]);
+        $this->call([
+            MajorCoreSeeder::class,
+            RequiredModulesSeeder::class,
+        ]);
         
         // User Seeders
         // $this->call([

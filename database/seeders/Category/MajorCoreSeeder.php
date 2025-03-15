@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CompSciMajorSeeder extends Seeder
+class MajorCoreSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -40,7 +40,7 @@ class CompSciMajorSeeder extends Seeder
             ['module_id' => 'ZA-2203', 'major_id' => 'ZA', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZA'])],
             ['module_id' => 'ZA-2204', 'major_id' => 'ZA', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZA'])],
 
-            ['module_id' => 'ZA-3201', 'major_id' => 'ZA', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZA', 'ZI'])],
+            ['module_id' => 'ZA-3201', 'major_id' => 'ZA', 'module_type' => 'MC', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZA', 'ZI'])],
             ['module_id' => 'ZA-3202', 'major_id' => 'ZA', 'module_type' => 'MC', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZA', 'ZD', 'ZI'])],
 
             ['module_id' => 'ZA-4290', 'major_id' => 'ZA', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZA'])],
@@ -82,7 +82,7 @@ class CompSciMajorSeeder extends Seeder
             ['module_id' => 'ZI-2201', 'major_id' => 'ZI', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])],
             // ['module_id' => 'ZI-2202', 'major_id' => 'ZI', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])], // Need further clarification
 
-            ['module_id' => 'ZI-4290', 'major_id' => 'ZS', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])],
+            ['module_id' => 'ZI-4290', 'major_id' => 'ZI', 'module_type' => 'MC', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])],
         ]);
 
     }
