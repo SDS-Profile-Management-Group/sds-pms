@@ -4,47 +4,6 @@
 
 @section('scripts')
     <script src="{{ asset('js/tracker/add-edit.js') }}"></script>
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const addBtn = document.getElementById("add-record-btn");
-            const editBtn = document.getElementById("edit-record-btn");
-            const modal = document.getElementById("record-modal");
-            const closeModalBtn = document.getElementById("close-modal-btn");
-            const modalTitle = document.getElementById("modal-title");
-            const recordForm = document.getElementById("record-form");
-            const recordIdInput = document.getElementById("record-id");
-            const moduleNameInput = document.getElementById("module_name");
-            const mcValueInput = document.getElementById("mc_value");
-    
-            addBtn.addEventListener("click", function () {
-                modal.classList.remove("hidden");
-                modalTitle.textContent = "Add Record";
-                recordForm.action = "{{ route('modules.store') }}"; // Set form action for adding
-                recordIdInput.value = ""; // Clear hidden input
-                moduleNameInput.value = "";
-                mcValueInput.value = "";
-            });
-    
-            editBtn.addEventListener("click", function () {
-                const selectedRow = document.querySelector(".selected"); // Assuming you highlight a row for editing
-                if (!selectedRow) {
-                    alert("Please select a record to edit.");
-                    return;
-                }
-    
-                modal.classList.remove("hidden");
-                modalTitle.textContent = "Edit Record";
-                recordForm.action = "{{ route('modules.update', ':id') }}".replace(':id', selectedRow.dataset.id);
-                recordIdInput.value = selectedRow.dataset.id;
-                moduleNameInput.value = selectedRow.dataset.name;
-                mcValueInput.value = selectedRow.dataset.mc;
-            });
-    
-            closeModalBtn.addEventListener("click", function () {
-                modal.classList.add("hidden");
-            });
-        });
-    </script> --}}
 @endsection
 
 @section('navbar_type', 'mc')
