@@ -21,6 +21,10 @@ class User extends Authenticatable
      public function userProfile() {
         return $this->hasOne(Profile::class, 'username', 'asg_username');
     }
+
+    public function studentInfo(){
+        return $this->hasOne(StudentInfo::class, 'student_username', 'asg_username');
+    }
     protected $fillable = [
         'asg_username',
         'email',

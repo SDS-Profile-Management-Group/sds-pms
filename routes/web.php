@@ -6,20 +6,20 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ModuleController;
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth/authenticate');
 });
 
 Route::get('/home', function(){
     return view('home');
-});
+})->name('profile');
 
 
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/logout', [UserController::class,'logout']);
-Route::post('/login', [UserController::class,'login']);
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/logout', [UserController::class,'logout'])->name('logout');
+Route::post('/login', [UserController::class,'login'])->name('login');
 
-Route::post('/enter-details',[ProfileController::class, 'enterDetails']);
+Route::post('/enter-details',[ProfileController::class, 'enterDetails'])->name('edit-profile');
 Route::get('/edit-details',[ProfileController::class, 'editDetails'])->name('edit-details');
 
 Route::get('/enter-MCT', [ModuleController::class, 'showModules'])->name('module-tracker');

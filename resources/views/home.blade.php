@@ -1,56 +1,66 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Homepage - {{ Auth::user()->asg_username }}</title>
+@extends('layouts.homeview')
 
-    <style>
-        .btn {
-            display: inline-block; /* Makes it behave like a button */
-            padding: 10px 20px;   /* Add padding */
-            background-color: gray; /* Button background color */
-            color: white;          /* Text color */
-            text-decoration: none;  /* Remove underline */
-            border-radius: 5px;    /* Rounded corners */
-        }
-    </style>
-    
-</head>
-<body>
-    @auth
+@section('title', 'Homepage - ' . Auth::user()->asg_username)
 
-    <div class="welcome-sect">
-        @if (Auth::user()->userProfile)
-            @if (Auth::user()->userProfile->full_name)
-                <h1>Welcome, <span class="headerID">{{ Auth::user()->userProfile->full_name }}</span>!</h1>
+@section('page-title')
+    @if (Auth::user()->userProfile && Auth::user()->userProfile->full_name)
+        Welcome, <span class="headerID italic">{{ Auth::user()->userProfile->full_name }}</span>!
+    @else
+        Welcome, <span class="headerID italic">{{ Auth::user()->asg_username }}</span>!
+    @endif
+@endsection
+
+@section('profile-content')
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Biography</h3>
+    <p class="text-gray-700"><span class="font-semibold">Name:</span> <span class="text-gray-900">{{ Auth::user()->userProfile->full_name }}</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Age:</span> <span class="text-gray-900">{{ \Carbon\Carbon::parse(Auth::user()->userProfile->dob)->age }}</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Contact Number:</span> <span class="text-gray-900">{{ Auth::user()->userProfile->contact_number }}</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Alternative Email Address:</span> <span class="text-gray-900">{{ Auth::user()->userProfile->alt_email }}</span></p>
+@endsection
+
+@section('student-info')
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Student Information</h3>
+    <p class="text-gray-700"><span class="font-semibold">Faculty:</span> <span class="text-gray-900">School of Digital Science</span></p>
+    <p class="text-gray-700">
+        <span class="font-semibold">Major:</span> 
+        <span class="text-gray-900">
+            @if (Auth::user()->studentInfo)
+                @switch(Auth::user()->studentInfo->major_id)
+                    @case('ZA')
+                        Artificial Intelligence & Robotics
+                        @break
+                    @case('ZC')
+                        Computer Science
+                        @break
+                    @case('ZD')
+                        Data Science
+                        @break
+                    @case('ZI')
+                        Applied Artifical Intelligence
+                        @break
+                    @case('ZS')
+                        Cybersecurity & Forensics
+                        @break
+                    @default
+                        No Major Assigned
+                @endswitch
             @else
-                <p>Welcome, <span class="headerID">{{ Auth::user()->asg_username }}</span>!</p>
+                No Major Assigned
             @endif
-        @endif
+        </span>
+    </p>
+    <p class="text-gray-700"><span class="font-semibold">Year of Study:</span> <span class="text-gray-900">TBI</span></p>
+    <p class="text-gray-700"><span class="font-semibold">Current CGPA:</span> <span class="text-gray-900">{{Auth::user()->studentInfo->cgpa}}</span></p>
+@endsection
+
+@section('extra-buttons')
+    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+        Module Tracker
+    </a>
+@endsection
+
+@section('dashboard')
+    <div>
+        <h1>This is a dashboard</h1>
     </div>
-
-    <div class="short-bio">
-        <h3>Biography</h3>
-        <p>Name: <span class="info">{{ Auth::user()->userProfile->full_name }}</span></p>
-        <p>Age: <span class="info">{{ \Carbon\Carbon::parse(Auth::user()->userProfile->dob)->age }}</span></p>
-        <p>Contact Number: <span class="info">{{ Auth::user()->userProfile->contact_number }}</span></p>
-        <p>Alternative Email Address: <span class="info">{{ Auth::user()->userProfile->alt_email }}</span></p>
-        {{-- TODO: Add more details in the future --}}
-    </div>
-
-    <div class="buttons">
-        <a href="{{ route('edit-details') }}" class="btn">Edit Details</a>
-
-        <a href="{{ route('module-tracker') }}" class="btn">Module Tracker</a>
-
-        <form action="/logout" method="POST">
-            @csrf
-            <button class="btn">Log out</button>
-        </form>
-    </div>
-
-    @endauth
-
-</body>
-</html>
+@endsection

@@ -47,15 +47,15 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // Category Seeders
-        $this->call([
-            AIRoboMajorSeeder::class,
-            CommonMajorSeeder::class,
-        ]);
+        // $this->call([
+        //     AIRoboMajorSeeder::class,
+        //     CommonMajorSeeder::class,
+        // ]);
         
         // User Seeders
-        $this->call([
-            StudentSeed::class,
-        ]);
+        // $this->call([
+        //     StudentSeed::class,
+        // ]);
         
     }
 }
