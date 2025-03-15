@@ -22,7 +22,7 @@ class UserService
         $modules = [
             ['module_id' => 'LE-1503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
             ['module_id' => 'LE-2503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
-            ['module_id' => 'PB-1501', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
+            // ['module_id' => 'PB-1501', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
             ['module_id' => 'MS-1501', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
 
             ['module_id' => 'ZZ-1102', 'student_id' => $user->asg_username, 'assigned_md_type' => 'DC'],
@@ -32,6 +32,17 @@ class UserService
             ['module_id' => 'ZC-2205', 'student_id' => $user->asg_username, 'assigned_md_type' => 'MC'],
             ['module_id' => 'ZC-4202', 'student_id' => $user->asg_username, 'assigned_md_type' => 'MC'],
         ];
+
+        // Nationality-Specific Modules
+
+        switch($incomingFields['student_nationality']){
+            case 'local':
+                array_push($modules,...[['module_id' => 'PB-1501', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB']]);
+                break;
+            case 'international':
+                array_push($modules,...[['module_id' => 'PB-1502', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB']]);
+                break;
+        }
 
         // Major-specific Modules
         switch ($incomingFields['major_id']) {
