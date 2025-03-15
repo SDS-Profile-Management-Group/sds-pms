@@ -82,62 +82,66 @@ class ModuleController extends Controller
             'grade' => 'nullable|string',
         ]);
 
-        $student = StudentInfo::where('student_username', auth()->user()->asg_username)->first(); // ID Captured 
-        if (!$student) {
-            return redirect()->back()->with('error', 'Student not found.');
-        }
-        $studentMajor = $student->major_id;
-
+        
+        $student = StudentInfo::where('student_username', auth()->user()->asg_username)->first();
         $module = ModuleBelongsTo::where('module_id', $request->module_id)->first();
-        if (!$module) {
-            return redirect()->back()->with('error', 'Module not found.');
-        }
-        $originalType = $module->module_type; 
-
-        $participatingMajors = json_decode($module->all_participating_majors, true); 
-        if (is_array($participatingMajors) && in_array($studentMajor, $participatingMajors)) {
-            $moduleInArray = true;
+        if (!$module) {            
+            ModulesTaken::create([
+                'module_id' => $request->module_id,
+                'student_id' => $student->student_username,
+                'status' => $request->status,
+                'grade' => $request->grade,
+                'assigned_md_type' => 'OB',
+            ]);
         } else {
-            $moduleInArray = false;
+            $originalType = $module->module_type; 
+            $participatingMajors = json_decode($module->all_participating_majors, true); 
+
+            if (is_array($participatingMajors) && in_array($student->major_id, $participatingMajors)) {
+                $moduleInArray = true;
+            } else {
+                $moduleInArray = false;
+            }
+
+            switch($originalType){
+                case 'MC':
+                    if ($moduleInArray){
+                        $assignedMdType = 'MC';
+                    }else{
+                        $assignedMdType = 'MO';
+                    }
+                    break;
+
+                case 'MO':
+                    if ($moduleInArray){
+                        $assignedMdType = 'MO';
+                    }else{
+                        $assignedMdType = 'OB';
+                    }
+                    break;
+                
+                default:
+                    $assignedMdType = $originalType;
+                    break;
+            }
+
+            ModulesTaken::create([
+                'module_id' => $request->module_id,
+                'student_id' => $student->student_username,
+                'status' => $request->status,
+                'grade' => $request->grade,
+                'assigned_md_type' => $assignedMdType,
+            ]);
         }
-
-        switch($originalType){
-            case 'MC':
-                if ($moduleInArray){
-                    $assignedMdType = 'MC';
-                }else{
-                    $assignedMdType = 'MO';
-                }
-                break;
-
-            case 'MO':
-                if ($moduleInArray){
-                    $assignedMdType = 'MO';
-                }else{
-                    $assignedMdType = 'OB';
-                }
-                break;
-            
-            default:
-                $assignedMdType = $originalType;
-                break;
-        }
-
-        ModulesTaken::create([
-            'module_id' => $request->module_id,
-            'student_id' => $student->student_username,
-            'status' => $request->status,
-            'grade' => $request->grade,
-            'assigned_md_type' => $assignedMdType,
-        ]);
-
+    
         return redirect()->back()->with('success', 'Record added successfully.');
     }
 
     public function update(Request $request, $id){
         $validated = $request->validate([
-            'module_name' => 'required|string',
-            'mc_value' => 'required|integer'
+            'module_id' => 'required|string',
+            'status' => 'nullable|in:0,1',
+            'grade' => 'nullable|string',
         ]);
 
         $module = Module::findOrFail($id);
