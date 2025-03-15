@@ -2,48 +2,6 @@
 
 @section('title', 'Module Tracker - ' . Auth::user()->asg_username)
 
-{{-- @section('scripts')
-    <script>
-        // Toggle form visibility
-        function toggleForm(id) {
-            var el = document.getElementById(id);
-            if (el.style.display === "none" || el.style.display === "") {
-                el.style.display = "block";
-            } else {
-                el.style.display = "none";
-            }
-        }
-
-        // Fetch module name based on the module ID
-        function fetchModuleName() {
-            let moduleId = document.getElementById("module_id_dc").value;
-            let moduleNameInput = document.getElementById("module_name_dc");
-
-            if (moduleId.length > 2) { // Fetch only if at least 3 characters are typed
-                fetch(`/get-module-name/${moduleId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.module_name) {
-                            moduleNameInput.value = data.module_name;
-                            moduleNameInput.readOnly = true; // Lock input if found
-                        } else {
-                            moduleNameInput.value = "N/A";  // Show 'N/A' if no module found
-                            moduleNameInput.readOnly = false; // Allow manual entry
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error fetching module name:", error);
-                        moduleNameInput.value = "Error"; // Show error message if fetch fails
-                        moduleNameInput.readOnly = false; // Allow manual entry in case of error
-                    });
-            } else {
-                moduleNameInput.value = "";
-                moduleNameInput.readOnly = false;
-            }
-        }
-    </script>
-@endsection --}}
-
 @section('scripts')
     <script src="{{ asset('js/toggle/toggle.js') }}"></script>
 @endsection
@@ -129,7 +87,7 @@
                 <tr>
                     <th class="py-2 px-4 border">Discovery Year Programme</th>
                     <td class="py-2 px-4 border">32</td>
-                    <td class="py-2 px-4 border"></td>
+                    <td class="py-2 px-4 border">{{ $mcBreakdown['DY'] ?? 0 }}</td>
                 </tr>
                 <tr>
                     <th class="py-2 px-4 border">Remaining Breadth or Option Modules</th>
@@ -146,166 +104,17 @@
     </div>
 
     <!-- Degree Core Modules -->
-    <div id="dc-div" class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <span>
-            <h3 class="text-xl font-semibold">Degree Core Modules</h3>
-        </span>
-
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border">Module ID</th>
-                    <th class="py-2 px-4 border">Module Name</th>
-                    <th class="py-2 px-4 border">Status</th>
-                    <th class="py-2 px-4 border">Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($records->where('assigned_md_type', 'DC') as $record)
-                    <tr>
-                        <td class="py-2 px-4 border">{{ $record->module_id }}</td>
-                        @if ($record->module)
-                            <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>
-                        @else
-                            <td class="py-2 px-4 border">{{'N/A'}}</td>
-                        @endif
-                        <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
-                        <td class="py-2 px-4 border">{{ $record->grade }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @include('partials.modules._dc_table', ['records' => $records])
 
     <!-- Compulsory Breadth Modules -->
-    <div id="cpbrd-div" class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <span>
-            <h3 class="text-xl font-semibold">Compulsory Breadth Modules</h3>
-        </span>
-
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border">Module ID</th>
-                    <th class="py-2 px-4 border">Module Name</th>
-                    <th class="py-2 px-4 border">Status</th>
-                    <th class="py-2 px-4 border">Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($records->where('assigned_md_type', 'CB')->sortBy('module_id') as $record)
-                    <tr>
-                        <td class="py-2 px-4 border">{{ $record->module_id }}</td>
-                        @if ($record->module)
-                            <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>
-                        @else
-                            <td class="py-2 px-4 border">{{'N/A'}}</td>
-                        @endif
-                        <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
-                        <td class="py-2 px-4 border">{{ $record->grade }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="py-2 px-4 border">No Compulsory Breadth modules found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+    @include('partials.modules._cb_table', ['records' => $records])
 
     <!-- Major Core Modules -->
-    <div id="mc-div" class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <span>
-            <h3 class="text-xl font-semibold">Major Core Modules</h3>
-        </span>
-
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border">Module ID</th>
-                    <th class="py-2 px-4 border">Module Name</th>
-                    <th class="py-2 px-4 border">Status</th>
-                    <th class="py-2 px-4 border">Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($records->where('assigned_md_type', 'MC') as $record)
-                    <tr>
-                        <td class="py-2 px-4 border">{{ $record->module_id }}</td>
-                        @if ($record->module)
-                            <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>
-                        @else
-                            <td class="py-2 px-4 border">{{'N/A'}}</td>
-                        @endif
-                        <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
-                        <td class="py-2 px-4 border">{{ $record->grade }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @include('partials.modules._mc_table', ['records' => $records])
 
     <!-- Major Option Modules -->
-    <div id="mo-div" class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <span>
-            <h3 class="text-xl font-semibold">Major Option Modules</h3>
-        </span>
-
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border">Module ID</th>
-                    <th class="py-2 px-4 border">Module Name</th>
-                    <th class="py-2 px-4 border">Status</th>
-                    <th class="py-2 px-4 border">Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($records->where('assigned_md_type', 'MO') as $record)
-                    <tr>
-                        <td class="py-2 px-4 border">{{ $record->module_id }}</td>
-                        @if ($record->module)
-                            <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>
-                        @else
-                            <td class="py-2 px-4 border">{{'N/A'}}</td>
-                        @endif
-                        <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
-                        <td class="py-2 px-4 border">{{ $record->grade }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @include('partials.modules._mo_table', ['records' => $records])
 
     <!-- Other Breadth Modules -->
-    <div id="obrd-div" class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <span>
-            <h3 class="text-xl font-semibold">Other Breadth Modules</h3>
-        </span>
-
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border">Module ID</th>
-                    <th class="py-2 px-4 border">Module Name</th>
-                    <th class="py-2 px-4 border">Status</th>
-                    <th class="py-2 px-4 border">Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($records->where('assigned_md_type', 'OB') as $record)
-                    <tr>
-                        <td class="py-2 px-4 border">{{ $record->module_id }}</td>
-                        @if ($record->module)
-                            <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>
-                        @else
-                            <td class="py-2 px-4 border">{{'N/A'}}</td>
-                        @endif
-                        <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
-                        <td class="py-2 px-4 border">{{ $record->grade }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @include('partials.modules._ob_table', ['records' => $records])
 @endsection

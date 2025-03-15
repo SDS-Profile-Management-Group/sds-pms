@@ -28,7 +28,7 @@ return new class extends Migration
                 'MO', 
                 'CB',
                 'DY',
-                'Other Breadth'
+                'OB'
             ]);
 
             // Boolean column to indicate if the module is required in other majors as MC
@@ -51,7 +51,7 @@ return new class extends Migration
                 'MC', 
                 'MO', 
                 'CB', 
-                'Other Breadth'
+                'OB'
             ]);
             $table->string('grade')->nullable();
             $table->boolean('status')->nullable();
