@@ -82,7 +82,6 @@ class ModuleController extends Controller
             'grade' => 'nullable|string',
         ]);
 
-        
         $student = StudentInfo::where('student_username', auth()->user()->asg_username)->first();
         $module = ModuleBelongsTo::where('module_id', $request->module_id)->first();
         if (!$module) {            
