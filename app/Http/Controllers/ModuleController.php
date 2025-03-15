@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\UBD\Modules;
+use App\Models\UBD\ModuleBelongsTo;
 use App\Models\Student\ModulesTaken;
 use App\Models\Profile;
+use App\Models\StudentInfo;
 
 class ModuleController extends Controller
 {
@@ -80,9 +82,54 @@ class ModuleController extends Controller
             'grade' => 'nullable|string',
         ]);
 
-        // TODO: Logic on identifying assigned_md_type from referring table 'student_info'->'major_id' and comparing it to table 'module_belong_to'->'all_participating_majors'.
+        $student = StudentInfo::where('student_username', auth()->user()->asg_username)->first(); // ID Captured 
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found.');
+        }
+        $studentMajor = $student->major_id;
 
-        // Module::create($validated);
+        $module = ModuleBelongsTo::where('module_id', $request->module_id)->first();
+        if (!$module) {
+            return redirect()->back()->with('error', 'Module not found.');
+        }
+        $originalType = $module->module_type; 
+
+        $participatingMajors = json_decode($module->all_participating_majors, true); 
+        if (is_array($participatingMajors) && in_array($studentMajor, $participatingMajors)) {
+            $moduleInArray = true;
+        } else {
+            $moduleInArray = false;
+        }
+
+        switch($originalType){
+            case 'MC':
+                if ($moduleInArray){
+                    $assignedMdType = 'MC';
+                }else{
+                    $assignedMdType = 'MO';
+                }
+                break;
+
+            case 'MO':
+                if ($moduleInArray){
+                    $assignedMdType = 'MO';
+                }else{
+                    $assignedMdType = 'OB';
+                }
+                break;
+            
+            default:
+                $assignedMdType = $originalType;
+                break;
+        }
+
+        ModulesTaken::create([
+            'module_id' => $request->module_id,
+            'student_id' => $student->student_username,
+            'status' => $request->status,
+            'grade' => $request->grade,
+            'assigned_md_type' => $assignedMdType,
+        ]);
 
         return redirect()->back()->with('success', 'Record added successfully.');
     }

@@ -138,11 +138,16 @@
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 id="modal-title" class="text-xl font-bold mb-4">Add Record</h2>
     
-            <form id="record-form" method="POST" action="{{ route('modules.store') }}">
+            <form id="record-form" method="POST" action="{{ route('modules.store') }}" data-action="{{ route('modules.store') }}">
                 @csrf
                 <div class="mb-4">
                     <label for="module_id" class="block text-gray-700">Module ID:</label>
                     <input type="text" id="module_id" name="module_id" class="w-full border p-2 rounded" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="module_name" class="block text-gray-700">Module Name:</label>
+                    <input type="text" id="module_name" name="module_name" class="w-full border p-2 rounded bg-gray-100" readonly>
                 </div>
     
                 <div class="mb-4">

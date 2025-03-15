@@ -9,7 +9,7 @@ class ModuleBelongsTo extends Model
 {
     use HasFactory;
 
-    protected $table = 'module_belong_to';
+    protected $table = 'module_belongs_to';
     protected $primaryKey = ['module_id', 'major_id'];
     public $incrementing = false;
     protected $keyType = 'string';

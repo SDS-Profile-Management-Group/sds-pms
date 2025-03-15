@@ -24,7 +24,7 @@ Route::get('/edit-details',[ProfileController::class, 'editDetails'])->name('edi
 
 Route::get('/module-tracker', [ModuleController::class, 'showModules'])->name('module-tracker');
 
-Route::post('/modules/store', [ModuleController::class, 'store'])->name('modules.store');
+Route::post('/module-tracker/store', [ModuleController::class, 'store'])->name('modules.store');
 Route::post('/modules/update/{id}', [ModuleController::class, 'update'])->name('modules.update');
 
 Route::post('/add-module', [ModuleController::class, 'addModule'])->name('add-module');
