@@ -73,4 +73,29 @@ class ModuleController extends Controller
     //     return redirect('/home');
     // }
 
+    public function store(Request $request){
+        $request->validate([
+            'module_id' => 'required|string',
+            'status' => 'nullable|in:0,1',
+            'grade' => 'nullable|string',
+        ]);
+
+        // TODO: Logic on identifying assigned_md_type from referring table 'student_info'->'major_id' and comparing it to table 'module_belong_to'->'all_participating_majors'.
+
+        // Module::create($validated);
+
+        return redirect()->back()->with('success', 'Record added successfully.');
+    }
+
+    public function update(Request $request, $id){
+        $validated = $request->validate([
+            'module_name' => 'required|string',
+            'mc_value' => 'required|integer'
+        ]);
+
+        $module = Module::findOrFail($id);
+        $module->update($validated);
+        return redirect()->back()->with('success', 'Record updated successfully.');
+    }
+
 }

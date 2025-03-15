@@ -14,12 +14,16 @@
         </thead>
         <tbody>
             @forelse ($records->where('assigned_md_type', 'CB')->sortBy('module_id') as $record)
-                <tr>
+                <tr data-record-id="{{ $record->id }}" 
+                    data-module-id="{{ $record->module_id }}" 
+                    data-status="{{ $record->status }}" 
+                    data-grade="{{ $record->grade }}" 
+                    class="cursor-pointer hover:bg-gray-100 select-row">
                     <td class="py-2 px-4 border">{{ $record->module_id }}</td>
                     @if ($record->module)
                         <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>
                     @else
-                        <td class="py-2 px-4 border">{{'N/A'}}</td>
+                        <td class="py-2 px-4 border">{{ 'N/A' }}</td>
                     @endif
                     <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
                     <td class="py-2 px-4 border">{{ $record->grade }}</td>
@@ -32,3 +36,5 @@
         </tbody>
     </table>
 </div>
+
+<script src="{{ asset('js/tracker/select-row.js') }}"></script>
