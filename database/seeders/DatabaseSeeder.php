@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder
         
         // Category Seeders
         $this->call([
-            MajorCoreSeeder::class,
-            RequiredModulesSeeder::class,
+            // MajorCoreSeeder::class,
+            // RequiredModulesSeeder::class,
         ]);
         
         // User Seeders
