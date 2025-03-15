@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeModalBtn = document.getElementById("close-modal-btn");
     
     const moduleIdInput = document.getElementById("module_id");
-    const moduleNameDisp = document.getElementById("module_name");
+    // const moduleNameDisp = document.getElementById("module_name");
     const statusInput = document.getElementById("status");
     const gradeInput = document.getElementById("grade");
 
@@ -21,19 +21,34 @@ document.addEventListener("DOMContentLoaded", function () {
         gradeInput.value = "";   // Reset grade dropdown
     });
 
+    const moduleDivs = document.querySelectorAll('.module-div');
+
+    // Listen for click on the edit button
     editBtn.addEventListener("click", function () {
-        const selectedRow = document.querySelector(".selected"); // Assuming you highlight a row for editing
+        // Find the selected row within any div
+        const selectedRow = document.querySelector(".selected"); // Assuming you add the "selected" class to the row
+        
         if (!selectedRow) {
             alert("Please select a record to edit.");
             return;
         }
 
+        // Find the parent div that contains the selected row
+        const parentDiv = selectedRow.closest('.module-div');
+        
+        // Get the URL from the parent div's data attribute
+        const updateUrlTemplate = parentDiv.getAttribute('data-update-url');
+
+        // Replace ':module_id' with the actual module_id from the selected row
+        const updateAction = updateUrlTemplate.replace(':module_id', selectedRow.dataset.moduleId);
+
+        // Set the form action to update the record
+        recordForm.action = updateAction;
+
+        // Open the modal
         modal.classList.remove("hidden");
         modalTitle.textContent = "Edit Record";
-        
-        // Set the form action to update the record
-        recordForm.action = "{{ route('modules.update', ':id') }}".replace(':id', selectedRow.dataset.id);
-        
+
         // Populate form fields with the selected row data
         moduleIdInput.value = selectedRow.dataset.moduleId;
         statusInput.value = selectedRow.dataset.status;

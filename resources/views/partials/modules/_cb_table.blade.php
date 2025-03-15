@@ -1,4 +1,5 @@
-<div id="cpbrd-div" class="bg-white shadow-md rounded-lg p-6 mb-6">
+<div id="cpbrd-div" class="bg-white shadow-md rounded-lg p-6 mb-6 module-div"
+    data-update-url="{{ route('modules.update', ':module_id') }}">
     <span>
         <h3 class="text-xl font-semibold">Compulsory Breadth Modules</h3>
     </span>
@@ -14,8 +15,7 @@
         </thead>
         <tbody>
             @forelse ($records->where('assigned_md_type', 'CB')->sortBy('module_id') as $record)
-                <tr data-record-id="{{ $record->id }}" 
-                    data-module-id="{{ $record->module_id }}" 
+                <tr data-module-id="{{ $record->module_id }}" 
                     data-status="{{ $record->status }}" 
                     data-grade="{{ $record->grade }}" 
                     class="cursor-pointer hover:bg-gray-100 select-row">
