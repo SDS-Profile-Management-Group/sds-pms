@@ -181,8 +181,6 @@
     
             <form id="record-form" method="POST" action="{{ route('modules.store') }}">
                 @csrf
-                {{-- <input type="hidden" id="record-id" name="record_id"> --}}
-    
                 <div class="mb-4">
                     <label for="module_id" class="block text-gray-700">Module ID:</label>
                     <input type="text" id="module_id" name="module_id" class="w-full border p-2 rounded" required>
