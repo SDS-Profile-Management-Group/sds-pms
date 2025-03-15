@@ -59,14 +59,12 @@ class UserController extends Controller
         return redirect('/home');
     }
 
-    public function logout()
-    {
+    public function logout(){
         auth()->logout();
         return redirect('/');
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $incomingFields = $request->validate([
             "login-name" => "required",
             "login-password" => "required"
