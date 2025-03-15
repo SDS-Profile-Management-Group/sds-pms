@@ -44,9 +44,8 @@ class MajorOptionSeeder extends Seeder
             ['module_id' => 'ZC-4305', 'major_id' => 'ZC', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZC'])],
             ['module_id' => 'ZC-4306', 'major_id' => 'ZC', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZC'])],
             ['module_id' => 'ZC-4309', 'major_id' => 'ZC', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZC'])],
-
-
         ]);
+        
         // ZA
         DB::table('module_belongs_to')->insert([
             ['module_id' => 'ZA-4301', 'major_id' => 'ZA', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZA'])],
@@ -60,8 +59,6 @@ class MajorOptionSeeder extends Seeder
             ['module_id' => 'ZA-4309', 'major_id' => 'ZA', 'module_type' => 'MO', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZA', 'ZI'])],
             ['module_id' => 'ZA-4310', 'major_id' => 'ZA', 'module_type' => 'MO', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZC', 'ZA', 'ZI'])],
             ['module_id' => 'ZA-4311', 'major_id' => 'ZA', 'module_type' => 'MO', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZA', 'ZI'])],
-            
-            
         ]);
 
         // ZD 
@@ -72,7 +69,6 @@ class MajorOptionSeeder extends Seeder
             ['module_id' => 'ZD-4302', 'major_id' => 'ZD', 'module_type' => 'MO', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZD', 'ZS'])],
             ['module_id' => 'ZD-4303', 'major_id' => 'ZD', 'module_type' => 'MO', 'shared_among_majors' => true, 'all_participating_majors' => json_encode(['ZA', 'ZD', 'ZS', 'ZI'])],
             ['module_id' => 'ZD-4309', 'major_id' => 'ZD', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZD'])],
-            
         ]);
 
         // ZI
@@ -87,7 +83,6 @@ class MajorOptionSeeder extends Seeder
             ['module_id' => 'ZI-4302', 'major_id' => 'ZI', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])],
             ['module_id' => 'ZI-4303', 'major_id' => 'ZI', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])],
             ['module_id' => 'ZI-4304', 'major_id' => 'ZI', 'module_type' => 'MO', 'shared_among_majors' => false, 'all_participating_majors' => json_encode(['ZI'])],
-
         ]);
 
         // ZS
