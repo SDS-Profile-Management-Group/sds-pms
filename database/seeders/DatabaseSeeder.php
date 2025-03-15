@@ -36,21 +36,22 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Module Seeders
-        // $this->call([
-        //     CompulsoryDCModulesSeeder::class,
-        //     AIRoboticsModuleSeeder::class,
-        //     AppliedAIModuleSeeder::class,
-        //     ComputerScienceModuleSeeder::class,
-        //     CybersecurityModuleSeeder::class,
-        //     DataScienceModuleSeeder::class,
-        //     DYMKHeadstartModuleSeeder::class,
-        //     NonSDSModuleSeeder::class,
-        // ]);
+        $this->call([
+            CompulsoryDCModulesSeeder::class,
+            AIRoboticsModuleSeeder::class,
+            AppliedAIModuleSeeder::class,
+            ComputerScienceModuleSeeder::class,
+            CybersecurityModuleSeeder::class,
+            DataScienceModuleSeeder::class,
+            DYMKHeadstartModuleSeeder::class,
+            NonSDSModuleSeeder::class,
+        ]);
         
         // Category Seeders
         $this->call([
-            // MajorCoreSeeder::class,
-            // RequiredModulesSeeder::class,
+            MajorCoreSeeder::class,
+            MajorOptionSeeder::class,
+            RequiredModulesSeeder::class,
         ]);
         
         // User Seeders

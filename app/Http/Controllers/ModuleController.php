@@ -11,8 +11,7 @@ use App\Models\Profile;
 
 class ModuleController extends Controller
 {
-    public function showModules()
-    {
+    public function showModules(){
         $records = ModulesTaken::with('module')
         ->where('student_id', Auth::user()->asg_username)
         ->get();
@@ -28,8 +27,7 @@ class ModuleController extends Controller
         return view('moduleTracker', compact('records', 'mcBreakdown'));
     }
 
-    public function addModule(Request $request)
-    {
+    public function addModule(Request $request){
         // Validate the input
         $request->validate([
             'module_id' => 'required|string',
@@ -59,8 +57,7 @@ class ModuleController extends Controller
         return redirect()->back()->with('success', 'Module added successfully!');
     }
 
-    public function getModuleName($module_id)
-    {
+    public function getModuleName($module_id){
         $module = Modules::where('module_id', $module_id)->first();
 
         if (!$module) {
