@@ -32,10 +32,10 @@ return new class extends Migration
             ]);
 
             // Boolean column to indicate if the module is required in other majors as MC
-            $table->boolean('is_required_in_other_majors')->default(false);
+            $table->boolean('shared_among_majors')->default(false);
             
             // JSON column to list other majors where the module is required as MC
-            $table->json('other_required_majors');
+            $table->json('all_participating_majors');
             
             
             $table->primary(['major_id', 'module_id']);

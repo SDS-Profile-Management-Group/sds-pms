@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($records->where('assigned_md_type', 'MC') as $record)
+            @foreach ($records->where('assigned_md_type', 'MC')->sortBy('module_id') as $record)
                 <tr>
                     <td class="py-2 px-4 border">{{ $record->module_id }}</td>
                     @if ($record->module)
