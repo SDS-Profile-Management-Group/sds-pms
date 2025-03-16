@@ -41,12 +41,7 @@ class ModuleController extends Controller
         ]);
     }
 
-    // public function goHome(){
-    //     return redirect('/home');
-    // }
-
     public function store(Request $request){
-        dd($request->all());
         $request->validate([
             'module_id' => 'required|string',
             'status' => 'nullable|in:0,1',
@@ -108,40 +103,43 @@ class ModuleController extends Controller
     }
 
     public function update(Request $request, $moduleId){
-        // ! To figure out
-        // Validate only status and grade fields
-        $request->validate([
-            'status' => 'nullable|in:0,1',
-            'grade' => 'nullable|string',
-        ]);
-
+        // ! NEED MORE BETTER UPDATES
         // Find the module record using the provided module_id
-        $module = ModulesTaken::where('module_id', $moduleId)->first();
+        $module = ModulesTaken::where('module_id', $moduleId)
+            ->where('student_id', auth()->user()->asg_username)
+            ->first();
+
+        // Check if module exists
         if (!$module) {
             return redirect()->back()->with('error', 'Module not found.');
         }
 
-        // Prepare the data to update
-        $updateData = [];
+        // Validate only the necessary fields
+        $validatedData = $request->validate([
+            'grade' => 'nullable|string|max:10',
+            'status' => 'nullable|boolean',  // Ensure status is validated as a boolean
+        ]);
 
-        if ($request->has('status')) {
-            $updateData['status'] = $request->status;
-        }
+        // If status is provided in the request, cast it to a boolean explicitly
+        $status = isset($validatedData['status']) ? (bool) $validatedData['status'] : $module->status;
 
-        if ($request->has('grade')) {
-            $updateData['grade'] = $request->grade;
-        }
+        // Log to check the value of status and its type
+        \Log::info('Status value:', ['status' => $status, 'type' => gettype($status)]);
+        \Log::info('Status value before update:', ['status' => $validatedData['status'] ?? 'Not set']);
+        // Now update only the required field, status in this case
+        $module->status = $status;
+        $module->save();
 
-        if (empty($updateData)) {
-            return redirect()->back()->with('error', 'No data to update.');
-        }
+        // Log the updated module details
+        \Log::info('Module updated', [
+            'module_id' => $moduleId,
+            'student_id' => $module->student_id,
+            'assigned_md_type' => $module->assigned_md_type,
+            'status' => $status,
+            'grade' => $module->grade,
+        ]);
 
-        // Log the update attempt
-        \Log::info('Updating module', ['module_id' => $moduleId, 'data' => $updateData]);
-
-        // Perform the update on the module record
-        $module->update($updateData);
-
+        // Redirect back with success message
         return redirect()->back()->with('success', 'Record updated successfully.');
     }
 

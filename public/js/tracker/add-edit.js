@@ -1,14 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const addBtn = document.getElementById("add-record-btn");
-    const editBtn = document.getElementById("edit-record-btn");
-    
     const modal = document.getElementById("record-modal");
     const modalTitle = document.getElementById("modal-title");
     const recordForm = document.getElementById("record-form");
     const closeModalBtn = document.getElementById("close-modal-btn");
     
     const moduleIdInput = document.getElementById("module_id");
-    // const moduleNameDisp = document.getElementById("module_name");
     const statusInput = document.getElementById("status");
     const gradeInput = document.getElementById("grade");
 
@@ -21,38 +18,40 @@ document.addEventListener("DOMContentLoaded", function () {
         gradeInput.value = "";   // Reset grade dropdown
     });
 
-    const moduleDivs = document.querySelectorAll('.module-div');
+    // Event listener for selecting a row
+    const moduleRows = document.querySelectorAll('.module-div .select-row');
+    moduleRows.forEach(row => {
+        row.addEventListener("click", function () {
+            const selectedRow = this;
+            const updateUrlTemplate = selectedRow.getAttribute('data-update-url'); // Get the update URL from the row's data-update-url attribute
 
-    // Listen for click on the edit button
-    editBtn.addEventListener("click", function () {
-        // Find the selected row within any div
-        const selectedRow = document.querySelector(".selected"); // Assuming you add the "selected" class to the row
-        
-        if (!selectedRow) {
-            alert("Please select a record to edit.");
-            return;
-        }
+            if (!updateUrlTemplate) {
+                alert("No update URL found for this row.");
+                return;
+            }
 
-        // Find the parent div that contains the selected row
-        const parentDiv = selectedRow.closest('.module-div');
-        
-        // Get the URL from the parent div's data attribute
-        const updateUrlTemplate = parentDiv.getAttribute('data-update-url');
+            const updateAction = updateUrlTemplate.replace(':module_id', selectedRow.dataset.moduleId); // Replace placeholder with actual module_id
+            recordForm.action = updateAction; // Set the form action to the updated URL
 
-        // Replace ':module_id' with the actual module_id from the selected row
-        const updateAction = updateUrlTemplate.replace(':module_id', selectedRow.dataset.moduleId);
+            // Open the modal
+            modal.classList.remove("hidden");
+            modalTitle.textContent = "Edit Record";
 
-        // Set the form action to update the record
-        recordForm.action = updateAction;
+            // Populate form fields with the selected row data
+            moduleIdInput.value = selectedRow.dataset.moduleId;
 
-        // Open the modal
-        modal.classList.remove("hidden");
-        modalTitle.textContent = "Edit Record";
+            if (selectedRow.dataset.status === '1') {
+                statusInput.value = '1';  // Taken
+            } else {
+                statusInput.value = '0';  // Not Taken
+            }
+            // statusInput.value = selectedRow.dataset.status;
+            gradeInput.value = selectedRow.dataset.grade;
 
-        // Populate form fields with the selected row data
-        moduleIdInput.value = selectedRow.dataset.moduleId;
-        statusInput.value = selectedRow.dataset.status;
-        gradeInput.value = selectedRow.dataset.grade;
+            console.log("Editing Record - Module ID:", moduleIdInput.value);
+            console.log("Status Before Assignment:", statusInput.value);
+            console.log("Grade Before Assignment:", selectedRow.dataset.grade);
+        });
     });
 
     closeModalBtn.addEventListener("click", function () {

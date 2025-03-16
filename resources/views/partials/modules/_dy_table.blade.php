@@ -1,5 +1,4 @@
-<div id="mc-div" class="bg-white shadow-md rounded-lg p-6 mb-6 module-div" 
-    data-update-url="{{ route('modules.update', ':module_id') }}">
+<div id="mc-div" class="bg-white shadow-md rounded-lg p-6 mb-6 module-div">
     <span>
         <h3 class="text-xl font-semibold">Discovery Year Modules</h3>
     </span>
@@ -15,10 +14,11 @@
         </thead>
         <tbody>
             @forelse ($records->where('assigned_md_type', 'DY') as $record)
-                <tr data-module-id="{{ $record->module_id }}" 
-                    data-status="{{ $record->status }}" 
-                    data-grade="{{ $record->grade }}" 
-                    class="cursor-pointer hover:bg-gray-100 select-row">
+            <tr data-module-id="{{ $record->module_id }}" 
+                data-status="{{ $record->status }}" 
+                data-grade="{{ $record->grade }}"
+                data-update-url="{{ route('modules.update', $record->module_id) }}"  {{-- Use $record->module_id here --}}
+                class="cursor-pointer hover:bg-gray-100 select-row module-div">
                     <td class="py-2 px-4 border">{{ $record->module_id }}</td>
                     @if ($record->module)
                         <td class="py-2 px-4 border">{{ $record->module->module_name }}</td>

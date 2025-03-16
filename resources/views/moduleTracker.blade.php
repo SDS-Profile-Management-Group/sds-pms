@@ -129,9 +129,9 @@
         <button id="add-record-btn" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
             Add Record
         </button>
-        <button id="edit-record-btn" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600">
+        {{-- <button id="edit-record-btn" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600">
             Edit Record
-        </button>
+        </button> --}}
     </div>
 
     <div id="record-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
@@ -153,7 +153,7 @@
                 <div class="mb-4">
                     <label for="status" class="block text-gray-700 font-semibold">Status:</label>
                     <select name="status" id="status" required class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center italic">
-                        <option value="" disabled selected>Select Status</option>
+                        {{-- <option value="" disabled selected>Select Status</option> --}}
                         <option value="1">Taken</option>
                         <option value="0">Not Taken</option>
                     </select>
@@ -162,7 +162,7 @@
                 <div class="mb-4">
                     <label for="grade" class="block text-gray-700 font-semibold">Grade:</label>
                     <select id="grade" name="grade" required class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center italic">
-                        <option value="" disabled selected>Select Grade</option>
+                        {{-- <option value="" disabled selected>Select Grade</option> --}}
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
