@@ -33,7 +33,6 @@
         <!-- Register Form (Hidden by Default) -->
         <form id="registerForm" action="{{ route('register') }}" method="POST" class="hidden">
             @csrf
-
             <div class="mb-4">
                 <label class="block text-gray-700">Username</label>
                 <input type="text" name="asg_username" class="w-full p-2 border rounded-lg" required>

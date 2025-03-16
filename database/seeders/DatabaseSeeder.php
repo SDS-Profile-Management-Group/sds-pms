@@ -10,8 +10,9 @@ use Database\Seeders\Modules\DataScienceModuleSeeder;
 use Database\Seeders\Modules\DYMKHeadstartModuleSeeder;
 use Database\Seeders\Modules\NonSDSModuleSeeder;
 
-use Database\Seeders\Category\CommonMajorSeeder;
-use Database\Seeders\Category\AIRoboMajorSeeder;
+use Database\Seeders\Category\MajorCoreSeeder;
+use Database\Seeders\Category\MajorOptionSeeder;
+use Database\Seeders\Category\RequiredModulesSeeder;
 
 use Database\Seeders\User\StudentSeed;
 
@@ -47,10 +48,11 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // Category Seeders
-        // $this->call([
-        //     AIRoboMajorSeeder::class,
-        //     CommonMajorSeeder::class,
-        // ]);
+        $this->call([
+            MajorCoreSeeder::class,
+            MajorOptionSeeder::class,
+            RequiredModulesSeeder::class,
+        ]);
         
         // User Seeders
         // $this->call([

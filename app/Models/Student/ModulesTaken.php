@@ -16,6 +16,10 @@ class ModulesTaken extends Model
 
     protected $primaryKey = ['module_id', 'student_id'];
 
+    public function getKeyName(){
+        return $this->primaryKey;
+    }
+
     public $timestamps = false;
     
     protected $fillable = [

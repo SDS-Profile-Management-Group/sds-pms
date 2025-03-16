@@ -9,16 +9,16 @@ class ModuleBelongsTo extends Model
 {
     use HasFactory;
 
-    protected $table = 'module_belong_to';
-    public $incrementing = false;
-    
+    protected $table = 'module_belongs_to';
     protected $primaryKey = ['module_id', 'major_id'];
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'module_id',
         'major_id',
         'module_type',
-        'is_required_in_other_majors',
-        'other_required_majors'
+        'shared_among_majors',
+        'all_participating_majors'
     ];
 }
