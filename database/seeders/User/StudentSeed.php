@@ -91,7 +91,7 @@ class StudentSeed extends Seeder
             [
                 'module_id' => 'LJ-1403',
                 'student_id' => '21B6027',
-                'assigned_md_type' => 'Other Breadth',
+                'assigned_md_type' => 'OB',
                 'grade' => 'A',
                 'status' => true
             ],
@@ -115,7 +115,7 @@ class StudentSeed extends Seeder
             [
                 'module_id' => 'LJ-2403',
                 'student_id' => '21B6027',
-                'assigned_md_type' => 'Other Breadth',
+                'assigned_md_type' => 'OB',
                 'grade' => 'B',
                 'status' => true
             ],
@@ -147,7 +147,7 @@ class StudentSeed extends Seeder
             [
                 'module_id' => 'LJ-2404',
                 'student_id' => '21B6027',
-                'assigned_md_type' => 'Other Breadth',
+                'assigned_md_type' => 'OB',
                 'grade' => 'B',
                 'status' => true
             ],
@@ -187,7 +187,7 @@ class StudentSeed extends Seeder
             [
                 'module_id' => 'LJ-3402',
                 'student_id' => '21B6027',
-                'assigned_md_type' => 'Other Breadth',
+                'assigned_md_type' => 'OB',
                 'grade' => 'B',
                 'status' => true
             ],
@@ -227,7 +227,7 @@ class StudentSeed extends Seeder
             [
                 'module_id' => 'LJ-3403',
                 'student_id' => '21B6027',
-                'assigned_md_type' => 'Other Breadth',
+                'assigned_md_type' => 'OB',
                 'grade' => 'B',
                 'status' => true
             ],
@@ -235,7 +235,7 @@ class StudentSeed extends Seeder
             [
                 'module_id' => 'LJ-3404',
                 'student_id' => '21B6027',
-                'assigned_md_type' => 'Other Breadth',
+                'assigned_md_type' => 'OB',
                 'grade' => 'B',
                 'status' => true
             ],
