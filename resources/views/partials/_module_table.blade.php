@@ -30,7 +30,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="py-2 px-4 border text-center">{{ $emptyMessage }}</td>
+                    <td colspan="4" class="py-2 px-4 border text-center">No modules were found</td>
                 </tr>
             @endforelse
         </tbody>

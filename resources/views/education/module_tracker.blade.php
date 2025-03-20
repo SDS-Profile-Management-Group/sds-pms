@@ -183,21 +183,48 @@
     </div>
 
     <!-- Compulsory Breadth Modules -->
-    @include('partials.modules._cb_table', ['records' => $records])
+    @include('partials._module_table', [
+        'id' => 'cpbrd', 
+        'title' => 'Compulsory Breadth Modules', 
+        'records' => $records, 
+        'type' => 'CB'
+    ])
 
-    <!-- Degree Core Modules -->
-    @include('partials.modules._dc_table', ['records' => $records])
+    @include('partials._module_table', [
+        'id' => 'dc', 
+        'title' => 'Degree Core Modules', 
+        'records' => $records, 
+        'type' => 'DC'
+    ])
 
-    <!-- Major Core Modules -->
-    @include('partials.modules._mc_table', ['records' => $records])
+    @include('partials._module_table', [
+        'id' => 'mc', 
+        'title' => 'Major Core Modules', 
+        'records' => $records, 
+        'type' => 'MC'
+    ])
 
-    <!-- Major Option Modules -->
-    @include('partials.modules._mo_table', ['records' => $records])
+    @include('partials._module_table', [
+        'id' => 'mo', 
+        'title' => 'Major Option Modules', 
+        'records' => $records, 
+        'type' => 'MO'
+    ])
 
-    <!-- Other Breadth Modules -->
-    @include('partials.modules._ob_table', ['records' => $records])
 
-    <!-- Discovery Year -->
-    @include('partials.modules._dy_table', ['records' => $records])
+    @include('partials._module_table', [
+        'id' => 'obrd', 
+        'title' => 'Other Breadth Modules', 
+        'records' => $records, 
+        'type' => 'OB'
+    ])
+
+    @include('partials._module_table', [
+        'id' => 'dy', 
+        'title' => 'Discovery Modules', 
+        'records' => $records, 
+        'type' => 'DY'
+    ])
+
 
 @endsection
