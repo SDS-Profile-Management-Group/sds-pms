@@ -31,3 +31,4 @@ Route::post('/add-module', [ModuleController::class, 'addModule'])->name('add-mo
 Route::get('/get-module-name/{module_id}', [ModuleController::class, 'getModuleName']);
 
 Route::get('/cgpa',[CgpaController::class, 'showCGPA'])->name('cgpa-overview');
+Route::post('/cgpa/store', [CgpaController::class, 'storeCGPA'])->name('cgpa.store');
