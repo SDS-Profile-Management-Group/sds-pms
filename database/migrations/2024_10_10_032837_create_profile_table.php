@@ -34,7 +34,7 @@ return new class extends Migration
             
             $table->string('student_intake_batch')->nullable();
             $table->string('student_nationality')->nullable();
-            $table->double('cgpa')->nullable();
+            $table->json('cgpa')->nullable();
 
             $table->string('major_id')->nullable(); //* TO identify what student belong to what major (FK)
             $table->timestamps();

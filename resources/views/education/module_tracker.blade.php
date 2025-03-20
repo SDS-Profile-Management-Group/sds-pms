@@ -6,7 +6,7 @@
     <script src="{{ asset('js/tracker/add-edit.js') }}"></script>
 @endsection
 
-@section('navbar_type', 'mc')
+@section('navbar_type', 'mt')
 
 @section('content')
     <h1 class="text-3xl font-semibold my-4">Module Tracker Table</h1>
@@ -15,7 +15,6 @@
         <div class="bg-white shadow-md rounded-lg p-6 mb-6 md:w-1/2">
             <h3 class="text-xl font-bold mb-2 cursor-pointer" id="graduation-toggle">Graduation Requirements</h3>
             <div id="graduation-content" class="mt-4" >
-                {{-- style="display: none;" --}}
                 <p class="mb-4">Students are required to accumulate a <b>minimum of 152 Modular Credit (MCs)</b> from a combination of degree core, major core, major option, and breadth modules as specified below and in the Programme Structure of the major that the student has chosen to specialize in.</p>
                 <p class="mb-4">A student must pass with a <b>maximum of 40 Modular Credits (MCs) from Level 1000 modules</b> and a <b>minimum of 24 Modular Credits (MCs) from Level 4000 modules</b> from their major subject.</p>
     

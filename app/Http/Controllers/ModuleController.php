@@ -26,7 +26,7 @@ class ModuleController extends Controller
             return $group->sum('module.mc');
         });
 
-        return view('moduleTracker', compact('records', 'mcBreakdown'));
+        return view('education/module_tracker', compact('records', 'mcBreakdown'));
     }
 
     public function getModuleName($module_id){
