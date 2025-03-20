@@ -3,7 +3,7 @@
 @section('title', 'Module Tracker - ' . Auth::user()->asg_username)
 
 @section('scripts')
-    <script src="{{ asset('js/tracker/add-edit.js') }}"></script>
+    <script src="{{ asset('js/tracker/module-tracker.js') }}"></script>
 @endsection
 
 @section('navbar_type', 'mt')
