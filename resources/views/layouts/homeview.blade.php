@@ -14,7 +14,7 @@
                 <img src="{{ Auth::user()->userProfile->profile_picture ?? asset('images/default-avatar.png') }}" 
                      alt="Profile Picture" 
                      class="w-32 h-32 rounded-full object-cover shadow-md">
-                
+
                 <a href="{{ route('edit-profile') }}" 
                    class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
                     Edit Profile

@@ -3,6 +3,10 @@
         <a href="{{ url('/') }}" class="text-lg font-bold text-blue-600">SDS PMS</a>
         
         <div class="flex items-center space-x-4">
+            <a href="https://myubd.ubd.edu.bn/group/myubd" class="text-blue-500">MyUBD</a>
+            <a href="https://smrs.ubd.edu.bn/orbeon/uis-welcome/login/" class="text-blue-500">GIS UBD</a>
+            <a href="https://ubd.instructure.com/login/canvas" class="text-blue-500">UBD Canvas</a>
+            
             @if ($type === 'home') 
                 {{-- Option 1 --}}
                 {{-- <a href="{{ route('about') }}" class="text-blue-500">About</a> --}}
@@ -13,7 +17,7 @@
                 <a href="{{ route('profile') }}" class="text-blue-500">Profile</a>
                 <a href="{{ route('settings') }}" class="text-green-500">Settings</a>
             
-            @elseif ($type === 'mc')
+            @elseif ($type === 'mt')
                 {{-- Option 2 --}}
                 <a href="{{ route('profile') }}" class="text-blue-500">Profile</a>
                 {{-- <a href="{{ route('settings') }}" class="text-green-500">Settings</a> --}}
@@ -26,6 +30,7 @@
 
             <a href="https://owa.ubd.edu.bn/owa" class="text-blue-500">UBD Mail</a>
 
+            {{-- Only shows when user is authenticated --}}
             @auth
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf

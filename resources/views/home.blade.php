@@ -19,7 +19,7 @@
 @endsection
 
 @section('student-info')
-    <h3 class="text-xl font-bold text-gray-800 mb-4">Student Information</h3>
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Academic Overview</h3>
     <p class="text-gray-700"><span class="font-semibold">Faculty:</span> <span class="text-gray-900">School of Digital Science</span></p>
     <p class="text-gray-700">
         <span class="font-semibold">Major:</span> 
@@ -54,8 +54,11 @@
 @endsection
 
 @section('extra-buttons')
-    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
         Module Tracker
+    </a>
+    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow-md transition duration-300">
+        CGPA Information
     </a>
 @endsection
 
