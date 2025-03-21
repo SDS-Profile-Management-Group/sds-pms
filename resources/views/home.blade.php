@@ -58,13 +58,24 @@
     </p>
 @endsection
 
+@section('staff-info')
+    {{-- TODO: To fill in --}}
+@endsection
+
 @section('extra-buttons')
-    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
-        Module Tracker
-    </a>
-    <a href="{{ route('cgpa-overview') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow-md transition duration-300">
-        CGPA Information
-    </a>
+
+    @if (Auth::check() && Auth::user()->userProfile)
+        @if (Auth::user()->userProfile->isStudent())
+            <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
+                Module Tracker
+            </a>
+            <a href="{{ route('cgpa-overview') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow-md transition duration-300">
+                CGPA Information
+            </a>
+        @elseif (Auth::user()->userProfile->isStaff())
+        @endif
+    @endif
+    
 @endsection
 
 @section('dashboard')

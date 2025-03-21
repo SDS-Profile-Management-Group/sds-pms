@@ -29,10 +29,8 @@
             <div class="w-2/3 bg-gray-100 p-4 rounded-lg">
                 @if (Auth::check() && Auth::user()->userProfile)
                     @if (Auth::user()->userProfile->isStudent())
-                        <!-- Content for students -->
                         @yield('student-info')
                     @elseif (Auth::user()->userProfile->isStaff())
-                        <!-- Content for staff -->
                         @yield('staff-info')
                     @endif
                 @endif
