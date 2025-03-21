@@ -11,7 +11,7 @@
 </head>
 <body class="bg-gray-100">
 
-    @include('partials.navbar', ['type' => View::yieldContent('navbar_type')]) 
+    @include('partials._navbar', ['type' => View::yieldContent('navbar_type')]) 
 
     <!-- Main Content -->
     <div class="container mx-auto mt-6">

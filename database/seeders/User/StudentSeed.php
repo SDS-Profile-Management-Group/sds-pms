@@ -36,7 +36,16 @@ class StudentSeed extends Seeder
         ]);
 
         DB::table('student_info')->insert([
-            'student_username' => '21B6027'
+            'student_username' => '21B6027',
+            'cgpa' => json_encode([
+                'Semester 1' => '2.92',
+                'Semester 2' => '3.1',
+                'Semester 3' => '2.83',
+                'Semester 4' => '2.75',
+                'Semester 5' => '2.82',
+                'Semester 6' => '2.82',
+                'Semester 7' => '2.82',
+            ])
         ]);
 
         DB::table('taken_modules')->insert([

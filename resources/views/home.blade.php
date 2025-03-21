@@ -50,14 +50,19 @@
         </span>
     </p>
     <p class="text-gray-700"><span class="font-semibold">Year of Study:</span> <span class="text-gray-900">TBI</span></p>
-    <p class="text-gray-700"><span class="font-semibold">Current CGPA:</span> <span class="text-gray-900">{{Auth::user()->studentInfo->cgpa}}</span></p>
+    <p class="text-gray-700">
+        <span class="font-semibold">Current CGPA:</span> 
+        <span class="text-gray-900">
+            {{ collect(json_decode(Auth::user()->studentInfo->cgpa, true))->last() ?? 'N/A' }}
+        </span>
+    </p>
 @endsection
 
 @section('extra-buttons')
     <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
         Module Tracker
     </a>
-    <a href="{{ route('module-tracker') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow-md transition duration-300">
+    <a href="{{ route('cgpa-overview') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-lg shadow-md transition duration-300">
         CGPA Information
     </a>
 @endsection
