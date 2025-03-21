@@ -13,17 +13,14 @@
                 {{-- <a href="{{ route('contact') }}" class="text-green-500">Contact</a> --}}
             
             @elseif ($type === 'dashboard')
-                {{-- Option 2 --}}
-                <a href="{{ route('profile') }}" class="text-blue-500">Profile</a>
+                <a href="{{ route('home') }}" class="text-blue-500">Home</a>
                 <a href="{{ route('settings') }}" class="text-green-500">Settings</a>
             
             @elseif ($type === 'mt')
-                {{-- Option 2 --}}
-                <a href="{{ route('profile') }}" class="text-blue-500">Profile</a>
+                <a href="{{ route('home') }}" class="text-blue-500">Home</a>
                 {{-- <a href="{{ route('settings') }}" class="text-green-500">Settings</a> --}}
 
             @elseif ($type === 'profile')
-                {{-- Option 4 --}}
                 <a href="{{ route('dashboard') }}" class="text-blue-500">Dashboard</a>
                 <a href="{{ route('edit-profile') }}" class="text-green-500">Edit Profile</a>
             @endif
