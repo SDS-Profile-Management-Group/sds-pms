@@ -10,9 +10,16 @@ use App\Models\StudentInfo;
 class CgpaController extends Controller
 {
     public function showCGPA(){
+        $userId = Auth::user()->asg_username;
+        $student = StudentInfo::where('student_username', $userId)->first();
 
-        return view('education/cgpa');
-        // return view('education/cgpa', compact());
+        if (!$student || !$student->cgpa) {
+            $cgpaData = [];
+        } else {
+            $cgpaData = json_decode($student->cgpa, true); // Assuming 'cgpa' column stores JSON data
+        }
+
+        return view('education/cgpa', compact('cgpaData'));
     }
 
     public function storeCGPA(Request $request){

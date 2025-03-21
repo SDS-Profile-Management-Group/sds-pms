@@ -1,7 +1,5 @@
 <div id="cgpa-div" class="bg-white shadow-md rounded-lg p-6 mb-6 module-div">
-    <span>
-        <h3 class="text-xl font-semibold">CGPA Obtained</h3>
-    </span>
+    <h3 class="text-xl font-semibold">CGPA Obtained</h3>
 
     <table class="min-w-full table-auto border-collapse border border-gray-300">
         <thead>
@@ -11,12 +9,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="py-2 px-4 border">Semester 1</td>
-                <td class="py-2 px-4 border">2.98</td>
-            </tr>
+            @if (!empty($cgpaData))
+                @foreach ($cgpaData as $semester => $cgpa)
+                    <tr>
+                        <td class="py-2 px-4 border">{{ $semester }}</td>
+                        <td class="py-2 px-4 border">{{ $cgpa }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="2" class="py-2 px-4 border text-center">No CGPA data available</td>
+                </tr>
+            @endif
         </tbody>
     </table>
 </div>
-
-<script src="{{ asset('js/tracker/select-row.js') }}"></script>

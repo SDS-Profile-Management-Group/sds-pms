@@ -29,18 +29,14 @@
             <form id="record-form" method="POST" action="{{ route($routeName) }}" data-action="{{ route($routeName) }}">
                 @csrf
                 @if($modalType === 'cgpa')
-
-                    {{-- TODO: Display CGPA-related details. --}}
                     <div class="mb-4">
                         <label for="semester" class="block text-gray-700">Semester:</label>
-                        {{-- TODO: Change to Drop Down --}}
-                        <input type="text" id="semester" name="semester" class="w-full border p-2 rounded" required> 
+                        <input type="text" id="semester" name="semester" class="w-full border p-2 rounded" required> {{-- TODO: Change to Drop Down --}}
                     </div>
 
                     <div class="mb-4">
                         <label for="cgpa_obt" class="block text-gray-700">CGPA Obtained:</label>
-                        {{-- TODO: Formatting into 2 decimal places --}}
-                        <input type="number" id="cgpa_obt" name="cgpa_obt" class="w-full border p-2 rounded" required>
+                        <input type="number" id="cgpa_obt" name="cgpa_obt" class="w-full border p-2 rounded" required> {{-- TODO: Formatting into 2 decimal places --}}
                     </div>
 
                 @elseif($modalType === 'module_tracker')
