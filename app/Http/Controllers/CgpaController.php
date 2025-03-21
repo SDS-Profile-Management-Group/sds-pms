@@ -22,7 +22,25 @@ class CgpaController extends Controller
         return view('education/cgpa', compact('cgpaData'));
     }
 
-    public function storeCGPA(Request $request){
+    public function storeCGPA(Request $request)
+    {
+        $userId = Auth::user()->asg_username;
+        $student = StudentInfo::where('student_username', $userId)->first();
 
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found.');
+        }
+
+        // Decode existing CGPA data or initialize an empty array
+        $cgpaData = $student->cgpa ? json_decode($student->cgpa, true) : [];
+
+        // Update the CGPA data with the new entry
+        $cgpaData[$request->semester] = number_format((float) $request->cgpa_obt, 2, '.', '');
+
+        // Save back to database
+        $student->cgpa = json_encode($cgpaData);
+        $student->save();
+
+        return redirect()->back()->with('success', 'CGPA record added successfully.');
     }
 }

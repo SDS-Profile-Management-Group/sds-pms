@@ -31,12 +31,26 @@
                 @if($modalType === 'cgpa')
                     <div class="mb-4">
                         <label for="semester" class="block text-gray-700">Semester:</label>
-                        <input type="text" id="semester" name="semester" class="w-full border p-2 rounded" required> {{-- TODO: Change to Drop Down --}}
+                        <select id="semester" name="semester" class="w-full border p-2 rounded" required>
+                            @php
+                                $existingSemesters = array_keys($cgpaData ?? []);
+                                $nextSemester = count($existingSemesters) + 1;
+                            @endphp
+
+                            @if(empty($existingSemesters))
+                                <option value="Semester 1">Semester 1</option>
+                            @else
+                                @foreach($existingSemesters as $semester)
+                                    <option value="{{ $semester }}">{{ $semester }}</option>
+                                @endforeach
+                                <option value="Semester {{ $nextSemester }}">Semester {{ $nextSemester }}</option>
+                            @endif
+                        </select>
                     </div>
 
                     <div class="mb-4">
                         <label for="cgpa_obt" class="block text-gray-700">CGPA Obtained:</label>
-                        <input type="number" id="cgpa_obt" name="cgpa_obt" class="w-full border p-2 rounded" required> {{-- TODO: Formatting into 2 decimal places --}}
+                        <input type="number" id="cgpa_obt" name="cgpa_obt" step="0.01" min="0.00" max="4.00" class="w-full border p-2 rounded" required>
                     </div>
 
                 @elseif($modalType === 'module_tracker')
