@@ -36,7 +36,7 @@
                         Data Science
                         @break
                     @case('ZI')
-                        Applied Artifical Intelligence
+                        Applied Artificial Intelligence
                         @break
                     @case('ZS')
                         Cybersecurity & Forensics
@@ -53,13 +53,42 @@
     <p class="text-gray-700">
         <span class="font-semibold">Current CGPA:</span> 
         <span class="text-gray-900">
-            {{ collect(json_decode(Auth::user()->studentInfo->cgpa, true))->last() ?? 'N/A' }}
+            @if (Auth::user()->studentInfo && Auth::user()->studentInfo->cgpa)
+                {{ collect(json_decode(Auth::user()->studentInfo->cgpa, true))->last() ?? 'N/A' }}
+            @else
+                N/A
+            @endif
         </span>
     </p>
 @endsection
 
 @section('staff-info')
-    {{-- TODO: To fill in --}}
+    @php
+        $pl_privilege = Auth::user()->staffInfo->pl_privilige ?? null;
+    @endphp
+
+    <p class="text-gray-700">
+        <span class="font-semibold">Faculty:</span>
+        <span class="text-gray-900">School of Digital Science</span>
+    </p>
+
+    <p class="text-gray-700">
+        <span class="font-semibold">Role:</span> 
+        <span class="text-gray-900">
+            @if (Auth::user()->staffInfo)
+                @if (!$pl_privilege)
+                    Program Leader | Lecturer
+                @else
+                    Lecturer
+                @endif
+            @endif
+        </span>
+    </p>
+
+    <p class="text-gray-700">
+        <span class="font-semibold">Text Label 01:</span>
+        <span class="text-gray-900">Text Desc 01</span>
+    </p>
 @endsection
 
 @section('extra-buttons')

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('staff_info', function (Blueprint $table) {
             $table->string('staff_username')->primary();
 
-            $table->json('staff_type')->nullable(); 
+            $table->enum('staff_type', ['Academic', 'Administration']); 
+            $table->boolean('pl_privilige');
             $table->timestamps();
             
             $table->foreign('staff_username')->references('username')

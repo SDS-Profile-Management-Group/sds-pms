@@ -74,11 +74,12 @@
                 </select>
             </div>
         
-            <div class="mb-4 staff-questions hidden">
+            {{-- TODO: Fill in necessary questions --}}
+            {{-- <div class="mb-4 staff-questions hidden">
                 <label class="block text-gray-700">Staff-Specific Questions</label>
                 <input type="text" name="staff_question_1" class="w-full p-2 border rounded-lg" placeholder="Staff Question 1">
                 <input type="text" name="staff_question_2" class="w-full p-2 border rounded-lg" placeholder="Staff Question 2">
-            </div>
+            </div> --}}
 
             <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg">Register</button>
         </form>

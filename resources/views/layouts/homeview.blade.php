@@ -27,10 +27,14 @@
             </div>
 
             <div class="w-2/3 bg-gray-100 p-4 rounded-lg">
-                @if (Auth::check() && Auth::user()->userProfile)
-                    @if (Auth::user()->userProfile->isStudent())
+                @php
+                    $user = Auth::user();
+                @endphp
+            
+                @if ($user?->userProfile)
+                    @if ($user->userProfile->isStudent())
                         @yield('student-info')
-                    @elseif (Auth::user()->userProfile->isStaff())
+                    @elseif ($user->userProfile->isStaff())
                         @yield('staff-info')
                     @endif
                 @endif
