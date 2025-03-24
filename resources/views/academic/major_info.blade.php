@@ -1,3 +1,9 @@
-<div>
-    <!-- The only way to do great work is to love what you do. - Steve Jobs -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'Major Information')
+
+@section('content')
+    @section('navbar_type','major')
+    
+
+@endsection

@@ -11,6 +11,10 @@
                 {{-- Option 1 --}}
                 {{-- <a href="{{ route('about') }}" class="text-blue-500">About</a> --}}
                 {{-- <a href="{{ route('contact') }}" class="text-green-500">Contact</a> --}}
+
+            @elseif ($type === 'major')
+                <a href="" class="text-blue-500">NavBtn1</a>
+                <a href="" class="text-green-500">NavBtn2</a>
             
             @elseif ($type === 'dashboard')
                 <a href="{{ route('home') }}" class="text-blue-500">Home</a>

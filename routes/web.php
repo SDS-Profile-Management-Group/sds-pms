@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CgpaController;
+use App\Http\Controllers\InfoController;
 
 Route::get('/', function () {
     return view('auth/authenticate');
@@ -32,3 +33,5 @@ Route::get('/get-module-name/{module_id}', [ModuleController::class, 'getModuleN
 
 Route::get('/cgpa',[CgpaController::class, 'showCGPA'])->name('cgpa-overview');
 Route::post('/cgpa/store', [CgpaController::class, 'storeCGPA'])->name('cgpa.store');
+
+Route::get('/info/major', [InfoController::class, 'showMajorInfo'])->name('major-overview');

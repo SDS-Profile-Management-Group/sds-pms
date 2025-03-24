@@ -102,6 +102,9 @@
                 CGPA Information
             </a>
         @elseif (Auth::user()->userProfile->isStaff())
+            <a href="{{ route('major-overview') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
+                Major Information
+            </a>
         @endif
     @endif
     
