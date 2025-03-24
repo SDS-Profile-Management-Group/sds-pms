@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\StudentInfo;
-use App\Models\StaffInfo;
+use App\Models\Info\Staff;
 use App\Models\Student\ModulesTaken;
 
 class UserService
@@ -18,7 +18,7 @@ class UserService
             'major_id' => $incomingFields['major_id'],
         ]);
 
-        // Common Modules
+        // createModuleArray($modules)
         $modules = [
             ['module_id' => 'LE-1503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
             ['module_id' => 'LE-2503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
@@ -32,7 +32,7 @@ class UserService
             ['module_id' => 'ZC-4202', 'student_id' => $user->asg_username, 'assigned_md_type' => 'MC'],
         ];
 
-        // Nationality-Specific Modules
+        // arrayPush($modules, ...resultOfNationality('student_nationality))
 
         switch($incomingFields['student_nationality']){
             case 'local':
@@ -43,7 +43,7 @@ class UserService
                 break;
         }
 
-        // Major-specific Modules
+        // arrayPush($modules, ...resultOfMajor('major_id))
         switch ($incomingFields['major_id']) {
             case 'ZA':
                 array_push($modules,...[
@@ -131,15 +131,22 @@ class UserService
                 break;
         }
 
-        // Insert into the 'ModulesTaken' table
+        // INSERT => 'taken_modules'
         ModulesTaken::insert($modules);
     }
 
-    public function registerStaff($user)
+    public function registerStaff($user, $incomingFields)
     {
-        // Insert into the 'staff_info' table
-        StaffInfo::create([
+        if ($incomingFields['staff_type']=== 'program_leader'){
+            $pl_privilege = true;
+        } else if ($incomingFields['staff_type']=== 'lecturer') {
+            $pl_privilege = false;
+        }
+
+        Staff::create([
             'staff_username' => $user->asg_username,
+            'staff_type' => 'Academic',
+            'pl_privilige' => $pl_privilege,
         ]);
     }
 

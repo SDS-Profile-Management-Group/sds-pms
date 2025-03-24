@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Info\Staff;
+// use App\Models\Info\Student;
 
 class User extends Authenticatable
 {

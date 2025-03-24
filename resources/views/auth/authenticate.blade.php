@@ -33,6 +33,12 @@
         <!-- Register Form (Hidden by Default) -->
         <form id="registerForm" action="{{ route('register') }}" method="POST" class="hidden">
             @csrf
+
+            <div class="mb-4">
+                <label class="block text-gray-700">Full Name</label>
+                <input type="text" name="full_name" class="w-full p-2 border rounded-lg" required>
+            </div>
+            
             <div class="mb-4">
                 <label class="block text-gray-700">Username</label>
                 <input type="text" name="asg_username" class="w-full p-2 border rounded-lg" required>
@@ -53,9 +59,6 @@
             </div>
 
             <div class="mb-4 student-questions hidden">
-                <label class="block text-gray-700">Full Name</label>
-                <input type="text" name="full_name" class="w-full p-2 border rounded-lg" required>
-
                 <label class="block text-gray-700">Local or International Student?</label>
                 <select name="student_nationality" class="w-full p-2 border rounded-lg">
                     <option value="" class="text-gray-500 italic" disabled selected >Select if you're a Local or International Student</option>
@@ -75,11 +78,14 @@
             </div>
         
             {{-- TODO: Fill in necessary questions --}}
-            {{-- <div class="mb-4 staff-questions hidden">
-                <label class="block text-gray-700">Staff-Specific Questions</label>
-                <input type="text" name="staff_question_1" class="w-full p-2 border rounded-lg" placeholder="Staff Question 1">
-                <input type="text" name="staff_question_2" class="w-full p-2 border rounded-lg" placeholder="Staff Question 2">
-            </div> --}}
+            <div class="mb-4 staff-questions hidden">
+                <label class="block text-gray-700">Staff Category</label>
+                <select name="staff_type" class="w-full p-2 border rounded-lg">
+                    <option value="" disabled selected>Select User Type</option>
+                    <option value="program_leader">Program Leader</option>
+                    <option value="lecturer">Lecturer</option>
+                </select>
+            </div>
 
             <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg">Register</button>
         </form>
