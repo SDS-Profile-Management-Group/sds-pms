@@ -57,8 +57,8 @@ class DatabaseSeeder extends Seeder
         
         // User Seeders
         $this->call([
-            StudentSeed::class,
-            StaffSeed::class,
+            // StudentSeed::class,
+            // StaffSeed::class,
         ]);
         
     }

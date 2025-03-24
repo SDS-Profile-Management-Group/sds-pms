@@ -25,6 +25,7 @@
         <span class="font-semibold">Major:</span> 
         <span class="text-gray-900">
             @if (Auth::user()->studentInfo)
+                @include('components.major-name', ['major_id' => Auth::user()->studentInfo->major_id ?? null])
                 @switch(Auth::user()->studentInfo->major_id)
                     @case('ZA')
                         Artificial Intelligence & Robotics
@@ -76,7 +77,7 @@
         <span class="font-semibold">Role:</span> 
         <span class="text-gray-900">
             @if (Auth::user()->staffInfo)
-                @if (!$pl_privilege)
+                @if ($pl_privilege)
                     Program Leader | Lecturer
                 @else
                     Lecturer
@@ -85,10 +86,20 @@
         </span>
     </p>
 
+    @if($pl_privilege)
+        <p class="text-gray-700">
+            <span class="font-semibold">Major Coordinator:</span>
+            <span class="text-gray-900">
+                @include('partials/_major_identification', ['major_id' => Auth::user()->staffInfo->leadingMajor->major_id ?? null])
+            </span>
+        </p>
+    @endif
+
     <p class="text-gray-700">
-        <span class="font-semibold">Text Label 01:</span>
-        <span class="text-gray-900">Text Desc 01</span>
+        <span class="font-semibold">Modules Taught:</span>
+        <span class="text-gray-900">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
     </p>
+
 @endsection
 
 @section('extra-buttons')

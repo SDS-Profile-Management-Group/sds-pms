@@ -1,9 +1,11 @@
 <?php
-// Models/Info/Staff.php
 namespace App\Models\Info;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\User;
+use App\Models\Education\Major;
 
 class Staff extends Model
 {
@@ -21,6 +23,10 @@ class Staff extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'staff_username', 'asg_username'); // Adjust the foreign key and local key as needed
+        return $this->belongsTo(User::class, 'staff_username', 'asg_username');
+    }
+
+    public function leadingMajor(){
+        return $this->hasOne(Major::class, 'leading_staff', 'staff_username');
     }
 }
