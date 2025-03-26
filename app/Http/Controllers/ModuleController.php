@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Education\Module;
 use App\Models\Education\ModuleMajorRelation;
 use App\Models\Education\StudentModule;
-use App\Models\Profile;
 use App\Models\Info\Student;
+use App\Models\Profile;
 
 class ModuleController extends Controller
 {
