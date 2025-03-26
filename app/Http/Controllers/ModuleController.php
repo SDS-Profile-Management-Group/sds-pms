@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Education\Module;
 use App\Models\Education\ModuleMajorRelation;
-use App\Models\Student\ModulesTaken;
+use App\Models\Education\StudentModule;
 use App\Models\Profile;
 use App\Models\Info\Student;
 
 class ModuleController extends Controller
 {
     public function showModules(){
-        $records = ModulesTaken::with('module')
+        $records = StudentModule::with('module')
         ->where('student_id', Auth::user()->asg_username)
         ->get();
 
@@ -51,7 +51,7 @@ class ModuleController extends Controller
         $student = Student::where('student_username', auth()->user()->asg_username)->first();
         $module = ModuleMajorRelation::where('module_id', $request->module_id)->first();
         if (!$module) {            
-            ModulesTaken::create([
+            StudentModule::create([
                 'module_id' => $request->module_id,
                 'student_id' => $student->student_username,
                 'status' => $request->status,
@@ -90,7 +90,7 @@ class ModuleController extends Controller
                     break;
             }
 
-            ModulesTaken::create([
+            StudentModule::create([
                 'module_id' => $request->module_id,
                 'student_id' => $student->student_username,
                 'status' => $request->status,
@@ -101,11 +101,11 @@ class ModuleController extends Controller
     
         return redirect()->back()->with('success', 'Record added successfully.');
     }
-
+    
+    // ! NEED MORE BETTER UPDATES
     public function update(Request $request, $moduleId){
-        // ! NEED MORE BETTER UPDATES
         // Find the module record using the provided module_id
-        $module = ModulesTaken::where('module_id', $moduleId)
+        $module = StudentModule::where('module_id', $moduleId)
             ->where('student_id', auth()->user()->asg_username)
             ->first();
 
