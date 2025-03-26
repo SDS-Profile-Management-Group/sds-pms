@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\UBD;
+namespace App\Models\Education;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ModuleBelongsTo extends Model
+class ModuleMajorRelation extends Model
 {
     use HasFactory;
 

@@ -5,7 +5,8 @@ namespace App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\UBD\Modules;
+use App\Models\Education\Module;
+use App\Models\Info\Student;
 
 class ModulesTaken extends Model
 {
@@ -31,10 +32,10 @@ class ModulesTaken extends Model
     ];
 
     public function student(){
-        return $this->belongsTo(StudentInfo::class, 'student_id', 'student_username');
+        return $this->belongsTo(Student::class, 'student_id', 'student_username');
     }
 
-    public function module() {
-        return $this->belongsTo(Modules::class, 'module_id', 'module_id');
+    public function module(){
+        return $this->belongsTo(Module::class, 'module_id', 'module_id');
     }
 }

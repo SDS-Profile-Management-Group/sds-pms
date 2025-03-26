@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\UBD\Modules;
-use App\Models\UBD\ModuleBelongsTo;
+use App\Models\Education\Module;
+use App\Models\Education\ModuleMajorRelation;
 use App\Models\Student\ModulesTaken;
 use App\Models\Profile;
 use App\Models\Info\Student;
@@ -30,7 +30,7 @@ class ModuleController extends Controller
     }
 
     public function getModuleName($module_id){
-        $module = Modules::where('module_id', $module_id)->first();
+        $module = Module::where('module_id', $module_id)->first();
 
         if (!$module) {
             return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
@@ -49,7 +49,7 @@ class ModuleController extends Controller
         ]);
 
         $student = Student::where('student_username', auth()->user()->asg_username)->first();
-        $module = ModuleBelongsTo::where('module_id', $request->module_id)->first();
+        $module = ModuleMajorRelation::where('module_id', $request->module_id)->first();
         if (!$module) {            
             ModulesTaken::create([
                 'module_id' => $request->module_id,
