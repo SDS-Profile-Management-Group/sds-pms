@@ -4,7 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Profile;
-use App\Models\StudentInfo;
+use App\Models\Education\StudentModule;
+use App\Models\Info\Student;
 use App\Models\Info\Staff;
 use App\Models\Student\ModulesTaken;
 
@@ -12,7 +13,7 @@ class UserService
 {
     public function registerStudent($user, $incomingFields){
         // INSERT => 'student_info'
-        StudentInfo::create([
+        Student::create([
             'student_username' => $user->asg_username,
             'student_nationality' => $incomingFields['student_nationality'],
             'major_id' => $incomingFields['major_id'],
@@ -132,11 +133,10 @@ class UserService
         }
 
         // INSERT => 'taken_modules'
-        ModulesTaken::insert($modules);
+        StudentModule::insert($modules);
     }
 
-    public function registerStaff($user, $incomingFields)
-    {
+    public function registerStaff($user, $incomingFields){
         if ($incomingFields['staff_type']=== 'program_leader'){
             $pl_privilege = true;
         } else if ($incomingFields['staff_type']=== 'lecturer') {
@@ -150,8 +150,7 @@ class UserService
         ]);
     }
 
-    public function createUserProfile($user, $incomingFields)
-    {
+    public function createUserProfile($user, $incomingFields){
         // Create the profile record
         Profile::create([
             'username' => $user->asg_username,

@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Profile;
 
-// TODO: Enter StudentInfo Model class to insert information into student information table
-
 class ProfileController extends Controller
 {
     public function enterDetails(Request $request){
