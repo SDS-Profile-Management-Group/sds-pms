@@ -25,28 +25,7 @@
         <span class="font-semibold">Major:</span> 
         <span class="text-gray-900">
             @if (Auth::user()->studentInfo)
-                @include('components.major-name', ['major_id' => Auth::user()->studentInfo->major_id ?? null])
-                @switch(Auth::user()->studentInfo->major_id)
-                    @case('ZA')
-                        Artificial Intelligence & Robotics
-                        @break
-                    @case('ZC')
-                        Computer Science
-                        @break
-                    @case('ZD')
-                        Data Science
-                        @break
-                    @case('ZI')
-                        Applied Artificial Intelligence
-                        @break
-                    @case('ZS')
-                        Cybersecurity & Forensics
-                        @break
-                    @default
-                        No Major Assigned
-                @endswitch
-            @else
-                No Major Assigned
+                @include('partials._major_identification', ['major_id' => Auth::user()->studentInfo->major_id ?? null])
             @endif
         </span>
     </p>
