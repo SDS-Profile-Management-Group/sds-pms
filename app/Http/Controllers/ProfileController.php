@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Profile;
 
 // TODO: Enter StudentInfo Model class to insert information into student information table

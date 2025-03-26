@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Info;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Education\Major;
 
-class StudentInfo extends Model
+class Student extends Model
 {
     use HasFactory;
 
@@ -35,5 +35,4 @@ class StudentInfo extends Model
     public function modules(){
         return $this->hasMany(ModulesTaken::class, 'student_id', 'student_username');
     }
-
 }

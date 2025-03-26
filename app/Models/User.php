@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Info\Staff;
-// use App\Models\Info\Student;
+use App\Models\Info\Student;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -26,7 +27,7 @@ class User extends Authenticatable
     }
 
     public function studentInfo(){
-        return $this->hasOne(StudentInfo::class, 'student_username', 'asg_username');
+        return $this->hasOne(Student::class, 'student_username', 'asg_username');
     }
 
     public function staffInfo(){

@@ -9,7 +9,7 @@ use App\Models\UBD\Modules;
 use App\Models\UBD\ModuleBelongsTo;
 use App\Models\Student\ModulesTaken;
 use App\Models\Profile;
-use App\Models\StudentInfo;
+use App\Models\Info\Student;
 
 class ModuleController extends Controller
 {
@@ -48,7 +48,7 @@ class ModuleController extends Controller
             'grade' => 'nullable|string',
         ]);
 
-        $student = StudentInfo::where('student_username', auth()->user()->asg_username)->first();
+        $student = Student::where('student_username', auth()->user()->asg_username)->first();
         $module = ModuleBelongsTo::where('module_id', $request->module_id)->first();
         if (!$module) {            
             ModulesTaken::create([

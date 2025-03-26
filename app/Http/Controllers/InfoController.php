@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 // use App\Models\
 use App\Models\Profile;
-use App\Models\StudentInfo;
+use App\Models\Info\Student;
 use App\Models\Info\Staff;
 use App\Models\Education\Major;
 
@@ -16,7 +16,7 @@ class InfoController extends Controller
     public function showMajorInfo(){
         $majorId = Major::where('leading_staff', Auth::user()->asg_username)->value('major_id');
 
-        $studentRecords = StudentInfo::with(['user', 'major'])
+        $studentRecords = Student::with(['user', 'major'])
             ->where('major_id', $majorId)
             ->get();
 
