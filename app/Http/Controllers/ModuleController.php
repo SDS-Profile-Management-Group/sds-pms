@@ -44,7 +44,7 @@ class ModuleController extends Controller
     public function store(Request $request){
         $request->validate([
             'module_id' => 'required|string',
-            'status' => 'nullable|in:0,1',
+            'status' => 'nullable|in:0,1,2',
             'grade' => 'nullable|string',
         ]);
 

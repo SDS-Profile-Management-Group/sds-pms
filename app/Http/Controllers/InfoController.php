@@ -29,7 +29,7 @@ class InfoController extends Controller
         return view('academic/major_info', compact('studentRecords', 'staffRecords'));
     }
 
-    // public function showMajorInfo(){
-    //     return view('academic/major_info');
-    // }
+    public function showModuleInfo(){
+        return view('academic/module_info');
+    }
 }

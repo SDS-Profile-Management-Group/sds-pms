@@ -25,7 +25,17 @@
                     @else
                         <td class="py-2 px-4 border">{{ 'N/A' }}</td>
                     @endif
-                    <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
+                    <td class="py-2 px-4 border">
+                        @if ($record->status === 0)
+                            Not Taken
+                        @elseif ($record->status === 1)
+                            Taking
+                        @elseif ($record->status === 2)
+                            Taken
+                        @else
+                            Unknown
+                        @endif
+                    </td>
                     <td class="py-2 px-4 border">{{ $record->grade }}</td>
                 </tr>
             @empty

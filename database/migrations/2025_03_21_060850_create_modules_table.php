@@ -54,7 +54,7 @@ return new class extends Migration
                 'OB'
             ]);
             $table->string('grade')->nullable();
-            $table->boolean('status')->nullable();
+            $table->tinyInteger('status')->nullable();
             
             $table->primary(['module_id', 'student_id']);
             $table->unique(['module_id', 'student_id']);

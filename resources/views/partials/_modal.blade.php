@@ -65,6 +65,7 @@
                 <div class="mb-4">
                     <label for="status" class="block text-gray-700 font-semibold">Status:</label>
                     <select name="status" id="status" required class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center italic">
+                        <option value="2">Currently Taking</option>
                         <option value="1">Taken</option>
                         <option value="0">Not Taken</option>
                     </select>

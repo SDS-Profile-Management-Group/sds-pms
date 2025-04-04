@@ -21,8 +21,8 @@ Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::post('/logout', [UserController::class,'logout'])->name('logout');
 Route::post('/login', [UserController::class,'login'])->name('login');
 
-Route::post('/enter-details',[ProfileController::class, 'enterDetails'])->name('edit-profile');
-Route::get('/edit-details',[ProfileController::class, 'editDetails'])->name('edit-details');
+Route::post('/enter-details',[ProfileController::class, 'enterDetails'])->name('');
+Route::get('/edit-details',[ProfileController::class, 'editDetails'])->name('edit-profile');
 
 Route::get('/module-tracker', [ModuleController::class, 'showModules'])->name('module-tracker');
 Route::post('/module-tracker/store', [ModuleController::class, 'store'])->name('modules.store');
@@ -35,3 +35,4 @@ Route::get('/cgpa',[CgpaController::class, 'showCGPA'])->name('cgpa-overview');
 Route::post('/cgpa/store', [CgpaController::class, 'storeCGPA'])->name('cgpa.store');
 
 Route::get('/info/major', [InfoController::class, 'showMajorInfo'])->name('major-overview');
+Route::get('/info/module', [InfoController::class, 'showModuleInfo'])->name('module-overview');
