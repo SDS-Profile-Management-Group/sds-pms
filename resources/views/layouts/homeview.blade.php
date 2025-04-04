@@ -47,5 +47,15 @@
         </div>
     </div>
 
+    {{-- * Opt 1 --}}
+    {{-- <div class="flex items-center my-6">
+        <div class="flex-grow border-t border-gray-300"></div>
+        <span class="mx-4 text-gray-500 text-sm">Dashboard</span>
+        <div class="flex-grow border-t border-gray-300"></div>
+    </div> --}}
+
+    {{-- * Opt 2 --}}
+    <div class="w-full h-[1px] bg-gray-300 shadow-sm my-6"></div>
+
     @yield('dashboard')
 @endsection

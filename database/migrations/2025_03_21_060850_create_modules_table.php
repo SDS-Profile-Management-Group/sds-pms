@@ -51,8 +51,10 @@ return new class extends Migration
                 'MC', 
                 'MO', 
                 'CB', 
-                'OB'
+                'OB',
+                'DY',
             ]);
+            
             $table->string('grade')->nullable();
             $table->tinyInteger('status')->nullable();
             

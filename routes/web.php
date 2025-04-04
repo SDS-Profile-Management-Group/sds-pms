@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CgpaController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('auth/authenticate');
@@ -36,3 +37,5 @@ Route::post('/cgpa/store', [CgpaController::class, 'storeCGPA'])->name('cgpa.sto
 
 Route::get('/info/major', [InfoController::class, 'showMajorInfo'])->name('major-overview');
 Route::get('/info/module', [InfoController::class, 'showModuleInfo'])->name('module-overview');
+
+Route::get('/home/createPost', [PostController::class, 'createPosts'])->name('add-post');

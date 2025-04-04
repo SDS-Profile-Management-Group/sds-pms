@@ -109,8 +109,9 @@
     
 @endsection
 
+
+
 @section('dashboard')
-    <div>
-        <h1>This is a dashboard</h1>
-    </div>
+    @include('partials._post_form')
+    {{-- @include('partials._post_thread') --}}
 @endsection
