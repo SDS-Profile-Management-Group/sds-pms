@@ -14,40 +14,6 @@ class StudentSeed extends Seeder
      */
     public function run(): void
     {
-        // DB::table('users')->insert([
-        //     'asg_username' => '21B6027',
-        //     'email' => '21B6027@ubd.edu.bn',
-        //     'password' => bcrypt('password'),,
-        //     'user_type' => 'student',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-
-        // DB::table('user_profile')->insert([
-        //     'username' => '21B6027', 
-        //     'full_name' => 'Afwan Rezal',
-        //     'contact_number' => '+673 8903053',
-        //     'dob' => '2000-11-04',
-        //     'role' => 'student',
-        //     'salutations' => null, 
-        //     'alt_email' => 'afwan.rezal@gmail.com',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-
-        // DB::table('student_info')->insert([
-        //     'student_username' => '21B6027',
-        //     'cgpa' => json_encode([
-        //         'Semester 1' => '2.92',
-        //         'Semester 2' => '3.1',
-        //         'Semester 3' => '2.83',
-        //         'Semester 4' => '2.75',
-        //         'Semester 5' => '2.82',
-        //         'Semester 6' => '2.82',
-        //         'Semester 7' => '2.82',
-        //     ])
-        // ]);
-
         DB::table('users')->insert([
             [
                 'asg_username' => '21B6027',
