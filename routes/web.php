@@ -38,4 +38,4 @@ Route::post('/cgpa/store', [CgpaController::class, 'storeCGPA'])->name('cgpa.sto
 Route::get('/info/major', [InfoController::class, 'showMajorInfo'])->name('major-overview');
 Route::get('/info/module', [InfoController::class, 'showModuleInfo'])->name('module-overview');
 
-Route::get('/home/createPost', [PostController::class, 'createPosts'])->name('add-post');
+Route::post('/home/createPost', [PostController::class, 'createPosts'])->name('add-post');

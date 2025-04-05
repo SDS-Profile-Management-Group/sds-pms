@@ -22,10 +22,9 @@ class CgpaController extends Controller
         return view('education/cgpa', compact('cgpaData'));
     }
 
-    public function storeCGPA(Request $request)
-    {
-        $userId = Auth::user()->asg_username;
-        $student = Student::where('student_username', $userId)->first();
+    public function storeCGPA(Request $request){
+        $userID = Auth::user()->asg_username;
+        $student = Student::where('student_username', $userID)->first();
 
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found.');

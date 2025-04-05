@@ -6,7 +6,7 @@
     </div>
 
     {{-- Post Form --}}
-    <form action="" method="POST">
+    <form action="{{ route('add-post') }}" method="POST">
         @csrf
     
         <!-- Title Field -->
@@ -14,19 +14,13 @@
     
         <!-- Content Field -->
         <textarea name="content" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="What's on your mind?" required></textarea>
-    
-        {{-- Post Options (Icons) --}}
-        {{-- <div class="flex items-center mt-2 space-x-3">
-            <button type="button" class="flex items-center text-gray-600 hover:text-blue-500 transition">
-                📷 <span class="ml-1 text-sm">Photo</span>
-            </button>
-            <button type="button" class="flex items-center text-gray-600 hover:text-green-500 transition">
-                🎥 <span class="ml-1 text-sm">Video</span>
-            </button>
-            <button type="button" class="flex items-center text-gray-600 hover:text-yellow-500 transition">
-                📄 <span class="ml-1 text-sm">Document</span>
-            </button>
-        </div> --}}
+
+        
+        <!-- Buttons -->
+        <div class="flex items-center mt-2 space-x-3">
+            <input type="checkbox" name="is_private" id="is_private" class="text-blue-500">
+            <label for="is_private" class="text-sm text-gray-700">Make this post private</label>
+        </div>
     
         <!-- Submit Button -->
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md mt-3">

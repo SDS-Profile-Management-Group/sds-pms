@@ -11,13 +11,11 @@ class UserController extends Controller
 {
     protected $userService;
 
-    public function __construct(UserService $userService)
-    {
+    public function __construct(UserService $userService){
         $this->userService = $userService;
     }
 
-    public function register(Request $request)
-    {
+    public function register(Request $request){
         // Merge the email field by appending "@ubd.edu.bn" to the asg_username
         $request->merge([
             'email' => $request->input('asg_username') . '@ubd.edu.bn'
