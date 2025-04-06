@@ -11,7 +11,11 @@
 </head>
 <body class="bg-gray-100">
 
-    @include('partials._navbar', ['type' => View::yieldContent('navbar_type')]) 
+    @include('partials._navbar', [
+        'type' => View::yieldContent('navbar_type'),
+        'user_type' => auth()->user()->user_type,
+        'privilege' => auth()->user()->user_type === 'staff' && optional(auth()->user()->staffInfo)->pl_privilege ? 'full' : 'limited',
+        ]) 
 
     <!-- Main Content -->
     <div class="container mx-auto mt-6">

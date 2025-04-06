@@ -12,10 +12,7 @@ Route::get('/', function () {
     return view('auth/authenticate');
 });
 
-Route::get('/home', function(){
-    return view('home');
-})->name('home');
-
+Route::get('/home', [PostController::class, 'listPosts'])->name('home');
 
 
 Route::post('/register', [UserController::class, 'register'])->name('register');

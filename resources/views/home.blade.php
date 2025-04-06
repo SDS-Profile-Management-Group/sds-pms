@@ -115,5 +115,5 @@
 
 @section('dashboard')
     @include('partials._post_form')
-    {{-- @include('partials._post_thread') --}}
+    @include('partials._post_thread')
 @endsection
