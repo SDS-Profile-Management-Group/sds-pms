@@ -2,6 +2,10 @@
 
 @section('title', 'Homepage - ' . Auth::user()->asg_username)
 
+@section('scripts')
+    <script src="{{ asset('js/posts/toggle-posts.js') }}"></script>
+@endsection
+
 @section('page-title')
     @if (Auth::user()->userProfile && Auth::user()->userProfile->full_name)
         Welcome, <span class="headerID italic">{{ Auth::user()->userProfile->full_name }}</span>!

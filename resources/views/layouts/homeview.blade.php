@@ -8,7 +8,6 @@
         <h1 class="text-3xl mb-4">@yield('page-title', 'Welcome')</h1>
 
         <div class="flex gap-6">
-            <!-- Left: Profile Section -->
             <div class="w-1/3 bg-gray-100 p-4 rounded-lg flex flex-col items-center">
                 {{-- TODO: Figure out how to enter profile picture --}}
                 <img src="{{ Auth::user()->userProfile->profile_picture ?? asset('images/default-avatar.png') }}" 
@@ -21,7 +20,6 @@
                 </a>
             </div>
 
-            <!-- Right: Content Area -->
             <div class="w-2/3 bg-gray-100 p-4 rounded-lg">
                 @yield('profile-content')
             </div>
