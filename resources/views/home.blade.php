@@ -3,7 +3,7 @@
 @section('title', 'Homepage - ' . Auth::user()->asg_username)
 
 @section('scripts')
-    <script src="{{ asset('js/posts/toggle-posts.js') }}"></script>
+<script src="{{ asset('js/posts/toggle-posts.js') }}"></script>
 @endsection
 
 @section('page-title')

@@ -1,20 +1,17 @@
 <nav class="bg-white shadow-md p-4">
     <div class="container mx-auto flex justify-between items-center">
-        {{-- <a href="{{ url('/') }}" class="text-lg font-bold text-blue-600">SDS PMS</a> --}}
         <a href="{{ auth()->check() ? url('/home') : url('/auth/authentication') }}" 
             class="text-lg font-bold text-blue-600">
             SDS PMS
         </a>
         
         <div class="flex items-center space-x-4">
-            {{-- Default links --}}
             <a href="https://myubd.ubd.edu.bn/group/myubd" class="text-blue-500">MyUBD</a>
             <a href="https://smrs.ubd.edu.bn/orbeon/uis-welcome/login/" class="text-blue-500">GIS UBD</a>
             <a href="https://ubd.instructure.com/login/canvas" class="text-blue-500">UBD Canvas</a>
             
             @if ($type === 'staff')
                 <a href="{{ route('module-overview') }}" class="text-blue-500">Module Overview</a>
-                
                 @if ($type === 'lecturer')
                     <a href="{{ route('module-overview') }}" class="text-blue-500">NavBtn1</a>
                 @endif
