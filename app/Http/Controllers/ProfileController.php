@@ -5,33 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Profile;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
-    public function enterDetails(Request $request){
-        $incomingFields = $request->validate([
-            "full_name" => ["required","regex:/^[a-zA-Z\s]+$/"],
-            "dob" => ["required"],
-            "contact_number" => ["required"],
-            "alt_email"=>["required"],
-        ]);
+    public function showProfile($user_id){
+        // You can now use $user_id to find the user
+        $user = User::where('asg_username', $user_id)->first();
 
-        // ? Ensure we're updating the profile with the right username
-        $profile = Profile::firstOrNew([
-            'username' => auth()->user()->asg_username,  
-        ]);
-    
-        // Update details if the info exists or create a new one
-        $profile->full_name = $incomingFields['full_name'];
-        $profile->dob = $incomingFields['dob'];
-        $profile->contact_number = $incomingFields['contact_number'];
-        $profile->alt_email = $incomingFields['alt_email'];
-        $profile->save();
-    
-        return redirect('/home');
+        if (!$user) {
+            abort(404);
+        }
+
+        return view('information/profile', compact('user'));
     }
 
-    public function editDetails() {
-        return view('edit');
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        $user->userProfile->update([
+            'full_name' => $request->input('full_name'),
+            'contact_number' => $request->input('contact_number'),
+            'dob' => $request->input('dob'),
+            'alt_email' => $request->input('alt_email'),
+        ]);
+
+        // Redirect back to the profile page or to a confirmation page
+        return redirect()->route('profile-overview', ['user_id' => $user->asg_username])
+                         ->with('success', 'Profile updated successfully!');
+        // return view('home');
     }
 }

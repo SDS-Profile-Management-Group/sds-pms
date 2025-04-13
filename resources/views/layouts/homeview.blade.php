@@ -3,7 +3,7 @@
 @section('title', 'Homepage - ' . Auth::user()->asg_username)
 
 @section('content')
-    @section('navbar_type', 'home')
+    @section('navbar_type', 'dashboard')
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
         <h1 class="text-3xl mb-4">@yield('page-title', 'Welcome')</h1>
 
@@ -14,9 +14,9 @@
                      alt="Profile Picture" 
                      class="w-32 h-32 rounded-full object-cover shadow-md">
 
-                <a href="{{ route('edit-profile') }}" 
+                <a href="{{ route('profile-overview', ['user_id' => auth()->user()->asg_username]) }}" 
                    class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
-                    Edit Profile
+                    Profile
                 </a>
             </div>
 
@@ -45,14 +45,6 @@
         </div>
     </div>
 
-    {{-- * Opt 1 --}}
-    {{-- <div class="flex items-center my-6">
-        <div class="flex-grow border-t border-gray-300"></div>
-        <span class="mx-4 text-gray-500 text-sm">Dashboard</span>
-        <div class="flex-grow border-t border-gray-300"></div>
-    </div> --}}
-
-    {{-- * Opt 2 --}}
     <div class="w-full h-[1px] bg-gray-300 shadow-sm my-6"></div>
 
     @yield('dashboard')

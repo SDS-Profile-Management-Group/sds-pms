@@ -18,7 +18,7 @@ class PostController extends Controller
             ->where('user_id', '!=', $userID)
             ->get();
 
-        return view('home', compact('ownPosts', 'publicPosts'));
+        return view('information/posts', compact('ownPosts', 'publicPosts'));
     }
 
     public function createPosts(Request $request){

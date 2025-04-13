@@ -2,9 +2,6 @@
 
 @section('title', 'Homepage - ' . Auth::user()->asg_username)
 
-@section('scripts')
-<script src="{{ asset('js/posts/toggle-posts.js') }}"></script>
-@endsection
 
 @section('page-title')
     @if (Auth::user()->userProfile && Auth::user()->userProfile->full_name)
@@ -87,6 +84,10 @@
 
 @section('extra-buttons')
 
+    <a href="{{ route('posts') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
+        Posts
+    </a>
+
     @if (Auth::check() && Auth::user()->userProfile)
     
         @if (Auth::user()->userProfile->isStudent())
@@ -117,7 +118,7 @@
 
 
 
-@section('dashboard')
+{{-- @section('dashboard')
     @include('partials._post_form')
     @include('partials._post_thread')
-@endsection
+@endsection --}}
