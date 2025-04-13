@@ -11,7 +11,6 @@ use App\Models\User;
 class ProfileController extends Controller
 {
     public function showProfile($user_id){
-        // You can now use $user_id to find the user
         $user = User::where('asg_username', $user_id)->first();
 
         if (!$user) {
