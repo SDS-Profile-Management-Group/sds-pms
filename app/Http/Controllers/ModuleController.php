@@ -18,16 +18,18 @@ class ModuleController extends Controller
         ->where('student_id', Auth::user()->asg_username)
         ->get();
 
+        // MCs by assigned_md_type (like 'DC', 'MC', etc.)
         $mcBreakdown = $records->filter(function ($record) {
             return $record->status === 1 && $record->grade !== null;
         })->groupBy('assigned_md_type')->map(function ($group) {
             return $group->sum('module.mc');
         });
 
+        // MCs by level (like 1000, 2000, 3000, 4000)
         $levelBreakdown = $records->filter(function ($record) {
             return $record->status === 1 && $record->grade !== null;
         })->groupBy(function ($record) {
-            return $record->module->level; // Assuming 'level' is a column in modules
+            return $record->module->level; // <- from modules table
         })->map(function ($group) {
             return $group->sum('module.mc');
         });
