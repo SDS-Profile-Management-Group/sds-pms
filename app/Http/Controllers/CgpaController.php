@@ -19,7 +19,7 @@ class CgpaController extends Controller
             $cgpaData = json_decode($student->cgpa, true); // Assuming 'cgpa' column stores JSON data
         }
 
-        return view('education/cgpa', compact('cgpaData'));
+        return view('student/cgpa_tracker', compact('cgpaData'));
     }
 
     public function storeCGPA(Request $request){

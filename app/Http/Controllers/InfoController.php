@@ -26,10 +26,10 @@ class InfoController extends Controller
         })
         ->get();
 
-        return view('academic/major_info', compact('studentRecords', 'staffRecords'));
+        return view('staff/major_info', compact('studentRecords', 'staffRecords'));
     }
 
     public function showModuleInfo(){
-        return view('academic/module_info');
+        return view('staff/module_info');
     }
 }

@@ -26,20 +26,20 @@ class ModuleController extends Controller
             return $group->sum('module.mc');
         });
 
-        return view('education/module_tracker', compact('records', 'mcBreakdown'));
+        return view('student/module_tracker', compact('records', 'mcBreakdown'));
     }
 
-    public function getModuleName($module_id){
-        $module = Module::where('module_id', $module_id)->first();
+    // public function getModuleName($module_id){
+    //     $module = Module::where('module_id', $module_id)->first();
 
-        if (!$module) {
-            return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
-        }
+    //     if (!$module) {
+    //         return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
+    //     }
 
-        return response()->json([
-            'module_name' => $module->module_name  // Assuming 'module_name' is the correct attribute name
-        ]);
-    }
+    //     return response()->json([
+    //         'module_name' => $module->module_name  // Assuming 'module_name' is the correct attribute name
+    //     ]);
+    // }
 
     public function store(Request $request){
         $request->validate([
@@ -117,7 +117,7 @@ class ModuleController extends Controller
         // Validate only the necessary fields
         $validatedData = $request->validate([
             'grade' => 'nullable|string|max:10',
-            'status' => 'nullable|boolean',  // Ensure status is validated as a boolean
+            'status' => 'nullable|in:0,1,2',  // Ensure status is validated as a boolean
         ]);
 
         // If status is provided in the request, cast it to a boolean explicitly
