@@ -19,27 +19,21 @@ class ModuleController extends Controller
         ->get();
 
         $mcBreakdown = $records->filter(function ($record) {
-            return $record->status === true && $record->grade !== null;
-        })
-        ->groupBy('assigned_md_type')
-        ->map(function ($group) {
+            return $record->status === 1 && $record->grade !== null;
+        })->groupBy('assigned_md_type')->map(function ($group) {
             return $group->sum('module.mc');
         });
 
-        return view('student/module_tracker', compact('records', 'mcBreakdown'));
+        $levelBreakdown = $records->filter(function ($record) {
+            return $record->status === 1 && $record->grade !== null;
+        })->groupBy(function ($record) {
+            return $record->module->level; // Assuming 'level' is a column in modules
+        })->map(function ($group) {
+            return $group->sum('module.mc');
+        });
+
+        return view('student/module_tracker', compact('records', 'mcBreakdown', 'levelBreakdown'));
     }
-
-    // public function getModuleName($module_id){
-    //     $module = Module::where('module_id', $module_id)->first();
-
-    //     if (!$module) {
-    //         return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
-    //     }
-
-    //     return response()->json([
-    //         'module_name' => $module->module_name  // Assuming 'module_name' is the correct attribute name
-    //     ]);
-    // }
 
     public function store(Request $request){
         $request->validate([

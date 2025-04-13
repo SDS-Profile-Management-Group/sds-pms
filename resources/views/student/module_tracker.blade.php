@@ -109,13 +109,17 @@
                     </tr>
                     <tr>
                         <th class="py-2 px-4 border">Level 1000</th>
-                        <td class="py-2 px-4 border"></td>
-                        <td class="py-2 px-4 border text-center">{{ $mcBreakdown['DC'] ?? 0 }}</td>
+                        <td class="py-2 px-4 border">
+                            Students are required to obtain a maxiumum of 40 Module Credits from Level 1000.
+                        </td>
+                        <td class="py-2 px-4 border text-center">{{ $levelBreakdown['1000'] ?? 0 }}</td>
                     </tr>
                     <tr>
                         <th class="py-2 px-4 border">Level 4000</th>
-                        <td class="py-2 px-4 border"></td>
-                        <td class="py-2 px-4 border text-center">{{ $mcBreakdown['MC'] ?? 0 }}</td>
+                        <td class="py-2 px-4 border">
+                            Students are required to obtain a minumum of 24 Module Credits from Level 4000.
+                        </td>
+                        <td class="py-2 px-4 border text-center">{{ $levelBreakdown['4000'] ?? 0 }}</td>
                     </tr>
                 </table>
             </div>
@@ -124,7 +128,7 @@
 
     @include('partials._modal', [
         'modalType' => 'module_tracker'
-        ])
+    ])
 
     @include('partials._module_table', [
         'id' => 'cpbrd', 
