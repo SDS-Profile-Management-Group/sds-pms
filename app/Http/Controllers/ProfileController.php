@@ -32,9 +32,7 @@ class ProfileController extends Controller
             'alt_email' => $request->input('alt_email'),
         ]);
 
-        // Redirect back to the profile page or to a confirmation page
         return redirect()->route('profile-overview', ['user_id' => $user->asg_username])
                          ->with('success', 'Profile updated successfully!');
-        // return view('home');
     }
 }
