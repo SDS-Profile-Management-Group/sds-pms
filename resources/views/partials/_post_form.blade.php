@@ -50,8 +50,10 @@
             </div>
         </div>
     
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-3">
-            Post
-        </button>
+        <div class="flex justify-end mt-3">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full">
+                Post
+            </button>
+        </div>
     </form>
 </div>

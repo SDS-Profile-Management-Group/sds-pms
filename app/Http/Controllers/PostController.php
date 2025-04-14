@@ -14,8 +14,6 @@ class PostController extends Controller
         $userID = Auth::user()->asg_username;
 
         $allPosts = Post::latest()->get();
-        // $ownPosts = $allPosts->filter(fn($post)=> $post->user_id === $userID);
-        // $otherPosts = $allPosts->reject(fn($post)=> $post->user_id === $userID);
 
         return view('information/posts', compact('allPosts'));
     }
