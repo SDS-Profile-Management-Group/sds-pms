@@ -27,9 +27,9 @@ class ModuleController extends Controller
 
         // MCs by level (like 1000, 2000, 3000, 4000)
         $levelBreakdown = $records->filter(function ($record) {
-            return $record->status === 1 && $record->grade !== null;
+            return $record->status === 1 && $record->grade !== null && $record->module !== null;
         })->groupBy(function ($record) {
-            return $record->module->level; // <- from modules table
+            return $record->module->level;
         })->map(function ($group) {
             return $group->sum('module.mc');
         });
