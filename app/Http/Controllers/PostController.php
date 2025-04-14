@@ -10,7 +10,7 @@ use App\Models\Posts\Post;
 
 class PostController extends Controller
 {
-    public function listPosts(){
+    public function listActivity(){
         $userID = Auth::user()->asg_username;
 
         $ownPosts = Post::where('user_id', $userID)->get();
@@ -46,7 +46,7 @@ class PostController extends Controller
             'posts' => json_encode($postData),
         ]);
 
-        return redirect('/home');
+        return back()->with('success', 'Post was successful!');
     }
 
 }

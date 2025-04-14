@@ -39,4 +39,4 @@ Route::get('/info/major', [InfoController::class, 'showMajorInfo'])->name('major
 Route::get('/info/module', [InfoController::class, 'showModuleInfo'])->name('module-overview');
 
 Route::post('/home/createPost', [PostController::class, 'createPosts'])->name('add-post');
-Route::get('/info/posts', [PostController::class, 'listPosts'])->name('posts');
+Route::get('/info/activity', [PostController::class, 'listActivity'])->name('activity-thread');

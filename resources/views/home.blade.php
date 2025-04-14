@@ -84,8 +84,10 @@
 
 @section('extra-buttons')
 
-    <a href="{{ route('posts') }}" class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
-        Posts
+    <a href="{{ route('activity-thread') }}" 
+    class="btn bg-gray-600 hover:bg-gray-700 text-white font-semibold 
+    py-1 px-2 mr-3 rounded-lg shadow-md transition duration-300">
+        Activity Threads
     </a>
 
     @if (Auth::check() && Auth::user()->userProfile)
