@@ -1,38 +1,33 @@
-<div id="own-posts" class="post-section hidden space-y-2">
-    <h2 class="text-xl font-semibold mb-2">My Posts</h2>
-    @foreach ($ownPosts as $post)
-        @php
-            $postData = json_decode($post->posts, true);
-        @endphp
-        <div class="p-4 bg-blue-100 rounded shadow">
-            <h3 class="text-lg font-bold">{{ $postData['title'] }}</h3>
-            <p class="mt-2">{!! nl2br(e($postData['content']['text'])) !!}</p>
-        </div>
-    @endforeach
-</div>
+<div id="posts" class="post-section space-y-2">
+    <h2 class="text-xl font-semibold mb-2">Posts</h2>
 
-<div id="public-posts" class="post-section hidden space-y-2">
-    <h2 class="text-xl font-semibold mb-2">Public Posts</h2>
-    @foreach ($publicPosts as $post)
+    @foreach ($allPosts as $post)
+        
         @php
-            $postData = json_decode($post->posts, true);
-        @endphp
-        <div class="p-4 bg-green-100 rounded shadow">
-            <h3 class="text-lg font-bold">{{ $postData['title'] }}</h3>
-            <p class="mt-2">{!! nl2br(e($postData['content']['text'])) !!}</p>
-        </div>
-    @endforeach
-</div>
+            // Decode JSON and ensure it's a valid array
+            $postData = json_decode($post->content, true);
+            $isOwnPost = $post->user_id === Auth::user()->asg_username;
 
-<div id="all-posts" class="post-section space-y-2">
-    <h2 class="text-xl font-semibold mb-2">All Posts</h2>
-    @foreach ($ownPosts->merge($publicPosts) as $post)
-        @php
-            $postData = json_decode($post->posts, true);
+            // Check if json_decode was successful and has the expected structure
+            $postTitle = isset($postData['title']) ? $postData['title'] : 'Untitled';
+            $postText = isset($postData['content']['text']) ? $postData['content']['text'] : 'No content available';
         @endphp
-        <div class="p-4 bg-gray-100 rounded shadow">
-            <h3 class="text-lg font-bold">{{ $postData['title'] }}</h3>
-            <p class="mt-2">{!! nl2br(e($postData['content']['text'])) !!}</p>
-        </div>
+
+            <div class="post-card p-4 rounded shadow {{ $isOwnPost ? 'bg-blue-100' : 'bg-green-100' }}"
+                data-type="{{ $post->is_announcement ? 'announcement' : 'personal' }}"
+                data-category="{{ $post->is_academic ? 'academic' : 'non-academic' }}"
+                data-location="{{ $post->is_on_campus ? 'on-campus' : 'off-campus' }}">
+                <div class="flex flex-row items-center gap-x-4">
+                    <img src="{{ Auth::user()->avatar ?? asset('default-avatar.png') }}" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                    <h3 class="text-lg font-bold">{{ $postTitle }}</h3>
+                    <span class="text-sm italic bg-red-300 text-red-900 px-2 py-1 rounded">
+                        {{ $post->is_announcement ? 'Announcement' : 'Personal Post' }}
+                    </span>
+                </div>
+                    <p class="text-sm italic">{{$post->user->userProfile->full_name}} - {{$post->user_id}}</p>
+        
+                
+                <p class="mt-2">{!! nl2br(e($postText)) !!}</p>
+            </div>
     @endforeach
 </div>

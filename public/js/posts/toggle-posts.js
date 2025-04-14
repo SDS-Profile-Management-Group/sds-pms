@@ -1,11 +1,23 @@
-function toggleView(view) {
-    document.querySelectorAll('.post-section').forEach(el => el.classList.add('hidden'));
+function applyFilters() {
+    const type = document.getElementById('filter-type').value;
+    const category = document.getElementById('filter-category').value;
+    const location = document.getElementById('filter-location').value;
 
-    if (view === 'own') {
-        document.getElementById('own-posts').classList.remove('hidden');
-    } else if (view === 'public') {
-        document.getElementById('public-posts').classList.remove('hidden');
-    } else {
-        document.getElementById('all-posts').classList.remove('hidden');
-    }
+    document.querySelectorAll('.post-card').forEach(card => {
+        const matchesType = !type || card.dataset.type === type;
+        const matchesCategory = !category || card.dataset.category === category;
+        const matchesLocation = !location || card.dataset.location === location;
+
+        card.classList.toggle('hidden', !(matchesType && matchesCategory && matchesLocation));
+    });
+}
+
+function resetFilters() {
+    // Reset all dropdowns to default (empty string)
+    document.getElementById('filter-type').value = '';
+    document.getElementById('filter-category').value = '';
+    document.getElementById('filter-location').value = '';
+
+    // Show all posts
+    applyFilters();
 }

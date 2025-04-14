@@ -10,25 +10,24 @@ use App\Models\Posts\Post;
 
 class PostController extends Controller
 {
-    public function listPosts(){
+    public function listActivity(){
         $userID = Auth::user()->asg_username;
 
-        $ownPosts = Post::where('user_id', $userID)->get();
-        $publicPosts = Post::where('privacy', false)
-            ->where('user_id', '!=', $userID)
-            ->get();
+        $allPosts = Post::latest()->get();
 
-        return view('information/posts', compact('ownPosts', 'publicPosts'));
+        return view('information/posts', compact('allPosts'));
     }
 
     public function createPosts(Request $request){
+        $userID = Auth::user()->asg_username;
+
         $incomingFields = $request->validate([
             'title' => 'required|string',
             'content' => 'required|string',
+            'is_announcement' => 'required|boolean',
+            'is_academic' => 'required|boolean',
+            'is_on_campus' => 'required|boolean',
         ]);
-
-        $isPrivate = $request->has('is_private') ? true : false;
-        $userID = Auth::user()->asg_username;
 
         $postData = [
             'title' => $incomingFields['title'],
@@ -36,17 +35,17 @@ class PostController extends Controller
                 'text' => $incomingFields['content'],
                 'file' => null // placeholder for file paths
             ],
-            'category' => null,
-            'tags' => null,
         ];
 
         Post::create([
             'user_id' => $userID,
-            'privacy' => $isPrivate,
-            'posts' => json_encode($postData),
+            'content' => json_encode($postData),
+            'is_announcement' => $incomingFields['is_announcement'],
+            'is_academic' => $incomingFields['is_academic'],
+            'is_on_campus' => $incomingFields['is_on_campus'],
         ]);
 
-        return redirect('/home');
+        return back()->with('success', 'Post was successful!');
     }
 
 }
