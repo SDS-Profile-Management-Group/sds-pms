@@ -16,10 +16,38 @@
         class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"  required></textarea>
 
         
-        <!-- Buttons -->
-        <div class="flex items-center mt-2 space-x-3">
-            <input type="checkbox" name="is_private" id="is_private" class="text-blue-500">
-            <label for="is_private" class="text-sm text-gray-700">Make this post private</label>
+        <!-- Dropdowns -->
+        <div class="flex flex-col space-y-3 mt-3">
+
+            <!-- Post Type -->
+            <div>
+                <label for="is_announcement" class="block text-sm text-gray-700 mb-1">Post Type</label>
+                <select name="is_announcement" id="is_announcement"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="1">Announcement</option>
+                    <option value="0">Personal Update</option>
+                </select>
+            </div>
+
+            <!-- Academic or Non-Academic -->
+            <div>
+                <label for="is_academic" class="block text-sm text-gray-700 mb-1">Content Type</label>
+                <select name="is_academic" id="is_academic"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="1">Academic</option>
+                    <option value="0">Non-Academic</option>
+                </select>
+            </div>
+
+            <!-- Location -->
+            <div>
+                <label for="is_on_campus" class="block text-sm text-gray-700 mb-1">Location</label>
+                <select name="is_on_campus" id="is_on_campus"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="1">On-Campus</option>
+                    <option value="0">Off-Campus</option>
+                </select>
+            </div>
         </div>
     
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-3">

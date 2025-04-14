@@ -15,8 +15,10 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
-        'privacy',
-        'posts',
+        'is_announcement',
+        'is_academic',
+        'is_on_campus',
+        'content',
     ];
 
     public function user(){

@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->boolean('privacy');
-            $table->json('posts');
+            $table->string('user_id')->index();
+            $table->boolean('is_announcement');   // true = Announcement, false = Personal Update
+            $table->boolean('is_academic');       // true = Academic, false = Non-Academic
+            $table->boolean('is_on_campus');      // true = On-campus, false = Off-campus
+            $table->json('content');
             $table->timestamps();
 
             $table->foreign('user_id')->references('asg_username')
