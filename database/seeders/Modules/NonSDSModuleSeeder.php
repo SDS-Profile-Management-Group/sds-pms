@@ -92,11 +92,46 @@ class NonSDSModuleSeeder extends Seeder
             ],
             
             [
-                'module_id' => 'TM-3301',
-                'module_name' => 'Product Design Engineering',
+                'module_id' => 'LJ-1403',
+                'module_name' => 'Japanese I',
+                'mc' => '4',
+                'level' => '1000'
+            ],
+
+            [
+                'module_id' => 'LJ-2403',
+                'module_name' => 'Japanese II',
+                'mc' => '4',
+                'level' => '2000'
+            ],
+
+            [
+                'module_id' => 'LJ-2404',
+                'module_name' => 'Japanese III',
+                'mc' => '4',
+                'level' => '2000'
+            ],
+
+            [
+                'module_id' => 'LJ-3402',
+                'module_name' => 'Japanese IV',
                 'mc' => '4',
                 'level' => '3000'
-            ]
+            ],
+
+            [
+                'module_id' => 'LJ-3403',
+                'module_name' => 'Japanese V',
+                'mc' => '4',
+                'level' => '3000'
+            ],
+
+            [
+                'module_id' => 'LJ-3404',
+                'module_name' => 'Japanese VI',
+                'mc' => '4',
+                'level' => '3000'
+            ],
         ]);
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Info;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudentInfo extends Model
+use App\Models\Education\Major;
+use App\Models\User;
+
+class Student extends Model
 {
     use HasFactory;
 
@@ -23,11 +26,14 @@ class StudentInfo extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'user_id', 'id'); // Adjust the foreign key and local key as needed
+        return $this->belongsTo(User::class, 'student_username', 'asg_username'); // Adjust the foreign key and local key as needed
+    }
+
+    public function major(){
+        return $this->belongsTo(Major::class, 'major_id', 'major_id');
     }
 
     public function modules(){
         return $this->hasMany(ModulesTaken::class, 'student_id', 'student_username');
     }
-
 }

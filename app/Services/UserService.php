@@ -4,21 +4,22 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Profile;
-use App\Models\StudentInfo;
-use App\Models\StaffInfo;
+use App\Models\Education\StudentModule;
+use App\Models\Info\Student;
+use App\Models\Info\Staff;
 use App\Models\Student\ModulesTaken;
 
 class UserService
 {
     public function registerStudent($user, $incomingFields){
         // INSERT => 'student_info'
-        StudentInfo::create([
+        Student::create([
             'student_username' => $user->asg_username,
             'student_nationality' => $incomingFields['student_nationality'],
             'major_id' => $incomingFields['major_id'],
         ]);
 
-        // Common Modules
+        // createModuleArray($modules)
         $modules = [
             ['module_id' => 'LE-1503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
             ['module_id' => 'LE-2503', 'student_id' => $user->asg_username, 'assigned_md_type' => 'CB'],
@@ -32,7 +33,7 @@ class UserService
             ['module_id' => 'ZC-4202', 'student_id' => $user->asg_username, 'assigned_md_type' => 'MC'],
         ];
 
-        // Nationality-Specific Modules
+        // arrayPush($modules, ...resultOfNationality('student_nationality))
 
         switch($incomingFields['student_nationality']){
             case 'local':
@@ -43,7 +44,7 @@ class UserService
                 break;
         }
 
-        // Major-specific Modules
+        // arrayPush($modules, ...resultOfMajor('major_id))
         switch ($incomingFields['major_id']) {
             case 'ZA':
                 array_push($modules,...[
@@ -131,20 +132,25 @@ class UserService
                 break;
         }
 
-        // Insert into the 'ModulesTaken' table
-        ModulesTaken::insert($modules);
+        // INSERT => 'taken_modules'
+        StudentModule::insert($modules);
     }
 
-    public function registerStaff($user)
-    {
-        // Insert into the 'staff_info' table
-        StaffInfo::create([
+    public function registerStaff($user, $incomingFields){
+        if ($incomingFields['staff_type']=== 'program_leader'){
+            $pl_privilege = true;
+        } else if ($incomingFields['staff_type']=== 'lecturer') {
+            $pl_privilege = false;
+        }
+
+        Staff::create([
             'staff_username' => $user->asg_username,
+            'staff_type' => 'Academic',
+            'pl_privilige' => $pl_privilege,
         ]);
     }
 
-    public function createUserProfile($user, $incomingFields)
-    {
+    public function createUserProfile($user, $incomingFields){
         // Create the profile record
         Profile::create([
             'username' => $user->asg_username,

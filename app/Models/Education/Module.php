@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\UBD;
+namespace App\Models\Education;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Modules extends Model
+class Module extends Model
 {
     use HasFactory;
 
@@ -17,5 +17,7 @@ class Modules extends Model
     protected $fillable = [
         'module_id',
         'module_name',
+        'mc',
+        'level'
     ];
 }

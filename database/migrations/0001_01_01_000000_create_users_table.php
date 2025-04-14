@@ -37,6 +37,25 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('user_profile', function(Blueprint $table){
+            $table->string('username')->primary();
+
+            $table->string('full_name')->nullable();
+
+            $table->string('contact_number')->nullable();
+            $table->date('dob')->nullable();
+
+            $table->string('role');
+            $table->enum('salutations', ['Awang', 'Dayang', 'Mr.', 'Mrs.', 'Doctor', 'Professor'])->nullable(); //? Is this actually needed?
+            
+            $table->string('alt_email')->nullable();
+            $table->timestamps();
+
+            $table->foreign('username')->references('asg_username')
+            ->on('users')
+            ->onDelete('cascade');
+        });
     }
 
     /**
@@ -44,8 +63,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('user_profile');
         Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
     }
 };

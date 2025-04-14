@@ -14,7 +14,8 @@
         </thead>
         <tbody>
             @forelse ($records->where('assigned_md_type', $type)->sortBy('module_id') as $record)
-                <tr data-module-id="{{ $record->module_id }}" 
+                <tr data-module-id="{{ $record->module_id }}"
+                    data-module-name="{{ $record->module->module_name ?? 'N/A' }}" 
                     data-status="{{ $record->status }}" 
                     data-grade="{{ $record->grade }}"
                     data-update-url="{{ route('modules.update', $record->module_id) }}"
@@ -25,7 +26,17 @@
                     @else
                         <td class="py-2 px-4 border">{{ 'N/A' }}</td>
                     @endif
-                    <td class="py-2 px-4 border">{{ $record->status == 1 ? 'Taken' : 'Not Taken' }}</td>
+                    <td class="py-2 px-4 border">
+                        @if ($record->status === 0)
+                            Not Taken
+                        @elseif ($record->status === 1)
+                            Taken
+                        @elseif ($record->status === 2)
+                            Taking
+                        @else
+                            Unknown
+                        @endif
+                    </td>
                     <td class="py-2 px-4 border">{{ $record->grade }}</td>
                 </tr>
             @empty

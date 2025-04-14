@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeModalBtn = document.getElementById("close-modal-btn");
     
     const moduleIdInput = document.getElementById("module_id");
+    const moduleNameInput = document.getElementById("module_name");
     const statusInput = document.getElementById("status");
     const gradeInput = document.getElementById("grade");
 
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Populate form fields with the selected row data
             moduleIdInput.value = selectedRow.dataset.moduleId;
+            moduleNameInput.value = selectedRow.dataset.moduleName
 
             if (selectedRow.dataset.status === '1') {
                 statusInput.value = '1';  // Taken

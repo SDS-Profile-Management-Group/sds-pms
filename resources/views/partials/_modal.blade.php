@@ -8,12 +8,14 @@
     $routeName = match($modalType) {
         'cgpa' => 'cgpa.store',
         'module_tracker' => 'modules.store',
+        'profile' => 'profile.edit',
         // default => 'default.route',
     };
 
     $headName = match($modalType) {
         'cgpa' => 'CGPA Information',
         'module_tracker' => 'Module Information',
+        'profile' => 'Profile Information',
         default => 'Default Information',
     };
 @endphp
@@ -50,7 +52,6 @@
                 </div>
 
             @elseif($modalType === 'module_tracker')
-
                 <div class="mb-4">
                     <label for="module_id" class="block text-gray-700">Module ID:</label>
                     <input type="text" id="module_id" name="module_id" class="w-full border p-2 rounded" required>
@@ -64,6 +65,7 @@
                 <div class="mb-4">
                     <label for="status" class="block text-gray-700 font-semibold">Status:</label>
                     <select name="status" id="status" required class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center italic">
+                        <option value="2">Currently Taking</option>
                         <option value="1">Taken</option>
                         <option value="0">Not Taken</option>
                     </select>
@@ -79,6 +81,9 @@
                         <option value="F">F</option>
                     </select>
                 </div>
+            
+            @elseif($modalType === 'profile')
+
             @endif
             
             <div class="flex justify-end gap-2">

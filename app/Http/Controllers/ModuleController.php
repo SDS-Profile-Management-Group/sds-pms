@@ -5,53 +5,49 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\UBD\Modules;
-use App\Models\UBD\ModuleBelongsTo;
-use App\Models\Student\ModulesTaken;
+use App\Models\Education\Module;
+use App\Models\Education\ModuleMajorRelation;
+use App\Models\Education\StudentModule;
+use App\Models\Info\Student;
 use App\Models\Profile;
-use App\Models\StudentInfo;
 
 class ModuleController extends Controller
 {
     public function showModules(){
-        $records = ModulesTaken::with('module')
+        $records = StudentModule::with('module')
         ->where('student_id', Auth::user()->asg_username)
         ->get();
 
+        // MCs by assigned_md_type (like 'DC', 'MC', etc.)
         $mcBreakdown = $records->filter(function ($record) {
-            return $record->status === true && $record->grade !== null;
-        })
-        ->groupBy('assigned_md_type')
-        ->map(function ($group) {
+            return $record->status === 1 && $record->grade !== null;
+        })->groupBy('assigned_md_type')->map(function ($group) {
             return $group->sum('module.mc');
         });
 
-        return view('education/module_tracker', compact('records', 'mcBreakdown'));
-    }
+        // MCs by level (like 1000, 2000, 3000, 4000)
+        $levelBreakdown = $records->filter(function ($record) {
+            return $record->status === 1 && $record->grade !== null && $record->module !== null;
+        })->groupBy(function ($record) {
+            return $record->module->level;
+        })->map(function ($group) {
+            return $group->sum('module.mc');
+        });
 
-    public function getModuleName($module_id){
-        $module = Modules::where('module_id', $module_id)->first();
-
-        if (!$module) {
-            return response()->json(['module_name' => 'N/A']);  // Return 'N/A' if module not found
-        }
-
-        return response()->json([
-            'module_name' => $module->module_name  // Assuming 'module_name' is the correct attribute name
-        ]);
+        return view('student/module_tracker', compact('records', 'mcBreakdown', 'levelBreakdown'));
     }
 
     public function store(Request $request){
         $request->validate([
             'module_id' => 'required|string',
-            'status' => 'nullable|in:0,1',
+            'status' => 'nullable|in:0,1,2',
             'grade' => 'nullable|string',
         ]);
 
-        $student = StudentInfo::where('student_username', auth()->user()->asg_username)->first();
-        $module = ModuleBelongsTo::where('module_id', $request->module_id)->first();
+        $student = Student::where('student_username', auth()->user()->asg_username)->first();
+        $module = ModuleMajorRelation::where('module_id', $request->module_id)->first();
         if (!$module) {            
-            ModulesTaken::create([
+            StudentModule::create([
                 'module_id' => $request->module_id,
                 'student_id' => $student->student_username,
                 'status' => $request->status,
@@ -90,7 +86,7 @@ class ModuleController extends Controller
                     break;
             }
 
-            ModulesTaken::create([
+            StudentModule::create([
                 'module_id' => $request->module_id,
                 'student_id' => $student->student_username,
                 'status' => $request->status,
@@ -101,11 +97,11 @@ class ModuleController extends Controller
     
         return redirect()->back()->with('success', 'Record added successfully.');
     }
-
+    
+    // ! NEED MORE BETTER UPDATES
     public function update(Request $request, $moduleId){
-        // ! NEED MORE BETTER UPDATES
         // Find the module record using the provided module_id
-        $module = ModulesTaken::where('module_id', $moduleId)
+        $module = StudentModule::where('module_id', $moduleId)
             ->where('student_id', auth()->user()->asg_username)
             ->first();
 
@@ -117,7 +113,7 @@ class ModuleController extends Controller
         // Validate only the necessary fields
         $validatedData = $request->validate([
             'grade' => 'nullable|string|max:10',
-            'status' => 'nullable|boolean',  // Ensure status is validated as a boolean
+            'status' => 'nullable|in:0,1,2',  // Ensure status is validated as a boolean
         ]);
 
         // If status is provided in the request, cast it to a boolean explicitly

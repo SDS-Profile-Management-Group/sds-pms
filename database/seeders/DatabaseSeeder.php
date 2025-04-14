@@ -15,6 +15,7 @@ use Database\Seeders\Category\MajorOptionSeeder;
 use Database\Seeders\Category\RequiredModulesSeeder;
 
 use Database\Seeders\User\StudentSeed;
+use Database\Seeders\User\StaffSeed;
 
 
 use App\Models\User;
@@ -55,9 +56,10 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // User Seeders
-        // $this->call([
-        //     StudentSeed::class,
-        // ]);
+        $this->call([
+            StudentSeed::class,
+            StaffSeed::class,
+        ]);
         
     }
 }
