@@ -10,10 +10,12 @@
         @csrf
     
         <!-- Title Field -->
-        <input type="text" name="title" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none mb-3" placeholder="Enter the title" required>
+        <input type="text" name="title" placeholder="Enter the title" 
+        class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none mb-3" required>
     
         <!-- Content Field -->
-        <textarea name="content" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="What's on your mind?" required></textarea>
+        <textarea name="content" placeholder="What's on your mind?"
+        class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"  required></textarea>
 
         
         <!-- Buttons -->
