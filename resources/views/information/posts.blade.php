@@ -4,22 +4,13 @@
 
 @section('scripts')
 <script src="{{ asset('js/posts/toggle-posts.js') }}"></script>
+<script src="{{ asset('js/popup/popup.js') }}"></script>
 @endsection
 
 @section('content')
     @section('navbar_type','major')
     
-    @if (session('success'))
-    <div id="success-popup" class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-md shadow-md">
-        {{ session('success') }}
-    </div>
-    
-    <script>
-        setTimeout(() => {
-            document.getElementById('success-popup').style.display = 'none';
-        }, 1500);
-    </script>
-    @endif
+    @include('partials._success')
     
     @include('partials._post_form')
 
