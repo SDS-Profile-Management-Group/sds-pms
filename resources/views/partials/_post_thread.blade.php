@@ -18,6 +18,7 @@
                 data-category="{{ $post->is_academic ? 'academic' : 'non-academic' }}"
                 data-location="{{ $post->is_on_campus ? 'on-campus' : 'off-campus' }}">
                 <div class="flex flex-row items-center gap-x-4">
+                    <img src="{{ Auth::user()->avatar ?? asset('default-avatar.png') }}" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
                     <h3 class="text-lg font-bold">{{ $postTitle }}</h3>
                     <span class="text-sm italic bg-red-300 text-red-900 px-2 py-1 rounded">
                         {{ $post->is_announcement ? 'Announcement' : 'Personal Post' }}
