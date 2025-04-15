@@ -2,6 +2,7 @@
 
 @section('title', 'Major Information')
 
+@section('navbar_type','others')
+
 @section('content')
-    @section('navbar_type','major')
 @endsection

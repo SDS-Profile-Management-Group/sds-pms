@@ -2,10 +2,9 @@
 
 @section('title', 'Major Information')
 
+@section('navbar_type','others')
+
 @section('content')
-    @section('navbar_type','major')
-    {{-- TODO: Create a section of table here --}}
-    
     <div class="bg-white shadow-md rounded-lg p-6 mb-6 module-div">
         <span>
             <h3 class="text-xl font-semibold">

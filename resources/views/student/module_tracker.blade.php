@@ -6,7 +6,7 @@
     <script src="{{ asset('js/tracker/module-tracker.js') }}"></script>
 @endsection
 
-@section('navbar_type', 'mt')
+@section('navbar_type', 'others')
 
 @section('content')
     <h1 class="text-3xl font-semibold my-4">Module Tracker Table</h1>
