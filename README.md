@@ -1,7 +1,7 @@
 # Profile Management System
 This is a web application developed for a Final Year Project. 
 
-The system allows users to manage their profiles with support for different user roles such as students, staff, and administrators. 
+The system allows users to manage their profiles with support for different user roles, as well as being the university's attempt at a local Microsoft Team alternative. 
 
 Built with Laravel, it follows the MVC architecture and includes basic authentication and role-based access control.
 
@@ -17,7 +17,6 @@ Built with Laravel, it follows the MVC architecture and includes basic authentic
 - Composer
 - Laravel 10
 - MySQL or PostgreSQL
-- Node.js and npm
 
 ## Installation
 1. Clone the repository:
