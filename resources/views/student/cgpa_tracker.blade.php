@@ -6,7 +6,7 @@
     <script src="{{ asset('js/tracker/cgpa-tracker.js') }}"></script>
 @endsection
 
-@section('navbar_type', 'cgpa')
+@section('navbar_type', 'others')
 
 
 

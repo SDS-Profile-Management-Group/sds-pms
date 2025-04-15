@@ -82,10 +82,17 @@ class UserController extends Controller
             "login-password" => "required"
         ]);
 
-        if (auth()->attempt(['asg_username' => $incomingFields['login-name'], 'password' => $incomingFields['login-password']])) {
+        if (auth()->attempt([
+            'asg_username' => $incomingFields['login-name'],
+            'password' => $incomingFields['login-password']
+        ])) {
             $request->session()->regenerate();
+            return redirect('/home');
         }
 
-        return redirect('/home');
+        // Redirect back with error if login fails
+        return back()->withErrors([
+            'login-name' => 'The provided credentials are incorrect.',
+        ])->withInput();
     }
 }

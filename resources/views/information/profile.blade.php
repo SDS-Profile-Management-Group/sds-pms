@@ -6,6 +6,8 @@
 
 @section('title', 'Profile')
 
+@section('navbar_type','profile')
+
 @section('content')
 <div class="max-w-xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
     <div class="flex justify-between items-center mb-6">
