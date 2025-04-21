@@ -24,6 +24,7 @@ Route::post('/login', [UserController::class,'login'])->name('login');
 
 Route::get('/profile-{user_id}', [ProfileController::class,'showProfile'])->name('profile-overview');
 Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+Route::post('/profile/upload-picture', [ProfileController::class, 'uploadProfilePicture'])->name('profile.uploadPicture');
 
 Route::get('/module-tracker', [ModuleController::class, 'showModules'])->name('module-tracker');
 Route::post('/module-tracker/store', [ModuleController::class, 'store'])->name('modules.store');

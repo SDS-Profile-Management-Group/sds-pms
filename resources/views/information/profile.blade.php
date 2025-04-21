@@ -13,11 +13,11 @@
 
     {{-- Profile Picture + Upload --}}
     <div class="flex flex-col items-center mb-6">
-        <img src="{{ asset($user->userProfile->profile_picture ?? 'images/default-avatar.png') }}"
-             alt="Profile Picture"
-             class="w-32 h-32 rounded-full object-cover shadow-md mb-4">
+        <img src="{{ $user->profilePicture ? Storage::url($user->profilePicture->file_path) : asset('images/default-avatar.png') }}"
+            alt="Profile Picture"
+            class="w-32 h-32 rounded-full object-cover shadow-md mb-4">
 
-        <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-2">
+        <form action="{{ route('profile.uploadPicture') }}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-2">
             @csrf
             <input type="file" name="profile_picture" accept="image/*" class="text-sm text-gray-600">
             <button type="submit"
