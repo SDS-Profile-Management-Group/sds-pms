@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Info\Staff;
 use App\Models\Info\Student;
 use App\Models\Profile;
+use App\Models\Resource\File;
 
 class User extends Authenticatable
 {
@@ -31,6 +32,14 @@ class User extends Authenticatable
 
     public function staffInfo(){
         return $this->hasOne(Staff::class, 'staff_username', 'asg_username');
+    }
+
+    public function files(){
+        return $this->hasMany(File::class, 'asg_username', 'asg_username');
+    }
+
+    public function profilePicture(){
+        return $this->hasOne(File::class, 'asg_username', 'asg_username')->where('type', 'profile_picture');
     }
     
     protected $fillable = [
